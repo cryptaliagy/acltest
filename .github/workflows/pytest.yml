@@ -7,8 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python: ['3.5', '3.6', '3.7']
-    name: Testing Capirca with python ${{ matrix.python }}
+        python: ['3.6', '3.7']
+    name: Testing acltest with python ${{ matrix.python }}
     steps:
       - uses: actions/checkout@v2
       - name: Setup python
