@@ -23,7 +23,7 @@ jobs:
         run: pip install flake8
       - name: Link with flake8
         run: flake8
-	
+
       - name: Install pytest
         run: pip install -r test-requirements
       - name: Test with pytest
