@@ -25,6 +25,6 @@ jobs:
         run: flake8
 
       - name: Install pytest
-        run: pip install -r test-requirements
+        run: pip install -r test-requirements.txt
       - name: Test with pytest
         run: pytest tests/
