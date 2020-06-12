@@ -1,3 +1,5 @@
+import os
+
 from absl import app
 from absl import flags
 from acltest.utils.config import get_configs_from_flags
@@ -24,6 +26,10 @@ def main(argv):
     del argv
     configs = get_configs_from_flags(FLAGS)
     print(configs)
+
+
+def get_module_script_path(module):
+    return os.path.realpath(module.__file__)
 
 
 def entry_point():
