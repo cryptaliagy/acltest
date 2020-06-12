@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-with open('requirements.txt', 'r') as fh:
+with open('dependencies/requirements.txt', 'r') as fh:
     requirements = fh.read().split('\n')
 
 setup(
