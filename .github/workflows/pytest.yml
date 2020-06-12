@@ -1,6 +1,11 @@
 name: build
 
-on: [push]
+on:
+  push:
+    paths:
+      - 'acltest/**.py'
+      - 'tests/**.py'
+      - 'dependencies/*requirements.txt'
 
 jobs:
   build:
