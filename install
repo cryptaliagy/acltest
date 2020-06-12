@@ -1,0 +1,7 @@
+#!/bin/sh
+
+pip install -r requirements.txt -e .;
+pip install -r test-requirements.txt;
+pip install pre-commit;
+pre-commit install;
+pytest --cov=acltest --cov-report term-missing tests/;
