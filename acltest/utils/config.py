@@ -4,7 +4,7 @@ from pydeepmerge import deep_merge
 from typing import Dict, Tuple
 
 
-def load_configs_from_file(file_name: str = "acltest.yaml") -> Dict:
+def load_configs_from_file(file_name: str = "conf/acltest.yaml") -> Dict:
     '''
     Load a configuration from one yaml file
     '''
