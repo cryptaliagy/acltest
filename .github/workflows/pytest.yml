@@ -19,8 +19,8 @@ jobs:
       - name: Install dependencies and script
         run: pip install -r requirements.txt -e .
 
-      - name: Install flake8
-        run: pip install -r test-requirements
+      - name: Install test dependencies
+        run: pip install -r test-requirements.txt
 
       - name: Lint with flake8
         run: flake8
