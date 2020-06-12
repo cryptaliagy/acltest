@@ -11,4 +11,4 @@ if [ "$1" == '--hooks' ]; then
     pre-commit install;
 fi
 echo "Producing test baseline with pytest...";
-pytest --cov=acltest --cov-report term-missing tests/;
+pytest;
