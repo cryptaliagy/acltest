@@ -27,7 +27,7 @@ $ ./uninstall --hooks  # uninstalls pre-commit hooks as well as acltest
 ## Latest flamegraphs
 
 ### Flamegraph
-![regular flamegraph](./flamegraph/latest.svg)
+![regular flamegraph](./latest.svg)
 
 ### Inverted Flamegraph
-![inverted flamegraph](./flamegraph/latest_inverted.svg)
+![inverted flamegraph](./latest_inverted.svg)
