@@ -1,7 +1,7 @@
 import arrow
 import capirca
 import pathlib
-import re
+import pstats
 import subprocess
 import os
 
@@ -88,6 +88,11 @@ def subprocess_profile_script(script_path, script_args=[], sanitize=True):
         *script_args
     ])
 
+    if sanitize:
+        (pstats.Stats('perf/%s.prof' % file_name)
+         .strip_dirs()
+         .dump_stats('perf/%s.prof' % file_name))
+
     flamegraph_convert = subprocess.call([
         'flameprof',
         '-o',
@@ -130,10 +135,6 @@ def subprocess_profile_script(script_path, script_args=[], sanitize=True):
         'docs/latest_inverted.svg'
     ])
 
-    if sanitize:
-        sanitize_file('docs/latest.svg', r'/\.virtual.*/site-packages/')
-        sanitize_file('docs/latest_inverted.svg', r'/\.virtual.*/site-packages/')
-
     for f in pathlib.Path('.').glob('sample_*'):
         f.unlink()
 
@@ -142,16 +143,6 @@ def subprocess_profile_script(script_path, script_args=[], sanitize=True):
 
 def get_module_script_path(module):
     return os.path.dirname(module.__file__)
-
-
-def sanitize_file(file_name, regexp):
-    with open(file_name, 'r') as f:
-        data = f.read()
-
-    sanitized = re.sub(regexp, '', data)
-
-    with open(file_name, 'w') as f:
-        f.write(sanitized)
 
 
 def entry_point():

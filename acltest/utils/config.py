@@ -11,6 +11,7 @@ def get_cli_configs(absl_flags) -> Dict:
     configs = {
         'load': {},
         'acl': {},
+        'acltest': {}
     }
 
     if absl_flags.max_qps:
