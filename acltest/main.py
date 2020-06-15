@@ -1,6 +1,7 @@
 import arrow
 import capirca
 import pathlib
+import re
 import subprocess
 import os
 
@@ -80,6 +81,7 @@ def subprocess_profile_script(script_path, script_args=[]):
         script_path,
         *script_args
     ])
+
     flamegraph_convert = subprocess.call([
         'flameprof',
         '-o',
@@ -88,6 +90,7 @@ def subprocess_profile_script(script_path, script_args=[]):
         'log',
         'perf/%s.prof' % file_name
     ])
+
     with open('flamegraph/%s.svg' % file_name, 'w') as f:
         flamegraph = subprocess.call([
             'flamegraph.pl',
@@ -102,6 +105,9 @@ def subprocess_profile_script(script_path, script_args=[]):
             '--reverse',
             'flamegraph/%s.plog' % file_name,
         ], stdout=f)
+
+    sanitize_file('flamegraph/%s.svg' % file_name, '.*/site-packages/')
+    sanitize_file('flamegraph/%s_inverted.svg' % file_name, '.*/site-packages/')
     try:
         os.remove('docs/latest.svg')
         os.remove('docs/latest_inverted.svg')
@@ -128,6 +134,16 @@ def subprocess_profile_script(script_path, script_args=[]):
 
 def get_module_script_path(module):
     return os.path.dirname(module.__file__)
+
+
+def sanitize_file(file_name, regexp):
+    with open(file_name, 'r') as f:
+        data = f.read()
+
+    sanitized = re.sub(regexp, '', data)
+
+    with open(file_name, 'w') as f:
+        f.write(sanitized)
 
 
 def entry_point():
