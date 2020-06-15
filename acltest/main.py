@@ -106,8 +106,6 @@ def subprocess_profile_script(script_path, script_args=[]):
             'flamegraph/%s.plog' % file_name,
         ], stdout=f)
 
-    sanitize_file('flamegraph/%s.svg' % file_name, '.*/site-packages/')
-    sanitize_file('flamegraph/%s_inverted.svg' % file_name, '.*/site-packages/')
     try:
         os.remove('docs/latest.svg')
         os.remove('docs/latest_inverted.svg')
@@ -125,6 +123,9 @@ def subprocess_profile_script(script_path, script_args=[]):
         'flamegraph/%s_inverted.svg' % file_name,
         'docs/latest_inverted.svg'
     ])
+
+    sanitize_file('docs/latest.svg', r'/\.virtual.*/site-packages/')
+    sanitize_file('docs/latest_inverted.svg', r'/\.virtual.*/site-packages/')
 
     for f in pathlib.Path('.').glob('sample_*'):
         f.unlink()
