@@ -8,7 +8,7 @@ import os
 from absl import app
 from absl import flags
 from absl import logging
-# from acltest.utils.config import get_configs_from_flags
+from acltest.utils.config import get_configs_from_flags
 
 
 FLAGS = flags.FLAGS
@@ -51,21 +51,27 @@ def setup_flags():
         None,
         'Location to a single policy file to render'
     )
+    flags.DEFINE_boolean(
+        'sanitize',
+        None,
+        'Sanitize output svg'
+    )
 
 
 def main(argv):
     del argv
-    # configs = get_configs_from_flags(FLAGS)
+    configs = get_configs_from_flags(FLAGS)
     capirca_install_path = get_module_script_path(capirca) + "/aclgen.py"
     subprocess_profile_script(
         capirca_install_path,
         # Capirca can only use 1 renderer for flamegraph testing
         # as cProfiler and multiprocessing don't play nice together
-        script_args=['--max_renderers', '1']
+        script_args=['--max_renderers', '1'],
+        sanitize=configs['acltest']['sanitize']
     )
 
 
-def subprocess_profile_script(script_path, script_args=[]):
+def subprocess_profile_script(script_path, script_args=[], sanitize=True):
     logging.info(
         "script_path: %s\nscript_args: %s",
         script_path,
@@ -124,8 +130,9 @@ def subprocess_profile_script(script_path, script_args=[]):
         'docs/latest_inverted.svg'
     ])
 
-    # sanitize_file('docs/latest.svg', r'/\.virtual.*/site-packages/')
-    # sanitize_file('docs/latest_inverted.svg', r'/\.virtual.*/site-packages/')
+    if sanitize:
+        sanitize_file('docs/latest.svg', r'/\.virtual.*/site-packages/')
+        sanitize_file('docs/latest_inverted.svg', r'/\.virtual.*/site-packages/')
 
     for f in pathlib.Path('.').glob('sample_*'):
         f.unlink()

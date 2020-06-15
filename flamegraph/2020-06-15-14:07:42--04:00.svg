@@ -381,7 +381,7 @@
 <text  x="1184.71" y="127.5" ></text>
 </g>
 <g >
-<title>capirca/lib/policy.py:1279:AddressCleanup (2,502 samples, 0.23%)</title><rect x="670.1" y="149" width="2.7" height="15.0" fill="rgb(233,83,4)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/lib/policy.py:1279:AddressCleanup (2,502 samples, 0.23%)</title><rect x="670.1" y="149" width="2.7" height="15.0" fill="rgb(233,83,4)" rx="2" ry="2" />
 <text  x="673.08" y="159.5" ></text>
 </g>
 <g >
@@ -389,7 +389,7 @@
 <text  x="846.18" y="127.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:479:Run (3,461 samples, 0.32%)</title><rect x="1013.9" y="133" width="3.8" height="15.0" fill="rgb(243,197,26)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:479:Run (3,461 samples, 0.32%)</title><rect x="1013.9" y="133" width="3.8" height="15.0" fill="rgb(243,197,26)" rx="2" ry="2" />
 <text  x="1016.90" y="143.5" ></text>
 </g>
 <g >
@@ -397,7 +397,7 @@
 <text  x="958.93" y="367.5" ></text>
 </g>
 <g >
-<title>capirca/lib/naming.py:452:GetNet (2,502 samples, 0.23%)</title><rect x="672.8" y="165" width="2.8" height="15.0" fill="rgb(215,212,52)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/lib/naming.py:452:GetNet (2,502 samples, 0.23%)</title><rect x="672.8" y="165" width="2.8" height="15.0" fill="rgb(215,212,52)" rx="2" ry="2" />
 <text  x="675.85" y="175.5" ></text>
 </g>
 <g >
@@ -405,11 +405,11 @@
 <text  x="760.17" y="239.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:144:RenderFile (8,607 samples, 0.81%)</title><rect x="1180.5" y="165" width="9.5" height="15.0" fill="rgb(210,27,51)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:144:RenderFile (8,607 samples, 0.81%)</title><rect x="1180.5" y="165" width="9.5" height="15.0" fill="rgb(210,27,51)" rx="2" ry="2" />
 <text  x="1183.48" y="175.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:558:main (3,365 samples, 0.32%)</title><rect x="1001.8" y="133" width="3.7" height="15.0" fill="rgb(227,88,0)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:558:main (3,365 samples, 0.32%)</title><rect x="1001.8" y="133" width="3.7" height="15.0" fill="rgb(227,88,0)" rx="2" ry="2" />
 <text  x="1004.79" y="143.5" ></text>
 </g>
 <g >
@@ -417,7 +417,7 @@
 <text  x="1040.58" y="175.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:578:entry_point (10,026 samples, 0.94%)</title><rect x="944.8" y="245" width="11.1" height="15.0" fill="rgb(232,196,44)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:578:entry_point (10,026 samples, 0.94%)</title><rect x="944.8" y="245" width="11.1" height="15.0" fill="rgb(232,196,44)" rx="2" ry="2" />
 <text  x="947.84" y="255.5" ></text>
 </g>
 <g >
@@ -429,15 +429,15 @@
 <text  x="760.19" y="223.5" ></text>
 </g>
 <g >
-<title>capirca/lib/policy.py:2523:ParsePolicy (5,202 samples, 0.49%)</title><rect x="1184.2" y="149" width="5.8" height="15.0" fill="rgb(207,81,27)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/lib/policy.py:2523:ParsePolicy (5,202 samples, 0.49%)</title><rect x="1184.2" y="149" width="5.8" height="15.0" fill="rgb(207,81,27)" rx="2" ry="2" />
 <text  x="1187.24" y="159.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2510:add_lalr_lookaheads (1,380 samples, 0.13%)</title><rect x="1188.5" y="85" width="1.5" height="15.0" fill="rgb(239,111,1)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2510:add_lalr_lookaheads (1,380 samples, 0.13%)</title><rect x="1188.5" y="85" width="1.5" height="15.0" fill="rgb(239,111,1)" rx="2" ry="2" />
 <text  x="1191.47" y="95.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:479:Run (9,670 samples, 0.91%)</title><rect x="840.5" y="165" width="10.7" height="15.0" fill="rgb(236,33,53)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:479:Run (9,670 samples, 0.91%)</title><rect x="840.5" y="165" width="10.7" height="15.0" fill="rgb(236,33,53)" rx="2" ry="2" />
 <text  x="843.50" y="175.5" ></text>
 </g>
 <g >
@@ -449,15 +449,15 @@
 <text  x="769.44" y="207.5" >&lt;..</text>
 </g>
 <g >
-<title>capirca/aclgen.py:144:RenderFile (17,529 samples, 1.64%)</title><rect x="1018.1" y="213" width="19.4" height="15.0" fill="rgb(254,94,14)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:144:RenderFile (17,529 samples, 1.64%)</title><rect x="1018.1" y="213" width="19.4" height="15.0" fill="rgb(254,94,14)" rx="2" ry="2" />
 <text  x="1021.07" y="223.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:3216:yacc (1,720 samples, 0.16%)</title><rect x="1003.6" y="69" width="1.9" height="15.0" fill="rgb(227,40,21)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:3216:yacc (1,720 samples, 0.16%)</title><rect x="1003.6" y="69" width="1.9" height="15.0" fill="rgb(227,40,21)" rx="2" ry="2" />
 <text  x="1006.61" y="79.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2102:__init__ (10,017 samples, 0.94%)</title><rect x="1024.0" y="165" width="11.1" height="15.0" fill="rgb(221,39,10)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2102:__init__ (10,017 samples, 0.94%)</title><rect x="1024.0" y="165" width="11.1" height="15.0" fill="rgb(221,39,10)" rx="2" ry="2" />
 <text  x="1027.04" y="175.5" ></text>
 </g>
 <g >
@@ -469,7 +469,7 @@
 <text  x="846.85" y="63.5" ></text>
 </g>
 <g >
-<title>capirca/lib/juniper.py:958:__str__ (2,502 samples, 0.23%)</title><rect x="216.2" y="261" width="2.8" height="15.0" fill="rgb(209,197,15)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/lib/juniper.py:958:__str__ (2,502 samples, 0.23%)</title><rect x="216.2" y="261" width="2.8" height="15.0" fill="rgb(209,197,15)" rx="2" ry="2" />
 <text  x="219.21" y="271.5" ></text>
 </g>
 <g >
@@ -481,11 +481,11 @@
 <text  x="17.88" y="239.5" >/usr/lib/python3.7/multipr..</text>
 </g>
 <g >
-<title>ply/yacc.py:2510:add_lalr_lookaheads (1,375 samples, 0.13%)</title><rect x="1118.9" y="85" width="1.6" height="15.0" fill="rgb(226,41,34)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2510:add_lalr_lookaheads (1,375 samples, 0.13%)</title><rect x="1118.9" y="85" width="1.6" height="15.0" fill="rgb(226,41,34)" rx="2" ry="2" />
 <text  x="1121.94" y="95.5" ></text>
 </g>
 <g >
-<title>absl/app.py:269:run (9,730 samples, 0.91%)</title><rect x="1143.9" y="213" width="10.7" height="15.0" fill="rgb(224,1,30)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/absl/app.py:269:run (9,730 samples, 0.91%)</title><rect x="1143.9" y="213" width="10.7" height="15.0" fill="rgb(224,1,30)" rx="2" ry="2" />
 <text  x="1146.88" y="223.5" ></text>
 </g>
 <g >
@@ -493,19 +493,19 @@
 <text  x="219.21" y="223.5" ></text>
 </g>
 <g >
-<title>absl/app.py:269:run (9,702 samples, 0.91%)</title><rect x="1074.5" y="213" width="10.7" height="15.0" fill="rgb(210,145,3)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/absl/app.py:269:run (9,702 samples, 0.91%)</title><rect x="1074.5" y="213" width="10.7" height="15.0" fill="rgb(210,145,3)" rx="2" ry="2" />
 <text  x="1077.47" y="223.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:578:entry_point (9,996 samples, 0.94%)</title><rect x="1109.4" y="245" width="11.1" height="15.0" fill="rgb(205,102,2)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:578:entry_point (9,996 samples, 0.94%)</title><rect x="1109.4" y="245" width="11.1" height="15.0" fill="rgb(205,102,2)" rx="2" ry="2" />
 <text  x="1112.40" y="255.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2492:add_lookaheads (1,310 samples, 0.12%)</title><rect x="919.1" y="53" width="1.5" height="15.0" fill="rgb(249,41,18)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2492:add_lookaheads (1,310 samples, 0.12%)</title><rect x="919.1" y="53" width="1.5" height="15.0" fill="rgb(249,41,18)" rx="2" ry="2" />
 <text  x="922.12" y="63.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2534:lr_parse_table (4,379 samples, 0.41%)</title><rect x="846.4" y="85" width="4.8" height="15.0" fill="rgb(235,119,5)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2534:lr_parse_table (4,379 samples, 0.41%)</title><rect x="846.4" y="85" width="4.8" height="15.0" fill="rgb(235,119,5)" rx="2" ry="2" />
 <text  x="849.35" y="95.5" ></text>
 </g>
 <g >
@@ -513,7 +513,7 @@
 <text  x="915.53" y="95.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:3216:yacc (5,123 samples, 0.48%)</title><rect x="1184.3" y="133" width="5.7" height="15.0" fill="rgb(228,94,12)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:3216:yacc (5,123 samples, 0.48%)</title><rect x="1184.3" y="133" width="5.7" height="15.0" fill="rgb(228,94,12)" rx="2" ry="2" />
 <text  x="1187.33" y="143.5" ></text>
 </g>
 <g >
@@ -521,7 +521,7 @@
 <text  x="1080.85" y="63.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:3216:yacc (10,434 samples, 0.98%)</title><rect x="1023.6" y="181" width="11.5" height="15.0" fill="rgb(205,226,38)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:3216:yacc (10,434 samples, 0.98%)</title><rect x="1023.6" y="181" width="11.5" height="15.0" fill="rgb(205,226,38)" rx="2" ry="2" />
 <text  x="1026.58" y="191.5" ></text>
 </g>
 <g >
@@ -529,11 +529,11 @@
 <text  x="818.61" y="239.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2510:add_lalr_lookaheads (1,339 samples, 0.13%)</title><rect x="919.1" y="69" width="1.5" height="15.0" fill="rgb(228,181,18)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2510:add_lalr_lookaheads (1,339 samples, 0.13%)</title><rect x="919.1" y="69" width="1.5" height="15.0" fill="rgb(228,181,18)" rx="2" ry="2" />
 <text  x="922.09" y="79.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:144:RenderFile (2,976 samples, 0.28%)</title><rect x="1014.4" y="117" width="3.3" height="15.0" fill="rgb(231,33,28)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:144:RenderFile (2,976 samples, 0.28%)</title><rect x="1014.4" y="117" width="3.3" height="15.0" fill="rgb(231,33,28)" rx="2" ry="2" />
 <text  x="1017.44" y="127.5" ></text>
 </g>
 <g >
@@ -553,7 +553,7 @@
 <text  x="924.01" y="287.5" ></text>
 </g>
 <g >
-<title>capirca/lib/policy.py:2523:ParsePolicy (1,746 samples, 0.16%)</title><rect x="1003.6" y="85" width="1.9" height="15.0" fill="rgb(233,116,4)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/lib/policy.py:2523:ParsePolicy (1,746 samples, 0.16%)</title><rect x="1003.6" y="85" width="1.9" height="15.0" fill="rgb(233,116,4)" rx="2" ry="2" />
 <text  x="1006.58" y="95.5" ></text>
 </g>
 <g >
@@ -569,7 +569,7 @@
 <text  x="1040.57" y="207.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:1803:_first (2,502 samples, 0.23%)</title><rect x="234.9" y="197" width="2.8" height="15.0" fill="rgb(219,134,45)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:1803:_first (2,502 samples, 0.23%)</title><rect x="234.9" y="197" width="2.8" height="15.0" fill="rgb(219,134,45)" rx="2" ry="2" />
 <text  x="237.89" y="207.5" ></text>
 </g>
 <g >
@@ -581,7 +581,7 @@
 <text  x="1051.42" y="287.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2510:add_lalr_lookaheads (1,335 samples, 0.13%)</title><rect x="1083.7" y="69" width="1.5" height="15.0" fill="rgb(249,43,27)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2510:add_lalr_lookaheads (1,335 samples, 0.13%)</title><rect x="1083.7" y="69" width="1.5" height="15.0" fill="rgb(249,43,27)" rx="2" ry="2" />
 <text  x="1086.72" y="79.5" ></text>
 </g>
 <g >
@@ -589,19 +589,19 @@
 <text  x="916.19" y="63.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2534:lr_parse_table (359,594 samples, 33.71%)</title><rect x="263.3" y="213" width="397.8" height="15.0" fill="rgb(245,121,34)" rx="2" ry="2" />
-<text  x="266.26" y="223.5" >ply/..</text>
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2534:lr_parse_table (359,594 samples, 33.71%)</title><rect x="263.3" y="213" width="397.8" height="15.0" fill="rgb(245,121,34)" rx="2" ry="2" />
+<text  x="266.26" y="223.5" >/.virtualenvs/acltest/lib/python3.7/site-packages/ply/..</text>
 </g>
 <g >
-<title>ply/yacc.py:2534:lr_parse_table (4,399 samples, 0.41%)</title><rect x="1149.8" y="85" width="4.8" height="15.0" fill="rgb(225,44,30)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2534:lr_parse_table (4,399 samples, 0.41%)</title><rect x="1149.8" y="85" width="4.8" height="15.0" fill="rgb(225,44,30)" rx="2" ry="2" />
 <text  x="1152.77" y="95.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:558:main (10,026 samples, 0.94%)</title><rect x="1178.9" y="197" width="11.1" height="15.0" fill="rgb(208,31,13)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:558:main (10,026 samples, 0.94%)</title><rect x="1178.9" y="197" width="11.1" height="15.0" fill="rgb(208,31,13)" rx="2" ry="2" />
 <text  x="1181.91" y="207.5" ></text>
 </g>
 <g >
-<title>capirca/lib/policy.py:192:AddFilter (2,502 samples, 0.23%)</title><rect x="670.1" y="181" width="2.7" height="15.0" fill="rgb(236,26,28)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/lib/policy.py:192:AddFilter (2,502 samples, 0.23%)</title><rect x="670.1" y="181" width="2.7" height="15.0" fill="rgb(236,26,28)" rx="2" ry="2" />
 <text  x="673.08" y="191.5" ></text>
 </g>
 <g >
@@ -613,11 +613,11 @@
 <text  x="19.23" y="207.5" >/usr/lib/python3.7/multipr..</text>
 </g>
 <g >
-<title>ply/yacc.py:2102:__init__ (4,774 samples, 0.45%)</title><rect x="1149.4" y="101" width="5.2" height="15.0" fill="rgb(214,162,12)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2102:__init__ (4,774 samples, 0.45%)</title><rect x="1149.4" y="101" width="5.2" height="15.0" fill="rgb(214,162,12)" rx="2" ry="2" />
 <text  x="1152.36" y="111.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2102:__init__ (4,774 samples, 0.45%)</title><rect x="915.3" y="101" width="5.3" height="15.0" fill="rgb(221,102,42)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2102:__init__ (4,774 samples, 0.45%)</title><rect x="915.3" y="101" width="5.3" height="15.0" fill="rgb(221,102,42)" rx="2" ry="2" />
 <text  x="918.29" y="111.5" ></text>
 </g>
 <g >
@@ -625,39 +625,39 @@
 <text  x="680.30" y="255.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2102:__init__ (4,918 samples, 0.46%)</title><rect x="950.5" y="117" width="5.4" height="15.0" fill="rgb(227,63,9)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2102:__init__ (4,918 samples, 0.46%)</title><rect x="950.5" y="117" width="5.4" height="15.0" fill="rgb(227,63,9)" rx="2" ry="2" />
 <text  x="953.49" y="127.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:344:RenderACL (2,227 samples, 0.21%)</title><rect x="1077.2" y="133" width="2.4" height="15.0" fill="rgb(235,227,7)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:344:RenderACL (2,227 samples, 0.21%)</title><rect x="1077.2" y="133" width="2.4" height="15.0" fill="rgb(235,227,7)" rx="2" ry="2" />
 <text  x="1080.17" y="143.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:479:Run (9,961 samples, 0.93%)</title><rect x="875.4" y="181" width="11.0" height="15.0" fill="rgb(214,126,34)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:479:Run (9,961 samples, 0.93%)</title><rect x="875.4" y="181" width="11.0" height="15.0" fill="rgb(214,126,34)" rx="2" ry="2" />
 <text  x="878.37" y="191.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:17:&lt;module&gt; (9,977 samples, 0.94%)</title><rect x="875.4" y="261" width="11.0" height="15.0" fill="rgb(249,162,22)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:17:&lt;module&gt; (9,977 samples, 0.94%)</title><rect x="875.4" y="261" width="11.0" height="15.0" fill="rgb(249,162,22)" rx="2" ry="2" />
 <text  x="878.35" y="271.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:344:RenderACL (2,291 samples, 0.21%)</title><rect x="878.1" y="149" width="2.6" height="15.0" fill="rgb(217,78,11)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:344:RenderACL (2,291 samples, 0.21%)</title><rect x="878.1" y="149" width="2.6" height="15.0" fill="rgb(217,78,11)" rx="2" ry="2" />
 <text  x="881.13" y="159.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:17:&lt;module&gt; (10,026 samples, 0.94%)</title><rect x="944.8" y="261" width="11.1" height="15.0" fill="rgb(235,93,17)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:17:&lt;module&gt; (10,026 samples, 0.94%)</title><rect x="944.8" y="261" width="11.1" height="15.0" fill="rgb(235,93,17)" rx="2" ry="2" />
 <text  x="947.84" y="271.5" ></text>
 </g>
 <g >
-<title>capirca/lib/policy.py:2523:ParsePolicy (5,026 samples, 0.47%)</title><rect x="845.6" y="133" width="5.6" height="15.0" fill="rgb(218,207,45)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/lib/policy.py:2523:ParsePolicy (5,026 samples, 0.47%)</title><rect x="845.6" y="133" width="5.6" height="15.0" fill="rgb(218,207,45)" rx="2" ry="2" />
 <text  x="848.64" y="143.5" ></text>
 </g>
 <g >
-<title>capirca/lib/policy.py:2523:ParsePolicy (5,202 samples, 0.49%)</title><rect x="950.2" y="149" width="5.7" height="15.0" fill="rgb(245,7,9)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/lib/policy.py:2523:ParsePolicy (5,202 samples, 0.49%)</title><rect x="950.2" y="149" width="5.7" height="15.0" fill="rgb(245,7,9)" rx="2" ry="2" />
 <text  x="953.17" y="159.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2492:add_lookaheads (1,346 samples, 0.13%)</title><rect x="1119.0" y="69" width="1.5" height="15.0" fill="rgb(219,102,34)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2492:add_lookaheads (1,346 samples, 0.13%)</title><rect x="1119.0" y="69" width="1.5" height="15.0" fill="rgb(219,102,34)" rx="2" ry="2" />
 <text  x="1121.97" y="79.5" ></text>
 </g>
 <g >
@@ -677,15 +677,15 @@
 <text  x="1020.73" y="335.5" >~:..</text>
 </g>
 <g >
-<title>ply/yacc.py:2510:add_lalr_lookaheads (2,809 samples, 0.26%)</title><rect x="1032.0" y="133" width="3.1" height="15.0" fill="rgb(236,115,13)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2510:add_lalr_lookaheads (2,809 samples, 0.26%)</title><rect x="1032.0" y="133" width="3.1" height="15.0" fill="rgb(236,115,13)" rx="2" ry="2" />
 <text  x="1035.01" y="143.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:578:entry_point (9,730 samples, 0.91%)</title><rect x="1143.9" y="229" width="10.7" height="15.0" fill="rgb(248,109,4)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:578:entry_point (9,730 samples, 0.91%)</title><rect x="1143.9" y="229" width="10.7" height="15.0" fill="rgb(248,109,4)" rx="2" ry="2" />
 <text  x="1146.88" y="239.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2534:lr_parse_table (1,567 samples, 0.15%)</title><rect x="1016.0" y="53" width="1.7" height="15.0" fill="rgb(247,5,40)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2534:lr_parse_table (1,567 samples, 0.15%)</title><rect x="1016.0" y="53" width="1.7" height="15.0" fill="rgb(247,5,40)" rx="2" ry="2" />
 <text  x="1019.00" y="63.5" ></text>
 </g>
 <g >
@@ -701,7 +701,7 @@
 <text  x="1158.08" y="287.5" ></text>
 </g>
 <g >
-<title>absl/app.py:230:_run_main (9,685 samples, 0.91%)</title><rect x="840.5" y="197" width="10.7" height="15.0" fill="rgb(231,52,52)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/absl/app.py:230:_run_main (9,685 samples, 0.91%)</title><rect x="840.5" y="197" width="10.7" height="15.0" fill="rgb(231,52,52)" rx="2" ry="2" />
 <text  x="843.48" y="207.5" ></text>
 </g>
 <g >
@@ -713,8 +713,8 @@
 <text  x="1054.40" y="287.5" >&lt;f..</text>
 </g>
 <g >
-<title>capirca/aclgen.py:578:entry_point (729,571 samples, 68.40%)</title><rect x="10.0" y="357" width="807.2" height="15.0" fill="rgb(227,100,29)" rx="2" ry="2" />
-<text  x="13.04" y="367.5" >capirca/aclgen.py:578:entry_point</text>
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:578:entry_point (729,571 samples, 68.40%)</title><rect x="10.0" y="357" width="807.2" height="15.0" fill="rgb(227,100,29)" rx="2" ry="2" />
+<text  x="13.04" y="367.5" >/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:578:entry_point</text>
 </g>
 <g >
 <title>/usr/lib/python3.7/multiprocessing/managers.py:516:start (3,752 samples, 0.35%)</title><rect x="762.0" y="261" width="4.2" height="15.0" fill="rgb(245,17,0)" rx="2" ry="2" />
@@ -725,7 +725,7 @@
 <text  x="1048.75" y="271.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:558:main (9,730 samples, 0.91%)</title><rect x="1143.9" y="181" width="10.7" height="15.0" fill="rgb(227,155,35)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:558:main (9,730 samples, 0.91%)</title><rect x="1143.9" y="181" width="10.7" height="15.0" fill="rgb(227,155,35)" rx="2" ry="2" />
 <text  x="1146.88" y="191.5" ></text>
 </g>
 <g >
@@ -733,11 +733,11 @@
 <text  x="718.17" y="191.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2165:lr0_goto (2,483 samples, 0.23%)</title><rect x="1029.3" y="117" width="2.7" height="15.0" fill="rgb(241,161,12)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2165:lr0_goto (2,483 samples, 0.23%)</title><rect x="1029.3" y="117" width="2.7" height="15.0" fill="rgb(241,161,12)" rx="2" ry="2" />
 <text  x="1032.26" y="127.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:3216:yacc (5,123 samples, 0.48%)</title><rect x="950.3" y="133" width="5.6" height="15.0" fill="rgb(213,72,22)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:3216:yacc (5,123 samples, 0.48%)</title><rect x="950.3" y="133" width="5.6" height="15.0" fill="rgb(213,72,22)" rx="2" ry="2" />
 <text  x="953.26" y="143.5" ></text>
 </g>
 <g >
@@ -745,11 +745,11 @@
 <text  x="889.67" y="271.5" ></text>
 </g>
 <g >
-<title>capirca/lib/nacaddr.py:373:SortAddrList (2,502 samples, 0.23%)</title><rect x="670.1" y="117" width="2.7" height="15.0" fill="rgb(225,113,30)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/lib/nacaddr.py:373:SortAddrList (2,502 samples, 0.23%)</title><rect x="670.1" y="117" width="2.7" height="15.0" fill="rgb(225,113,30)" rx="2" ry="2" />
 <text  x="673.08" y="127.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:3150:validate_pfunctions (7,506 samples, 0.70%)</title><rect x="661.8" y="213" width="8.3" height="15.0" fill="rgb(208,42,34)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:3150:validate_pfunctions (7,506 samples, 0.70%)</title><rect x="661.8" y="213" width="8.3" height="15.0" fill="rgb(208,42,34)" rx="2" ry="2" />
 <text  x="664.78" y="223.5" ></text>
 </g>
 <g >
@@ -761,15 +761,15 @@
 <text  x="700.08" y="223.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:479:Run (3,360 samples, 0.32%)</title><rect x="1001.8" y="117" width="3.7" height="15.0" fill="rgb(224,62,1)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:479:Run (3,360 samples, 0.32%)</title><rect x="1001.8" y="117" width="3.7" height="15.0" fill="rgb(224,62,1)" rx="2" ry="2" />
 <text  x="1004.79" y="127.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:578:entry_point (3,466 samples, 0.32%)</title><rect x="1013.9" y="197" width="3.8" height="15.0" fill="rgb(208,34,46)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:578:entry_point (3,466 samples, 0.32%)</title><rect x="1013.9" y="197" width="3.8" height="15.0" fill="rgb(208,34,46)" rx="2" ry="2" />
 <text  x="1016.90" y="207.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2534:lr_parse_table (4,386 samples, 0.41%)</title><rect x="1080.3" y="85" width="4.9" height="15.0" fill="rgb(246,119,15)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2534:lr_parse_table (4,386 samples, 0.41%)</title><rect x="1080.3" y="85" width="4.9" height="15.0" fill="rgb(246,119,15)" rx="2" ry="2" />
 <text  x="1083.35" y="95.5" ></text>
 </g>
 <g >
@@ -781,11 +781,11 @@
 <text  x="726.57" y="223.5" ></text>
 </g>
 <g >
-<title>capirca/lib/policy.py:174:__init__ (2,502 samples, 0.23%)</title><rect x="670.1" y="197" width="2.7" height="15.0" fill="rgb(207,15,53)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/lib/policy.py:174:__init__ (2,502 samples, 0.23%)</title><rect x="670.1" y="197" width="2.7" height="15.0" fill="rgb(207,15,53)" rx="2" ry="2" />
 <text  x="673.08" y="207.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:1838:compute_first (7,505 samples, 0.70%)</title><rect x="229.4" y="213" width="8.3" height="15.0" fill="rgb(250,72,52)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:1838:compute_first (7,505 samples, 0.70%)</title><rect x="229.4" y="213" width="8.3" height="15.0" fill="rgb(250,72,52)" rx="2" ry="2" />
 <text  x="232.36" y="223.5" ></text>
 </g>
 <g >
@@ -797,11 +797,11 @@
 <text  x="996.70" y="303.5" >&lt;..</text>
 </g>
 <g >
-<title>ply/yacc.py:2057:digraph (2,340 samples, 0.22%)</title><rect x="540.0" y="165" width="2.6" height="15.0" fill="rgb(238,77,1)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2057:digraph (2,340 samples, 0.22%)</title><rect x="540.0" y="165" width="2.6" height="15.0" fill="rgb(238,77,1)" rx="2" ry="2" />
 <text  x="543.01" y="175.5" ></text>
 </g>
 <g >
-<title>absl/app.py:230:_run_main (10,026 samples, 0.94%)</title><rect x="1178.9" y="213" width="11.1" height="15.0" fill="rgb(235,145,33)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/absl/app.py:230:_run_main (10,026 samples, 0.94%)</title><rect x="1178.9" y="213" width="11.1" height="15.0" fill="rgb(235,145,33)" rx="2" ry="2" />
 <text  x="1181.91" y="223.5" ></text>
 </g>
 <g >
@@ -809,11 +809,11 @@
 <text  x="1054.10" y="383.5" >/usr/li..</text>
 </g>
 <g >
-<title>capirca/aclgen.py:17:&lt;module&gt; (9,996 samples, 0.94%)</title><rect x="1109.4" y="261" width="11.1" height="15.0" fill="rgb(234,129,27)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:17:&lt;module&gt; (9,996 samples, 0.94%)</title><rect x="1109.4" y="261" width="11.1" height="15.0" fill="rgb(234,129,27)" rx="2" ry="2" />
 <text  x="1112.40" y="271.5" ></text>
 </g>
 <g >
-<title>absl/app.py:230:_run_main (3,365 samples, 0.32%)</title><rect x="1001.8" y="149" width="3.7" height="15.0" fill="rgb(221,140,38)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/absl/app.py:230:_run_main (3,365 samples, 0.32%)</title><rect x="1001.8" y="149" width="3.7" height="15.0" fill="rgb(221,140,38)" rx="2" ry="2" />
 <text  x="1004.79" y="159.5" ></text>
 </g>
 <g >
@@ -829,7 +829,7 @@
 <text  x="1123.46" y="383.5" >/usr/li..</text>
 </g>
 <g >
-<title>capirca/aclgen.py:144:RenderFile (8,581 samples, 0.80%)</title><rect x="1111.0" y="165" width="9.5" height="15.0" fill="rgb(248,96,44)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:144:RenderFile (8,581 samples, 0.80%)</title><rect x="1111.0" y="165" width="9.5" height="15.0" fill="rgb(248,96,44)" rx="2" ry="2" />
 <text  x="1113.97" y="175.5" ></text>
 </g>
 <g >
@@ -841,7 +841,7 @@
 <text  x="1051.43" y="271.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2200:lr0_items (2,488 samples, 0.23%)</title><rect x="1029.3" y="133" width="2.7" height="15.0" fill="rgb(251,159,17)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2200:lr0_items (2,488 samples, 0.23%)</title><rect x="1029.3" y="133" width="2.7" height="15.0" fill="rgb(251,159,17)" rx="2" ry="2" />
 <text  x="1032.26" y="143.5" ></text>
 </g>
 <g >
@@ -857,7 +857,7 @@
 <text  x="1054.14" y="351.5" >&lt;frozen..</text>
 </g>
 <g >
-<title>absl/app.py:269:run (3,365 samples, 0.32%)</title><rect x="1001.8" y="165" width="3.7" height="15.0" fill="rgb(248,100,46)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/absl/app.py:269:run (3,365 samples, 0.32%)</title><rect x="1001.8" y="165" width="3.7" height="15.0" fill="rgb(248,100,46)" rx="2" ry="2" />
 <text  x="1004.79" y="175.5" ></text>
 </g>
 <g >
@@ -865,7 +865,7 @@
 <text  x="747.81" y="207.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:144:RenderFile (8,565 samples, 0.80%)</title><rect x="876.9" y="165" width="9.5" height="15.0" fill="rgb(239,96,23)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:144:RenderFile (8,565 samples, 0.80%)</title><rect x="876.9" y="165" width="9.5" height="15.0" fill="rgb(239,96,23)" rx="2" ry="2" />
 <text  x="879.91" y="175.5" ></text>
 </g>
 <g >
@@ -877,7 +877,7 @@
 <text  x="1038.12" y="207.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:17:&lt;module&gt; (3,466 samples, 0.32%)</title><rect x="1013.9" y="213" width="3.8" height="15.0" fill="rgb(230,60,17)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:17:&lt;module&gt; (3,466 samples, 0.32%)</title><rect x="1013.9" y="213" width="3.8" height="15.0" fill="rgb(230,60,17)" rx="2" ry="2" />
 <text  x="1016.90" y="223.5" ></text>
 </g>
 <g >
@@ -889,11 +889,11 @@
 <text  x="1046.06" y="303.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:144:RenderFile (8,315 samples, 0.78%)</title><rect x="842.0" y="149" width="9.2" height="15.0" fill="rgb(230,88,14)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:144:RenderFile (8,315 samples, 0.78%)</title><rect x="842.0" y="149" width="9.2" height="15.0" fill="rgb(230,88,14)" rx="2" ry="2" />
 <text  x="845.00" y="159.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2068:traverse (2,307 samples, 0.22%)</title><rect x="540.0" y="149" width="2.6" height="15.0" fill="rgb(227,60,22)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2068:traverse (2,307 samples, 0.22%)</title><rect x="540.0" y="149" width="2.6" height="15.0" fill="rgb(227,60,22)" rx="2" ry="2" />
 <text  x="543.05" y="159.5" ></text>
 </g>
 <g >
@@ -905,15 +905,15 @@
 <text  x="915.51" y="127.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:479:Run (728,320 samples, 68.28%)</title><rect x="11.4" y="293" width="805.8" height="15.0" fill="rgb(242,228,51)" rx="2" ry="2" />
-<text  x="14.42" y="303.5" >capirca/aclgen.py:479:Run</text>
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:479:Run (728,320 samples, 68.28%)</title><rect x="11.4" y="293" width="805.8" height="15.0" fill="rgb(242,228,51)" rx="2" ry="2" />
+<text  x="14.42" y="303.5" >/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:479:Run</text>
 </g>
 <g >
 <title>~:0:&lt;built-in method _imp.create_dynamic&gt; (31,633 samples, 2.97%)</title><rect x="958.7" y="325" width="35.0" height="15.0" fill="rgb(205,202,6)" rx="2" ry="2" />
 <text  x="961.70" y="335.5" >~:..</text>
 </g>
 <g >
-<title>ply/yacc.py:1313:__init__ (2,502 samples, 0.23%)</title><rect x="223.8" y="213" width="2.8" height="15.0" fill="rgb(254,152,49)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:1313:__init__ (2,502 samples, 0.23%)</title><rect x="223.8" y="213" width="2.8" height="15.0" fill="rgb(254,152,49)" rx="2" ry="2" />
 <text  x="226.82" y="223.5" ></text>
 </g>
 <g >
@@ -921,7 +921,7 @@
 <text  x="996.79" y="239.5" ></text>
 </g>
 <g >
-<title>absl/app.py:230:_run_main (9,730 samples, 0.91%)</title><rect x="1143.9" y="197" width="10.7" height="15.0" fill="rgb(229,167,52)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/absl/app.py:230:_run_main (9,730 samples, 0.91%)</title><rect x="1143.9" y="197" width="10.7" height="15.0" fill="rgb(229,167,52)" rx="2" ry="2" />
 <text  x="1146.88" y="207.5" ></text>
 </g>
 <g >
@@ -929,8 +929,8 @@
 <text  x="721.92" y="207.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:558:main (729,571 samples, 68.40%)</title><rect x="10.0" y="309" width="807.2" height="15.0" fill="rgb(214,125,38)" rx="2" ry="2" />
-<text  x="13.04" y="319.5" >capirca/aclgen.py:558:main</text>
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:558:main (729,571 samples, 68.40%)</title><rect x="10.0" y="309" width="807.2" height="15.0" fill="rgb(214,125,38)" rx="2" ry="2" />
+<text  x="13.04" y="319.5" >/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:558:main</text>
 </g>
 <g >
 <title>/usr/lib/python3.7/multiprocessing/connection.py:406:_recv_bytes (2,205 samples, 0.21%)</title><rect x="1077.2" y="69" width="2.4" height="15.0" fill="rgb(235,4,31)" rx="2" ry="2" />
@@ -941,7 +941,7 @@
 <text  x="1157.64" y="319.5" >&lt;f..</text>
 </g>
 <g >
-<title>absl/app.py:269:run (9,977 samples, 0.94%)</title><rect x="875.4" y="229" width="11.0" height="15.0" fill="rgb(208,114,27)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/absl/app.py:269:run (9,977 samples, 0.94%)</title><rect x="875.4" y="229" width="11.0" height="15.0" fill="rgb(208,114,27)" rx="2" ry="2" />
 <text  x="878.35" y="239.5" ></text>
 </g>
 <g >
@@ -949,7 +949,7 @@
 <text  x="1054.40" y="271.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:3216:yacc (4,958 samples, 0.46%)</title><rect x="1079.7" y="117" width="5.5" height="15.0" fill="rgb(228,98,21)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:3216:yacc (4,958 samples, 0.46%)</title><rect x="1079.7" y="117" width="5.5" height="15.0" fill="rgb(228,98,21)" rx="2" ry="2" />
 <text  x="1082.71" y="127.5" ></text>
 </g>
 <g >
@@ -965,11 +965,11 @@
 <text  x="736.91" y="207.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:1441:__str__ (2,473 samples, 0.23%)</title><rect x="1026.5" y="133" width="2.8" height="15.0" fill="rgb(245,137,46)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:1441:__str__ (2,473 samples, 0.23%)</title><rect x="1026.5" y="133" width="2.8" height="15.0" fill="rgb(245,137,46)" rx="2" ry="2" />
 <text  x="1029.52" y="143.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2492:add_lookaheads (1,350 samples, 0.13%)</title><rect x="1188.5" y="69" width="1.5" height="15.0" fill="rgb(212,18,5)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2492:add_lookaheads (1,350 samples, 0.13%)</title><rect x="1188.5" y="69" width="1.5" height="15.0" fill="rgb(212,18,5)" rx="2" ry="2" />
 <text  x="1191.51" y="79.5" ></text>
 </g>
 <g >
@@ -977,7 +977,7 @@
 <text  x="707.30" y="223.5" ></text>
 </g>
 <g >
-<title>capirca/lib/policy.py:2523:ParsePolicy (5,049 samples, 0.47%)</title><rect x="1149.1" y="133" width="5.5" height="15.0" fill="rgb(245,58,6)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/lib/policy.py:2523:ParsePolicy (5,049 samples, 0.47%)</title><rect x="1149.1" y="133" width="5.5" height="15.0" fill="rgb(245,58,6)" rx="2" ry="2" />
 <text  x="1152.06" y="143.5" ></text>
 </g>
 <g >
@@ -989,11 +989,11 @@
 <text  x="1184.70" y="143.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:1551:add_production (7,506 samples, 0.70%)</title><rect x="221.1" y="229" width="8.3" height="15.0" fill="rgb(240,216,15)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:1551:add_production (7,506 samples, 0.70%)</title><rect x="221.1" y="229" width="8.3" height="15.0" fill="rgb(240,216,15)" rx="2" ry="2" />
 <text  x="224.05" y="239.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:344:RenderACL (2,233 samples, 0.21%)</title><rect x="912.5" y="133" width="2.5" height="15.0" fill="rgb(230,102,22)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:344:RenderACL (2,233 samples, 0.21%)</title><rect x="912.5" y="133" width="2.5" height="15.0" fill="rgb(230,102,22)" rx="2" ry="2" />
 <text  x="915.51" y="143.5" ></text>
 </g>
 <g >
@@ -1005,7 +1005,7 @@
 <text  x="761.48" y="207.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:17:&lt;module&gt; (9,702 samples, 0.91%)</title><rect x="1074.5" y="245" width="10.7" height="15.0" fill="rgb(228,103,31)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:17:&lt;module&gt; (9,702 samples, 0.91%)</title><rect x="1074.5" y="245" width="10.7" height="15.0" fill="rgb(228,103,31)" rx="2" ry="2" />
 <text  x="1077.47" y="255.5" ></text>
 </g>
 <g >
@@ -1013,15 +1013,15 @@
 <text  x="696.57" y="239.5" ></text>
 </g>
 <g >
-<title>absl/app.py:269:run (3,466 samples, 0.32%)</title><rect x="1013.9" y="181" width="3.8" height="15.0" fill="rgb(232,18,40)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/absl/app.py:269:run (3,466 samples, 0.32%)</title><rect x="1013.9" y="181" width="3.8" height="15.0" fill="rgb(232,18,40)" rx="2" ry="2" />
 <text  x="1016.90" y="191.5" ></text>
 </g>
 <g >
-<title>absl/logging/__init__.py:336:info (1,876 samples, 0.18%)</title><rect x="752.3" y="245" width="2.1" height="15.0" fill="rgb(234,124,10)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/absl/logging/__init__.py:336:info (1,876 samples, 0.18%)</title><rect x="752.3" y="245" width="2.1" height="15.0" fill="rgb(234,124,10)" rx="2" ry="2" />
 <text  x="755.31" y="255.5" ></text>
 </g>
 <g >
-<title>absl/app.py:269:run (9,685 samples, 0.91%)</title><rect x="840.5" y="213" width="10.7" height="15.0" fill="rgb(228,177,52)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/absl/app.py:269:run (9,685 samples, 0.91%)</title><rect x="840.5" y="213" width="10.7" height="15.0" fill="rgb(228,177,52)" rx="2" ry="2" />
 <text  x="843.48" y="223.5" ></text>
 </g>
 <g >
@@ -1029,19 +1029,19 @@
 <text  x="1080.17" y="127.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:144:RenderFile (8,607 samples, 0.81%)</title><rect x="946.4" y="165" width="9.5" height="15.0" fill="rgb(225,66,33)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:144:RenderFile (8,607 samples, 0.81%)</title><rect x="946.4" y="165" width="9.5" height="15.0" fill="rgb(225,66,33)" rx="2" ry="2" />
 <text  x="949.41" y="175.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2474:compute_follow_sets (2,341 samples, 0.22%)</title><rect x="540.0" y="181" width="2.6" height="15.0" fill="rgb(232,4,14)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2474:compute_follow_sets (2,341 samples, 0.22%)</title><rect x="540.0" y="181" width="2.6" height="15.0" fill="rgb(232,4,14)" rx="2" ry="2" />
 <text  x="543.01" y="191.5" ></text>
 </g>
 <g >
-<title>capirca/lib/juniper.py:187:__str__ (2,502 samples, 0.23%)</title><rect x="216.2" y="245" width="2.8" height="15.0" fill="rgb(234,16,39)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/lib/juniper.py:187:__str__ (2,502 samples, 0.23%)</title><rect x="216.2" y="245" width="2.8" height="15.0" fill="rgb(234,16,39)" rx="2" ry="2" />
 <text  x="219.21" y="255.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2102:__init__ (1,651 samples, 0.15%)</title><rect x="1003.7" y="53" width="1.8" height="15.0" fill="rgb(229,24,9)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2102:__init__ (1,651 samples, 0.15%)</title><rect x="1003.7" y="53" width="1.8" height="15.0" fill="rgb(229,24,9)" rx="2" ry="2" />
 <text  x="1006.68" y="63.5" ></text>
 </g>
 <g >
@@ -1049,7 +1049,7 @@
 <text  x="915.52" y="111.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:344:RenderACL (2,223 samples, 0.21%)</title><rect x="843.2" y="133" width="2.4" height="15.0" fill="rgb(223,81,14)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:344:RenderACL (2,223 samples, 0.21%)</title><rect x="843.2" y="133" width="2.4" height="15.0" fill="rgb(223,81,14)" rx="2" ry="2" />
 <text  x="846.18" y="143.5" ></text>
 </g>
 <g >
@@ -1065,31 +1065,31 @@
 <text  x="1048.75" y="319.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:578:entry_point (20,419 samples, 1.91%)</title><rect x="1017.7" y="293" width="22.6" height="15.0" fill="rgb(214,106,26)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:578:entry_point (20,419 samples, 1.91%)</title><rect x="1017.7" y="293" width="22.6" height="15.0" fill="rgb(214,106,26)" rx="2" ry="2" />
 <text  x="1020.73" y="303.5" >/..</text>
 </g>
 <g >
-<title>ply/yacc.py:2534:lr_parse_table (1,521 samples, 0.14%)</title><rect x="1003.8" y="37" width="1.7" height="15.0" fill="rgb(216,161,35)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2534:lr_parse_table (1,521 samples, 0.14%)</title><rect x="1003.8" y="37" width="1.7" height="15.0" fill="rgb(216,161,35)" rx="2" ry="2" />
 <text  x="1006.83" y="47.5" ></text>
 </g>
 <g >
-<title>capirca/lib/policy.py:2523:ParsePolicy (5,186 samples, 0.49%)</title><rect x="1114.7" y="149" width="5.8" height="15.0" fill="rgb(215,185,9)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/lib/policy.py:2523:ParsePolicy (5,186 samples, 0.49%)</title><rect x="1114.7" y="149" width="5.8" height="15.0" fill="rgb(215,185,9)" rx="2" ry="2" />
 <text  x="1117.72" y="159.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2102:__init__ (390,238 samples, 36.59%)</title><rect x="229.4" y="229" width="431.7" height="15.0" fill="rgb(236,165,14)" rx="2" ry="2" />
-<text  x="232.36" y="239.5" >ply/yacc..</text>
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2102:__init__ (390,238 samples, 36.59%)</title><rect x="229.4" y="229" width="431.7" height="15.0" fill="rgb(236,165,14)" rx="2" ry="2" />
+<text  x="232.36" y="239.5" >/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc..</text>
 </g>
 <g >
-<title>capirca/lib/policy.py:2523:ParsePolicy (5,049 samples, 0.47%)</title><rect x="915.0" y="133" width="5.6" height="15.0" fill="rgb(253,63,5)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/lib/policy.py:2523:ParsePolicy (5,049 samples, 0.47%)</title><rect x="915.0" y="133" width="5.6" height="15.0" fill="rgb(253,63,5)" rx="2" ry="2" />
 <text  x="917.98" y="143.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:479:Run (20,387 samples, 1.91%)</title><rect x="1017.8" y="229" width="22.5" height="15.0" fill="rgb(218,190,11)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:479:Run (20,387 samples, 1.91%)</title><rect x="1017.8" y="229" width="22.5" height="15.0" fill="rgb(218,190,11)" rx="2" ry="2" />
 <text  x="1020.77" y="239.5" >/..</text>
 </g>
 <g >
-<title>ply/yacc.py:1875:compute_follow (23,139 samples, 2.17%)</title><rect x="237.7" y="213" width="25.6" height="15.0" fill="rgb(220,179,32)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:1875:compute_follow (23,139 samples, 2.17%)</title><rect x="237.7" y="213" width="25.6" height="15.0" fill="rgb(220,179,32)" rx="2" ry="2" />
 <text  x="240.66" y="223.5" >/..</text>
 </g>
 <g >
@@ -1113,7 +1113,7 @@
 <text  x="1149.58" y="127.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2534:lr_parse_table (9,230 samples, 0.87%)</title><rect x="1024.9" y="149" width="10.2" height="15.0" fill="rgb(228,128,15)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2534:lr_parse_table (9,230 samples, 0.87%)</title><rect x="1024.9" y="149" width="10.2" height="15.0" fill="rgb(228,128,15)" rx="2" ry="2" />
 <text  x="1027.91" y="159.5" ></text>
 </g>
 <g >
@@ -1121,7 +1121,7 @@
 <text  x="837.06" y="271.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2102:__init__ (4,903 samples, 0.46%)</title><rect x="1115.0" y="117" width="5.5" height="15.0" fill="rgb(233,25,18)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2102:__init__ (4,903 samples, 0.46%)</title><rect x="1115.0" y="117" width="5.5" height="15.0" fill="rgb(233,25,18)" rx="2" ry="2" />
 <text  x="1118.03" y="127.5" ></text>
 </g>
 <g >
@@ -1133,7 +1133,7 @@
 <text  x="1014.60" y="239.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:456:_WriteFile (3,752 samples, 0.35%)</title><rect x="752.3" y="261" width="4.2" height="15.0" fill="rgb(220,91,14)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:456:_WriteFile (3,752 samples, 0.35%)</title><rect x="752.3" y="261" width="4.2" height="15.0" fill="rgb(220,91,14)" rx="2" ry="2" />
 <text  x="755.31" y="271.5" ></text>
 </g>
 <g >
@@ -1157,11 +1157,11 @@
 <text  x="1115.21" y="95.5" ></text>
 </g>
 <g >
-<title>absl/app.py:230:_run_main (9,730 samples, 0.91%)</title><rect x="909.8" y="197" width="10.8" height="15.0" fill="rgb(228,44,36)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/absl/app.py:230:_run_main (9,730 samples, 0.91%)</title><rect x="909.8" y="197" width="10.8" height="15.0" fill="rgb(228,44,36)" rx="2" ry="2" />
 <text  x="912.80" y="207.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:3216:yacc (5,107 samples, 0.48%)</title><rect x="1114.8" y="133" width="5.7" height="15.0" fill="rgb(246,45,14)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:3216:yacc (5,107 samples, 0.48%)</title><rect x="1114.8" y="133" width="5.7" height="15.0" fill="rgb(246,45,14)" rx="2" ry="2" />
 <text  x="1117.81" y="143.5" ></text>
 </g>
 <g >
@@ -1185,7 +1185,7 @@
 <text  x="1054.12" y="367.5" >&lt;frozen..</text>
 </g>
 <g >
-<title>capirca/aclgen.py:558:main (9,996 samples, 0.94%)</title><rect x="1109.4" y="197" width="11.1" height="15.0" fill="rgb(222,17,16)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:558:main (9,996 samples, 0.94%)</title><rect x="1109.4" y="197" width="11.1" height="15.0" fill="rgb(222,17,16)" rx="2" ry="2" />
 <text  x="1112.40" y="207.5" ></text>
 </g>
 <g >
@@ -1193,7 +1193,7 @@
 <text  x="763.45" y="191.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:442:WriteFiles (8,755 samples, 0.82%)</title><rect x="752.3" y="277" width="9.7" height="15.0" fill="rgb(239,224,32)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:442:WriteFiles (8,755 samples, 0.82%)</title><rect x="752.3" y="277" width="9.7" height="15.0" fill="rgb(239,224,32)" rx="2" ry="2" />
 <text  x="755.31" y="287.5" ></text>
 </g>
 <g >
@@ -1205,8 +1205,8 @@
 <text  x="950.65" y="95.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:3216:yacc (406,500 samples, 38.11%)</title><rect x="220.4" y="245" width="449.7" height="15.0" fill="rgb(230,170,11)" rx="2" ry="2" />
-<text  x="223.36" y="255.5" >ply/yacc.py..</text>
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:3216:yacc (406,500 samples, 38.11%)</title><rect x="220.4" y="245" width="449.7" height="15.0" fill="rgb(230,170,11)" rx="2" ry="2" />
+<text  x="223.36" y="255.5" >/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py..</text>
 </g>
 <g >
 <title>/usr/lib/python3.7/multiprocessing/connection.py:246:recv (181,374 samples, 17.00%)</title><rect x="15.6" y="213" width="200.6" height="15.0" fill="rgb(235,203,39)" rx="2" ry="2" />
@@ -1233,15 +1233,15 @@
 <text  x="1046.07" y="271.5" ></text>
 </g>
 <g >
-<title>absl/app.py:269:run (10,026 samples, 0.94%)</title><rect x="1178.9" y="229" width="11.1" height="15.0" fill="rgb(210,18,8)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/absl/app.py:269:run (10,026 samples, 0.94%)</title><rect x="1178.9" y="229" width="11.1" height="15.0" fill="rgb(210,18,8)" rx="2" ry="2" />
 <text  x="1181.91" y="239.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2534:lr_parse_table (4,518 samples, 0.42%)</title><rect x="1115.5" y="101" width="5.0" height="15.0" fill="rgb(232,178,48)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2534:lr_parse_table (4,518 samples, 0.42%)</title><rect x="1115.5" y="101" width="5.0" height="15.0" fill="rgb(232,178,48)" rx="2" ry="2" />
 <text  x="1118.46" y="111.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:344:RenderACL (2,233 samples, 0.21%)</title><rect x="1146.6" y="133" width="2.5" height="15.0" fill="rgb(239,165,15)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:344:RenderACL (2,233 samples, 0.21%)</title><rect x="1146.6" y="133" width="2.5" height="15.0" fill="rgb(239,165,15)" rx="2" ry="2" />
 <text  x="1149.58" y="143.5" ></text>
 </g>
 <g >
@@ -1253,15 +1253,15 @@
 <text  x="769.18" y="255.5" >&lt;fro..</text>
 </g>
 <g >
-<title>capirca/aclgen.py:578:entry_point (10,026 samples, 0.94%)</title><rect x="1178.9" y="245" width="11.1" height="15.0" fill="rgb(239,31,42)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:578:entry_point (10,026 samples, 0.94%)</title><rect x="1178.9" y="245" width="11.1" height="15.0" fill="rgb(239,31,42)" rx="2" ry="2" />
 <text  x="1181.91" y="255.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:344:RenderACL (2,295 samples, 0.22%)</title><rect x="1112.2" y="149" width="2.5" height="15.0" fill="rgb(209,36,42)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:344:RenderACL (2,295 samples, 0.22%)</title><rect x="1112.2" y="149" width="2.5" height="15.0" fill="rgb(209,36,42)" rx="2" ry="2" />
 <text  x="1115.18" y="159.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:558:main (20,419 samples, 1.91%)</title><rect x="1017.7" y="245" width="22.6" height="15.0" fill="rgb(239,161,32)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:558:main (20,419 samples, 1.91%)</title><rect x="1017.7" y="245" width="22.6" height="15.0" fill="rgb(239,161,32)" rx="2" ry="2" />
 <text  x="1020.73" y="255.5" >/..</text>
 </g>
 <g >
@@ -1277,11 +1277,11 @@
 <text  x="1175.26" y="287.5" ></text>
 </g>
 <g >
-<title>capirca/lib/policy.py:1015:AddObject (2,502 samples, 0.23%)</title><rect x="672.8" y="197" width="2.8" height="15.0" fill="rgb(231,43,2)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/lib/policy.py:1015:AddObject (2,502 samples, 0.23%)</title><rect x="672.8" y="197" width="2.8" height="15.0" fill="rgb(231,43,2)" rx="2" ry="2" />
 <text  x="675.85" y="207.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2492:add_lookaheads (1,310 samples, 0.12%)</title><rect x="1153.2" y="53" width="1.4" height="15.0" fill="rgb(212,96,35)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2492:add_lookaheads (1,310 samples, 0.12%)</title><rect x="1153.2" y="53" width="1.4" height="15.0" fill="rgb(212,96,35)" rx="2" ry="2" />
 <text  x="1156.19" y="63.5" ></text>
 </g>
 <g >
@@ -1293,15 +1293,15 @@
 <text  x="744.05" y="223.5" ></text>
 </g>
 <g >
-<title>capirca/lib/policy.py:2523:ParsePolicy (1,799 samples, 0.17%)</title><rect x="1015.7" y="101" width="2.0" height="15.0" fill="rgb(219,46,3)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/lib/policy.py:2523:ParsePolicy (1,799 samples, 0.17%)</title><rect x="1015.7" y="101" width="2.0" height="15.0" fill="rgb(219,46,3)" rx="2" ry="2" />
 <text  x="1018.74" y="111.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:578:entry_point (9,977 samples, 0.94%)</title><rect x="875.4" y="245" width="11.0" height="15.0" fill="rgb(230,74,41)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:578:entry_point (9,977 samples, 0.94%)</title><rect x="875.4" y="245" width="11.0" height="15.0" fill="rgb(230,74,41)" rx="2" ry="2" />
 <text  x="878.35" y="255.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:558:main (10,026 samples, 0.94%)</title><rect x="944.8" y="197" width="11.1" height="15.0" fill="rgb(206,65,5)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:558:main (10,026 samples, 0.94%)</title><rect x="944.8" y="197" width="11.1" height="15.0" fill="rgb(206,65,5)" rx="2" ry="2" />
 <text  x="947.84" y="207.5" ></text>
 </g>
 <g >
@@ -1321,19 +1321,19 @@
 <text  x="766.11" y="223.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:3216:yacc (4,973 samples, 0.47%)</title><rect x="915.1" y="117" width="5.5" height="15.0" fill="rgb(208,47,33)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:3216:yacc (4,973 samples, 0.47%)</title><rect x="915.1" y="117" width="5.5" height="15.0" fill="rgb(208,47,33)" rx="2" ry="2" />
 <text  x="918.07" y="127.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:3216:yacc (1,772 samples, 0.17%)</title><rect x="1015.8" y="85" width="1.9" height="15.0" fill="rgb(235,90,43)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:3216:yacc (1,772 samples, 0.17%)</title><rect x="1015.8" y="85" width="1.9" height="15.0" fill="rgb(235,90,43)" rx="2" ry="2" />
 <text  x="1018.77" y="95.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2200:lr0_items (96,934 samples, 9.09%)</title><rect x="432.8" y="197" width="107.2" height="15.0" fill="rgb(220,144,18)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2200:lr0_items (96,934 samples, 9.09%)</title><rect x="432.8" y="197" width="107.2" height="15.0" fill="rgb(220,144,18)" rx="2" ry="2" />
 <text  x="435.77" y="207.5" >/.virtualenvs..</text>
 </g>
 <g >
-<title>capirca/lib/policy.py:199:_TranslateTerms (2,502 samples, 0.23%)</title><rect x="670.1" y="165" width="2.7" height="15.0" fill="rgb(234,151,22)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/lib/policy.py:199:_TranslateTerms (2,502 samples, 0.23%)</title><rect x="670.1" y="165" width="2.7" height="15.0" fill="rgb(234,151,22)" rx="2" ry="2" />
 <text  x="673.08" y="175.5" ></text>
 </g>
 <g >
@@ -1341,11 +1341,11 @@
 <text  x="889.67" y="287.5" >&lt;f..</text>
 </g>
 <g >
-<title>capirca/aclgen.py:344:RenderACL (2,302 samples, 0.22%)</title><rect x="947.6" y="149" width="2.6" height="15.0" fill="rgb(211,120,15)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:344:RenderACL (2,302 samples, 0.22%)</title><rect x="947.6" y="149" width="2.6" height="15.0" fill="rgb(211,120,15)" rx="2" ry="2" />
 <text  x="950.63" y="159.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2139:lr0_closure (2,461 samples, 0.23%)</title><rect x="1029.3" y="101" width="2.7" height="15.0" fill="rgb(209,167,1)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2139:lr0_closure (2,461 samples, 0.23%)</title><rect x="1029.3" y="101" width="2.7" height="15.0" fill="rgb(209,167,1)" rx="2" ry="2" />
 <text  x="1032.29" y="111.5" ></text>
 </g>
 <g >
@@ -1365,7 +1365,7 @@
 <text  x="769.44" y="191.5" >&lt;..</text>
 </g>
 <g >
-<title>capirca/aclgen.py:144:RenderFile (2,889 samples, 0.27%)</title><rect x="1002.3" y="101" width="3.2" height="15.0" fill="rgb(243,73,26)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:144:RenderFile (2,889 samples, 0.27%)</title><rect x="1002.3" y="101" width="3.2" height="15.0" fill="rgb(243,73,26)" rx="2" ry="2" />
 <text  x="1005.31" y="111.5" ></text>
 </g>
 <g >
@@ -1373,7 +1373,7 @@
 <text  x="13.00" y="415.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:17:&lt;module&gt; (9,730 samples, 0.91%)</title><rect x="909.8" y="245" width="10.8" height="15.0" fill="rgb(207,49,41)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:17:&lt;module&gt; (9,730 samples, 0.91%)</title><rect x="909.8" y="245" width="10.8" height="15.0" fill="rgb(207,49,41)" rx="2" ry="2" />
 <text  x="912.80" y="255.5" ></text>
 </g>
 <g >
@@ -1385,15 +1385,15 @@
 <text  x="736.91" y="223.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2102:__init__ (1,701 samples, 0.16%)</title><rect x="1015.9" y="69" width="1.8" height="15.0" fill="rgb(228,45,38)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2102:__init__ (1,701 samples, 0.16%)</title><rect x="1015.9" y="69" width="1.8" height="15.0" fill="rgb(228,45,38)" rx="2" ry="2" />
 <text  x="1018.85" y="79.5" ></text>
 </g>
 <g >
-<title>capirca/lib/policy.py:1290:cleanup (2,502 samples, 0.23%)</title><rect x="670.1" y="133" width="2.7" height="15.0" fill="rgb(239,218,29)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/lib/policy.py:1290:cleanup (2,502 samples, 0.23%)</title><rect x="670.1" y="133" width="2.7" height="15.0" fill="rgb(239,218,29)" rx="2" ry="2" />
 <text  x="673.08" y="143.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:344:RenderACL (182,610 samples, 17.12%)</title><rect x="14.2" y="261" width="202.0" height="15.0" fill="rgb(229,165,28)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:344:RenderACL (182,610 samples, 17.12%)</title><rect x="14.2" y="261" width="202.0" height="15.0" fill="rgb(229,165,28)" rx="2" ry="2" />
 <text  x="17.19" y="271.5" >/.virtualenvs/acltest/lib/..</text>
 </g>
 <g >
@@ -1405,7 +1405,7 @@
 <text  x="725.68" y="255.5" ></text>
 </g>
 <g >
-<title>absl/app.py:230:_run_main (3,466 samples, 0.32%)</title><rect x="1013.9" y="165" width="3.8" height="15.0" fill="rgb(211,162,10)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/absl/app.py:230:_run_main (3,466 samples, 0.32%)</title><rect x="1013.9" y="165" width="3.8" height="15.0" fill="rgb(211,162,10)" rx="2" ry="2" />
 <text  x="1016.90" y="175.5" ></text>
 </g>
 <g >
@@ -1413,11 +1413,11 @@
 <text  x="1080.18" y="111.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:479:Run (9,980 samples, 0.94%)</title><rect x="1109.4" y="181" width="11.1" height="15.0" fill="rgb(243,115,25)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:479:Run (9,980 samples, 0.94%)</title><rect x="1109.4" y="181" width="11.1" height="15.0" fill="rgb(243,115,25)" rx="2" ry="2" />
 <text  x="1112.42" y="191.5" ></text>
 </g>
 <g >
-<title>absl/app.py:230:_run_main (20,419 samples, 1.91%)</title><rect x="1017.7" y="261" width="22.6" height="15.0" fill="rgb(224,9,23)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/absl/app.py:230:_run_main (20,419 samples, 1.91%)</title><rect x="1017.7" y="261" width="22.6" height="15.0" fill="rgb(224,9,23)" rx="2" ry="2" />
 <text  x="1020.73" y="271.5" >/..</text>
 </g>
 <g >
@@ -1429,23 +1429,23 @@
 <text  x="1054.38" y="319.5" >&lt;f..</text>
 </g>
 <g >
-<title>capirca/aclgen.py:558:main (9,977 samples, 0.94%)</title><rect x="875.4" y="197" width="11.0" height="15.0" fill="rgb(210,0,13)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:558:main (9,977 samples, 0.94%)</title><rect x="875.4" y="197" width="11.0" height="15.0" fill="rgb(210,0,13)" rx="2" ry="2" />
 <text  x="878.35" y="207.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2165:lr0_goto (96,728 samples, 9.07%)</title><rect x="433.0" y="181" width="107.0" height="15.0" fill="rgb(226,17,16)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2165:lr0_goto (96,728 samples, 9.07%)</title><rect x="433.0" y="181" width="107.0" height="15.0" fill="rgb(226,17,16)" rx="2" ry="2" />
 <text  x="436.00" y="191.5" >/.virtualenvs..</text>
 </g>
 <g >
-<title>absl/app.py:269:run (729,571 samples, 68.40%)</title><rect x="10.0" y="341" width="807.2" height="15.0" fill="rgb(221,107,38)" rx="2" ry="2" />
-<text  x="13.04" y="351.5" >absl/app.py:269:run</text>
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/absl/app.py:269:run (729,571 samples, 68.40%)</title><rect x="10.0" y="341" width="807.2" height="15.0" fill="rgb(221,107,38)" rx="2" ry="2" />
+<text  x="13.04" y="351.5" >/.virtualenvs/acltest/lib/python3.7/site-packages/absl/app.py:269:run</text>
 </g>
 <g >
-<title>capirca/aclgen.py:558:main (9,685 samples, 0.91%)</title><rect x="840.5" y="181" width="10.7" height="15.0" fill="rgb(208,210,38)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:558:main (9,685 samples, 0.91%)</title><rect x="840.5" y="181" width="10.7" height="15.0" fill="rgb(208,210,38)" rx="2" ry="2" />
 <text  x="843.48" y="191.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2510:add_lalr_lookaheads (1,380 samples, 0.13%)</title><rect x="954.4" y="85" width="1.5" height="15.0" fill="rgb(236,203,44)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2510:add_lalr_lookaheads (1,380 samples, 0.13%)</title><rect x="954.4" y="85" width="1.5" height="15.0" fill="rgb(236,203,44)" rx="2" ry="2" />
 <text  x="957.40" y="95.5" ></text>
 </g>
 <g >
@@ -1457,7 +1457,7 @@
 <text  x="1043.32" y="303.5" ></text>
 </g>
 <g >
-<title>absl/app.py:230:_run_main (10,026 samples, 0.94%)</title><rect x="944.8" y="213" width="11.1" height="15.0" fill="rgb(237,6,51)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/absl/app.py:230:_run_main (10,026 samples, 0.94%)</title><rect x="944.8" y="213" width="11.1" height="15.0" fill="rgb(237,6,51)" rx="2" ry="2" />
 <text  x="947.84" y="223.5" ></text>
 </g>
 <g >
@@ -1473,15 +1473,15 @@
 <text  x="1021.23" y="175.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:479:Run (9,687 samples, 0.91%)</title><rect x="1074.5" y="165" width="10.7" height="15.0" fill="rgb(215,150,1)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:479:Run (9,687 samples, 0.91%)</title><rect x="1074.5" y="165" width="10.7" height="15.0" fill="rgb(215,150,1)" rx="2" ry="2" />
 <text  x="1077.48" y="175.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:1003:parseopt_notrack (5,004 samples, 0.47%)</title><rect x="670.1" y="229" width="5.5" height="15.0" fill="rgb(220,144,21)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:1003:parseopt_notrack (5,004 samples, 0.47%)</title><rect x="670.1" y="229" width="5.5" height="15.0" fill="rgb(220,144,21)" rx="2" ry="2" />
 <text  x="673.08" y="239.5" ></text>
 </g>
 <g >
-<title>capirca/lib/policy.py:1862:p_target (2,502 samples, 0.23%)</title><rect x="670.1" y="213" width="2.7" height="15.0" fill="rgb(217,12,12)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/lib/policy.py:1862:p_target (2,502 samples, 0.23%)</title><rect x="670.1" y="213" width="2.7" height="15.0" fill="rgb(217,12,12)" rx="2" ry="2" />
 <text  x="673.08" y="223.5" ></text>
 </g>
 <g >
@@ -1489,7 +1489,7 @@
 <text  x="1051.42" y="303.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:17:&lt;module&gt; (3,365 samples, 0.32%)</title><rect x="1001.8" y="197" width="3.7" height="15.0" fill="rgb(247,137,13)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:17:&lt;module&gt; (3,365 samples, 0.32%)</title><rect x="1001.8" y="197" width="3.7" height="15.0" fill="rgb(247,137,13)" rx="2" ry="2" />
 <text  x="1004.79" y="207.5" ></text>
 </g>
 <g >
@@ -1497,15 +1497,15 @@
 <text  x="820.46" y="287.5" >&lt;f..</text>
 </g>
 <g >
-<title>ply/yacc.py:2897:parse_grammar (2,502 samples, 0.23%)</title><rect x="661.8" y="197" width="2.7" height="15.0" fill="rgb(215,178,38)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2897:parse_grammar (2,502 samples, 0.23%)</title><rect x="661.8" y="197" width="2.7" height="15.0" fill="rgb(215,178,38)" rx="2" ry="2" />
 <text  x="664.78" y="207.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:144:RenderFile (8,353 samples, 0.78%)</title><rect x="1145.4" y="149" width="9.2" height="15.0" fill="rgb(239,76,31)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:144:RenderFile (8,353 samples, 0.78%)</title><rect x="1145.4" y="149" width="9.2" height="15.0" fill="rgb(239,76,31)" rx="2" ry="2" />
 <text  x="1148.40" y="159.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2492:add_lookaheads (1,306 samples, 0.12%)</title><rect x="1083.8" y="53" width="1.4" height="15.0" fill="rgb(252,32,53)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2492:add_lookaheads (1,306 samples, 0.12%)</title><rect x="1083.8" y="53" width="1.4" height="15.0" fill="rgb(252,32,53)" rx="2" ry="2" />
 <text  x="1086.76" y="63.5" ></text>
 </g>
 <g >
@@ -1537,8 +1537,8 @@
 <text  x="1123.72" y="335.5" >&lt;frozen..</text>
 </g>
 <g >
-<title>capirca/lib/policy.py:2523:ParsePolicy (412,755 samples, 38.70%)</title><rect x="219.0" y="261" width="456.6" height="15.0" fill="rgb(228,130,20)" rx="2" ry="2" />
-<text  x="221.98" y="271.5" >capirca/lib/..</text>
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/lib/policy.py:2523:ParsePolicy (412,755 samples, 38.70%)</title><rect x="219.0" y="261" width="456.6" height="15.0" fill="rgb(228,130,20)" rx="2" ry="2" />
+<text  x="221.98" y="271.5" >/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/lib/..</text>
 </g>
 <g >
 <title>&lt;frozen importlib._bootstrap&gt;:948:_find_and_load_unlocked (2,488 samples, 0.23%)</title><rect x="1037.6" y="181" width="2.7" height="15.0" fill="rgb(223,157,40)" rx="2" ry="2" />
@@ -1569,7 +1569,7 @@
 <text  x="729.63" y="223.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:344:RenderACL (4,687 samples, 0.44%)</title><rect x="1018.2" y="197" width="5.2" height="15.0" fill="rgb(212,64,28)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:344:RenderACL (4,687 samples, 0.44%)</title><rect x="1018.2" y="197" width="5.2" height="15.0" fill="rgb(212,64,28)" rx="2" ry="2" />
 <text  x="1021.21" y="207.5" ></text>
 </g>
 <g >
@@ -1577,19 +1577,19 @@
 <text  x="915.54" y="79.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2492:add_lookaheads (1,304 samples, 0.12%)</title><rect x="849.8" y="53" width="1.4" height="15.0" fill="rgb(218,149,3)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2492:add_lookaheads (1,304 samples, 0.12%)</title><rect x="849.8" y="53" width="1.4" height="15.0" fill="rgb(218,149,3)" rx="2" ry="2" />
 <text  x="852.75" y="63.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2510:add_lalr_lookaheads (1,333 samples, 0.12%)</title><rect x="849.7" y="69" width="1.5" height="15.0" fill="rgb(248,30,13)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2510:add_lalr_lookaheads (1,333 samples, 0.12%)</title><rect x="849.7" y="69" width="1.5" height="15.0" fill="rgb(248,30,13)" rx="2" ry="2" />
 <text  x="852.72" y="79.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:17:&lt;module&gt; (20,419 samples, 1.91%)</title><rect x="1017.7" y="309" width="22.6" height="15.0" fill="rgb(240,196,42)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:17:&lt;module&gt; (20,419 samples, 1.91%)</title><rect x="1017.7" y="309" width="22.6" height="15.0" fill="rgb(240,196,42)" rx="2" ry="2" />
 <text  x="1020.73" y="319.5" >/..</text>
 </g>
 <g >
-<title>ply/yacc.py:2492:add_lookaheads (1,343 samples, 0.13%)</title><rect x="884.9" y="69" width="1.5" height="15.0" fill="rgb(249,85,53)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2492:add_lookaheads (1,343 samples, 0.13%)</title><rect x="884.9" y="69" width="1.5" height="15.0" fill="rgb(249,85,53)" rx="2" ry="2" />
 <text  x="887.90" y="79.5" ></text>
 </g>
 <g >
@@ -1601,7 +1601,7 @@
 <text  x="1021.27" y="143.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:558:main (3,466 samples, 0.32%)</title><rect x="1013.9" y="149" width="3.8" height="15.0" fill="rgb(239,150,6)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:558:main (3,466 samples, 0.32%)</title><rect x="1013.9" y="149" width="3.8" height="15.0" fill="rgb(239,150,6)" rx="2" ry="2" />
 <text  x="1016.90" y="159.5" ></text>
 </g>
 <g >
@@ -1609,19 +1609,19 @@
 <text  x="673.08" y="111.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:325:parse (5,004 samples, 0.47%)</title><rect x="670.1" y="245" width="5.5" height="15.0" fill="rgb(235,104,38)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:325:parse (5,004 samples, 0.47%)</title><rect x="670.1" y="245" width="5.5" height="15.0" fill="rgb(235,104,38)" rx="2" ry="2" />
 <text  x="673.08" y="255.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:17:&lt;module&gt; (729,571 samples, 68.40%)</title><rect x="10.0" y="373" width="807.2" height="15.0" fill="rgb(250,91,8)" rx="2" ry="2" />
-<text  x="13.04" y="383.5" >capirca/aclgen.py:17:&lt;module&gt;</text>
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:17:&lt;module&gt; (729,571 samples, 68.40%)</title><rect x="10.0" y="373" width="807.2" height="15.0" fill="rgb(250,91,8)" rx="2" ry="2" />
+<text  x="13.04" y="383.5" >/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:17:&lt;module&gt;</text>
 </g>
 <g >
 <title>/usr/lib/python3.7/copy.py:132:deepcopy (3,265 samples, 0.31%)</title><rect x="711.6" y="181" width="3.6" height="15.0" fill="rgb(216,33,47)" rx="2" ry="2" />
 <text  x="714.55" y="191.5" ></text>
 </g>
 <g >
-<title>capirca/lib/naming.py:438:GetNetAddr (2,502 samples, 0.23%)</title><rect x="672.8" y="181" width="2.8" height="15.0" fill="rgb(215,119,53)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/lib/naming.py:438:GetNetAddr (2,502 samples, 0.23%)</title><rect x="672.8" y="181" width="2.8" height="15.0" fill="rgb(215,119,53)" rx="2" ry="2" />
 <text  x="675.85" y="191.5" ></text>
 </g>
 <g >
@@ -1633,11 +1633,11 @@
 <text  x="1123.74" y="303.5" >&lt;f..</text>
 </g>
 <g >
-<title>ply/yacc.py:2492:add_lookaheads (2,749 samples, 0.26%)</title><rect x="1032.1" y="117" width="3.0" height="15.0" fill="rgb(207,69,37)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2492:add_lookaheads (2,749 samples, 0.26%)</title><rect x="1032.1" y="117" width="3.0" height="15.0" fill="rgb(207,69,37)" rx="2" ry="2" />
 <text  x="1035.08" y="127.5" ></text>
 </g>
 <g >
-<title>capirca/lib/policy.py:2523:ParsePolicy (10,595 samples, 0.99%)</title><rect x="1023.4" y="197" width="11.7" height="15.0" fill="rgb(233,84,5)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/lib/policy.py:2523:ParsePolicy (10,595 samples, 0.99%)</title><rect x="1023.4" y="197" width="11.7" height="15.0" fill="rgb(233,84,5)" rx="2" ry="2" />
 <text  x="1026.40" y="207.5" ></text>
 </g>
 <g >
@@ -1657,23 +1657,23 @@
 <text  x="1158.08" y="303.5" >&lt;f..</text>
 </g>
 <g >
-<title>ply/yacc.py:2534:lr_parse_table (4,510 samples, 0.42%)</title><rect x="881.4" y="101" width="5.0" height="15.0" fill="rgb(237,18,41)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2534:lr_parse_table (4,510 samples, 0.42%)</title><rect x="881.4" y="101" width="5.0" height="15.0" fill="rgb(237,18,41)" rx="2" ry="2" />
 <text  x="884.40" y="111.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2962:validate_all (8,131 samples, 0.76%)</title><rect x="661.1" y="229" width="9.0" height="15.0" fill="rgb(226,4,38)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2962:validate_all (8,131 samples, 0.76%)</title><rect x="661.1" y="229" width="9.0" height="15.0" fill="rgb(226,4,38)" rx="2" ry="2" />
 <text  x="664.08" y="239.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:479:Run (9,715 samples, 0.91%)</title><rect x="909.8" y="165" width="10.8" height="15.0" fill="rgb(252,107,19)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:479:Run (9,715 samples, 0.91%)</title><rect x="909.8" y="165" width="10.8" height="15.0" fill="rgb(252,107,19)" rx="2" ry="2" />
 <text  x="912.82" y="175.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2139:lr0_closure (95,879 samples, 8.99%)</title><rect x="433.9" y="165" width="106.1" height="15.0" fill="rgb(215,72,32)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2139:lr0_closure (95,879 samples, 8.99%)</title><rect x="433.9" y="165" width="106.1" height="15.0" fill="rgb(215,72,32)" rx="2" ry="2" />
 <text  x="436.93" y="175.5" >/.virtualenv..</text>
 </g>
 <g >
-<title>capirca/aclgen.py:558:main (9,702 samples, 0.91%)</title><rect x="1074.5" y="181" width="10.7" height="15.0" fill="rgb(254,26,40)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:558:main (9,702 samples, 0.91%)</title><rect x="1074.5" y="181" width="10.7" height="15.0" fill="rgb(254,26,40)" rx="2" ry="2" />
 <text  x="1077.47" y="191.5" ></text>
 </g>
 <g >
@@ -1681,7 +1681,7 @@
 <text  x="1123.46" y="367.5" >&lt;frozen..</text>
 </g>
 <g >
-<title>ply/yacc.py:2492:add_lookaheads (1,350 samples, 0.13%)</title><rect x="954.4" y="69" width="1.5" height="15.0" fill="rgb(251,185,50)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2492:add_lookaheads (1,350 samples, 0.13%)</title><rect x="954.4" y="69" width="1.5" height="15.0" fill="rgb(251,185,50)" rx="2" ry="2" />
 <text  x="957.44" y="79.5" ></text>
 </g>
 <g >
@@ -1701,7 +1701,7 @@
 <text  x="1043.33" y="271.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:3216:yacc (5,098 samples, 0.48%)</title><rect x="880.8" y="133" width="5.6" height="15.0" fill="rgb(227,76,39)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:3216:yacc (5,098 samples, 0.48%)</title><rect x="880.8" y="133" width="5.6" height="15.0" fill="rgb(227,76,39)" rx="2" ry="2" />
 <text  x="883.75" y="143.5" ></text>
 </g>
 <g >
@@ -1709,7 +1709,7 @@
 <text  x="769.44" y="175.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2102:__init__ (4,752 samples, 0.45%)</title><rect x="845.9" y="101" width="5.3" height="15.0" fill="rgb(233,83,0)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2102:__init__ (4,752 samples, 0.45%)</title><rect x="845.9" y="101" width="5.3" height="15.0" fill="rgb(233,83,0)" rx="2" ry="2" />
 <text  x="848.94" y="111.5" ></text>
 </g>
 <g >
@@ -1717,11 +1717,11 @@
 <text  x="820.46" y="271.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:479:Run (10,010 samples, 0.94%)</title><rect x="1178.9" y="181" width="11.1" height="15.0" fill="rgb(219,62,16)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:479:Run (10,010 samples, 0.94%)</title><rect x="1178.9" y="181" width="11.1" height="15.0" fill="rgb(219,62,16)" rx="2" ry="2" />
 <text  x="1181.93" y="191.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2102:__init__ (4,760 samples, 0.45%)</title><rect x="1079.9" y="101" width="5.3" height="15.0" fill="rgb(211,156,24)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2102:__init__ (4,760 samples, 0.45%)</title><rect x="1079.9" y="101" width="5.3" height="15.0" fill="rgb(211,156,24)" rx="2" ry="2" />
 <text  x="1082.93" y="111.5" ></text>
 </g>
 <g >
@@ -1729,7 +1729,7 @@
 <text  x="747.81" y="191.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2102:__init__ (4,918 samples, 0.46%)</title><rect x="1184.6" y="117" width="5.4" height="15.0" fill="rgb(251,111,48)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2102:__init__ (4,918 samples, 0.46%)</title><rect x="1184.6" y="117" width="5.4" height="15.0" fill="rgb(251,111,48)" rx="2" ry="2" />
 <text  x="1187.56" y="127.5" ></text>
 </g>
 <g >
@@ -1737,7 +1737,7 @@
 <text  x="1046.07" y="287.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2492:add_lookaheads (107,098 samples, 10.04%)</title><rect x="542.6" y="181" width="118.5" height="15.0" fill="rgb(213,32,1)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2492:add_lookaheads (107,098 samples, 10.04%)</title><rect x="542.6" y="181" width="118.5" height="15.0" fill="rgb(213,32,1)" rx="2" ry="2" />
 <text  x="545.60" y="191.5" >/.virtualenvs/..</text>
 </g>
 <g >
@@ -1745,11 +1745,11 @@
 <text  x="765.00" y="287.5" >/usr/..</text>
 </g>
 <g >
-<title>ply/yacc.py:3216:yacc (4,973 samples, 0.47%)</title><rect x="1149.1" y="117" width="5.5" height="15.0" fill="rgb(214,64,41)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:3216:yacc (4,973 samples, 0.47%)</title><rect x="1149.1" y="117" width="5.5" height="15.0" fill="rgb(214,64,41)" rx="2" ry="2" />
 <text  x="1152.14" y="127.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2534:lr_parse_table (4,532 samples, 0.42%)</title><rect x="950.9" y="101" width="5.0" height="15.0" fill="rgb(219,162,23)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2534:lr_parse_table (4,532 samples, 0.42%)</title><rect x="950.9" y="101" width="5.0" height="15.0" fill="rgb(219,162,23)" rx="2" ry="2" />
 <text  x="953.91" y="111.5" ></text>
 </g>
 <g >
@@ -1761,15 +1761,15 @@
 <text  x="733.27" y="223.5" ></text>
 </g>
 <g >
-<title>absl/app.py:269:run (9,996 samples, 0.94%)</title><rect x="1109.4" y="229" width="11.1" height="15.0" fill="rgb(210,5,45)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/absl/app.py:269:run (9,996 samples, 0.94%)</title><rect x="1109.4" y="229" width="11.1" height="15.0" fill="rgb(210,5,45)" rx="2" ry="2" />
 <text  x="1112.40" y="239.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:17:&lt;module&gt; (10,026 samples, 0.94%)</title><rect x="1178.9" y="261" width="11.1" height="15.0" fill="rgb(216,44,15)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:17:&lt;module&gt; (10,026 samples, 0.94%)</title><rect x="1178.9" y="261" width="11.1" height="15.0" fill="rgb(216,44,15)" rx="2" ry="2" />
 <text  x="1181.91" y="271.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:17:&lt;module&gt; (9,730 samples, 0.91%)</title><rect x="1143.9" y="245" width="10.7" height="15.0" fill="rgb(237,74,11)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:17:&lt;module&gt; (9,730 samples, 0.91%)</title><rect x="1143.9" y="245" width="10.7" height="15.0" fill="rgb(237,74,11)" rx="2" ry="2" />
 <text  x="1146.88" y="255.5" ></text>
 </g>
 <g >
@@ -1789,16 +1789,16 @@
 <text  x="1048.75" y="287.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:578:entry_point (9,685 samples, 0.91%)</title><rect x="840.5" y="229" width="10.7" height="15.0" fill="rgb(214,59,54)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:578:entry_point (9,685 samples, 0.91%)</title><rect x="840.5" y="229" width="10.7" height="15.0" fill="rgb(214,59,54)" rx="2" ry="2" />
 <text  x="843.48" y="239.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:17:&lt;module&gt; (9,685 samples, 0.91%)</title><rect x="840.5" y="245" width="10.7" height="15.0" fill="rgb(206,225,42)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:17:&lt;module&gt; (9,685 samples, 0.91%)</title><rect x="840.5" y="245" width="10.7" height="15.0" fill="rgb(206,225,42)" rx="2" ry="2" />
 <text  x="843.48" y="255.5" ></text>
 </g>
 <g >
-<title>absl/app.py:230:_run_main (729,571 samples, 68.40%)</title><rect x="10.0" y="325" width="807.2" height="15.0" fill="rgb(226,132,39)" rx="2" ry="2" />
-<text  x="13.04" y="335.5" >absl/app.py:230:_run_main</text>
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/absl/app.py:230:_run_main (729,571 samples, 68.40%)</title><rect x="10.0" y="325" width="807.2" height="15.0" fill="rgb(226,132,39)" rx="2" ry="2" />
+<text  x="13.04" y="335.5" >/.virtualenvs/acltest/lib/python3.7/site-packages/absl/app.py:230:_run_main</text>
 </g>
 <g >
 <title>&lt;frozen importlib._bootstrap_external&gt;:722:exec_module (31,870 samples, 2.99%)</title><rect x="1085.2" y="309" width="35.3" height="15.0" fill="rgb(237,47,31)" rx="2" ry="2" />
@@ -1809,7 +1809,7 @@
 <text  x="1043.32" y="319.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2534:lr_parse_table (4,399 samples, 0.41%)</title><rect x="915.7" y="85" width="4.9" height="15.0" fill="rgb(207,215,8)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2534:lr_parse_table (4,399 samples, 0.41%)</title><rect x="915.7" y="85" width="4.9" height="15.0" fill="rgb(207,215,8)" rx="2" ry="2" />
 <text  x="918.70" y="95.5" ></text>
 </g>
 <g >
@@ -1817,7 +1817,7 @@
 <text  x="1184.72" y="111.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:1441:__str__ (96,337 samples, 9.03%)</title><rect x="326.2" y="197" width="106.6" height="15.0" fill="rgb(206,204,37)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:1441:__str__ (96,337 samples, 9.03%)</title><rect x="326.2" y="197" width="106.6" height="15.0" fill="rgb(206,204,37)" rx="2" ry="2" />
 <text  x="329.19" y="207.5" >/.virtualenvs..</text>
 </g>
 <g >
@@ -1829,11 +1829,11 @@
 <text  x="1002.56" y="223.5" ></text>
 </g>
 <g >
-<title>absl/app.py:269:run (10,026 samples, 0.94%)</title><rect x="944.8" y="229" width="11.1" height="15.0" fill="rgb(222,198,33)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/absl/app.py:269:run (10,026 samples, 0.94%)</title><rect x="944.8" y="229" width="11.1" height="15.0" fill="rgb(222,198,33)" rx="2" ry="2" />
 <text  x="947.84" y="239.5" ></text>
 </g>
 <g >
-<title>capirca/lib/policy.py:2523:ParsePolicy (5,034 samples, 0.47%)</title><rect x="1079.6" y="133" width="5.6" height="15.0" fill="rgb(208,15,48)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/lib/policy.py:2523:ParsePolicy (5,034 samples, 0.47%)</title><rect x="1079.6" y="133" width="5.6" height="15.0" fill="rgb(208,15,48)" rx="2" ry="2" />
 <text  x="1082.63" y="143.5" ></text>
 </g>
 <g >
@@ -1857,15 +1857,15 @@
 <text  x="751.56" y="207.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:1456:rightmost_terminal (2,502 samples, 0.23%)</title><rect x="226.6" y="213" width="2.8" height="15.0" fill="rgb(220,72,33)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:1456:rightmost_terminal (2,502 samples, 0.23%)</title><rect x="226.6" y="213" width="2.8" height="15.0" fill="rgb(220,72,33)" rx="2" ry="2" />
 <text  x="229.59" y="223.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:578:entry_point (9,702 samples, 0.91%)</title><rect x="1074.5" y="229" width="10.7" height="15.0" fill="rgb(231,139,52)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:578:entry_point (9,702 samples, 0.91%)</title><rect x="1074.5" y="229" width="10.7" height="15.0" fill="rgb(231,139,52)" rx="2" ry="2" />
 <text  x="1077.47" y="239.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:130:__call__ (2,563 samples, 0.24%)</title><rect x="323.4" y="197" width="2.8" height="15.0" fill="rgb(250,188,1)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:130:__call__ (2,563 samples, 0.24%)</title><rect x="323.4" y="197" width="2.8" height="15.0" fill="rgb(250,188,1)" rx="2" ry="2" />
 <text  x="326.35" y="207.5" ></text>
 </g>
 <g >
@@ -1877,7 +1877,7 @@
 <text  x="1008.51" y="271.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:558:main (9,730 samples, 0.91%)</title><rect x="909.8" y="181" width="10.8" height="15.0" fill="rgb(214,107,48)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:558:main (9,730 samples, 0.91%)</title><rect x="909.8" y="181" width="10.8" height="15.0" fill="rgb(214,107,48)" rx="2" ry="2" />
 <text  x="912.80" y="191.5" ></text>
 </g>
 <g >
@@ -1885,7 +1885,7 @@
 <text  x="881.13" y="143.5" ></text>
 </g>
 <g >
-<title>absl/app.py:230:_run_main (9,996 samples, 0.94%)</title><rect x="1109.4" y="213" width="11.1" height="15.0" fill="rgb(211,142,1)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/absl/app.py:230:_run_main (9,996 samples, 0.94%)</title><rect x="1109.4" y="213" width="11.1" height="15.0" fill="rgb(211,142,1)" rx="2" ry="2" />
 <text  x="1112.40" y="223.5" ></text>
 </g>
 <g >
@@ -1893,7 +1893,7 @@
 <text  x="1115.18" y="143.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2102:__init__ (4,894 samples, 0.46%)</title><rect x="881.0" y="117" width="5.4" height="15.0" fill="rgb(230,204,38)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2102:__init__ (4,894 samples, 0.46%)</title><rect x="881.0" y="117" width="5.4" height="15.0" fill="rgb(230,204,38)" rx="2" ry="2" />
 <text  x="883.98" y="127.5" ></text>
 </g>
 <g >
@@ -1905,11 +1905,11 @@
 <text  x="765.00" y="255.5" ></text>
 </g>
 <g >
-<title>absl/app.py:230:_run_main (9,702 samples, 0.91%)</title><rect x="1074.5" y="197" width="10.7" height="15.0" fill="rgb(244,59,20)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/absl/app.py:230:_run_main (9,702 samples, 0.91%)</title><rect x="1074.5" y="197" width="10.7" height="15.0" fill="rgb(244,59,20)" rx="2" ry="2" />
 <text  x="1077.47" y="207.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:144:RenderFile (8,329 samples, 0.78%)</title><rect x="1076.0" y="149" width="9.2" height="15.0" fill="rgb(236,18,42)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:144:RenderFile (8,329 samples, 0.78%)</title><rect x="1076.0" y="149" width="9.2" height="15.0" fill="rgb(236,18,42)" rx="2" ry="2" />
 <text  x="1078.99" y="159.5" ></text>
 </g>
 <g >
@@ -1917,11 +1917,11 @@
 <text  x="678.62" y="271.5" >/usr/lib..</text>
 </g>
 <g >
-<title>capirca/lib/policy.py:2523:ParsePolicy (5,176 samples, 0.49%)</title><rect x="880.7" y="149" width="5.7" height="15.0" fill="rgb(240,84,40)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/lib/policy.py:2523:ParsePolicy (5,176 samples, 0.49%)</title><rect x="880.7" y="149" width="5.7" height="15.0" fill="rgb(240,84,40)" rx="2" ry="2" />
 <text  x="883.66" y="159.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:479:Run (10,010 samples, 0.94%)</title><rect x="944.9" y="181" width="11.0" height="15.0" fill="rgb(241,184,48)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:479:Run (10,010 samples, 0.94%)</title><rect x="944.9" y="181" width="11.0" height="15.0" fill="rgb(241,184,48)" rx="2" ry="2" />
 <text  x="947.85" y="191.5" ></text>
 </g>
 <g >
@@ -1945,7 +1945,7 @@
 <text  x="820.44" y="319.5" >&lt;f..</text>
 </g>
 <g >
-<title>capirca/aclgen.py:344:RenderACL (2,302 samples, 0.22%)</title><rect x="1181.7" y="149" width="2.5" height="15.0" fill="rgb(244,171,20)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:344:RenderACL (2,302 samples, 0.22%)</title><rect x="1181.7" y="149" width="2.5" height="15.0" fill="rgb(244,171,20)" rx="2" ry="2" />
 <text  x="1184.70" y="159.5" ></text>
 </g>
 <g >
@@ -1957,7 +1957,7 @@
 <text  x="996.79" y="255.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:3216:yacc (4,950 samples, 0.46%)</title><rect x="845.7" y="117" width="5.5" height="15.0" fill="rgb(248,127,51)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:3216:yacc (4,950 samples, 0.46%)</title><rect x="845.7" y="117" width="5.5" height="15.0" fill="rgb(248,127,51)" rx="2" ry="2" />
 <text  x="848.72" y="127.5" ></text>
 </g>
 <g >
@@ -1973,15 +1973,15 @@
 <text  x="673.08" y="95.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:578:entry_point (3,365 samples, 0.32%)</title><rect x="1001.8" y="181" width="3.7" height="15.0" fill="rgb(234,218,12)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:578:entry_point (3,365 samples, 0.32%)</title><rect x="1001.8" y="181" width="3.7" height="15.0" fill="rgb(234,218,12)" rx="2" ry="2" />
 <text  x="1004.79" y="191.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:144:RenderFile (8,353 samples, 0.78%)</title><rect x="911.3" y="149" width="9.3" height="15.0" fill="rgb(252,106,41)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:144:RenderFile (8,353 samples, 0.78%)</title><rect x="911.3" y="149" width="9.3" height="15.0" fill="rgb(252,106,41)" rx="2" ry="2" />
 <text  x="914.33" y="159.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2510:add_lalr_lookaheads (1,339 samples, 0.13%)</title><rect x="1153.2" y="69" width="1.4" height="15.0" fill="rgb(243,144,30)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2510:add_lalr_lookaheads (1,339 samples, 0.13%)</title><rect x="1153.2" y="69" width="1.4" height="15.0" fill="rgb(243,144,30)" rx="2" ry="2" />
 <text  x="1156.16" y="79.5" ></text>
 </g>
 <g >
@@ -1993,16 +1993,16 @@
 <text  x="721.92" y="191.5" ></text>
 </g>
 <g >
-<title>absl/app.py:269:run (9,730 samples, 0.91%)</title><rect x="909.8" y="213" width="10.8" height="15.0" fill="rgb(206,75,31)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/absl/app.py:269:run (9,730 samples, 0.91%)</title><rect x="909.8" y="213" width="10.8" height="15.0" fill="rgb(206,75,31)" rx="2" ry="2" />
 <text  x="912.80" y="223.5" ></text>
 </g>
 <g >
-<title>capirca/lib/policy.py:1912:p_term_spec (2,502 samples, 0.23%)</title><rect x="672.8" y="213" width="2.8" height="15.0" fill="rgb(225,47,21)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/lib/policy.py:1912:p_term_spec (2,502 samples, 0.23%)</title><rect x="672.8" y="213" width="2.8" height="15.0" fill="rgb(225,47,21)" rx="2" ry="2" />
 <text  x="675.85" y="223.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:144:RenderFile (669,698 samples, 62.79%)</title><rect x="11.4" y="277" width="740.9" height="15.0" fill="rgb(221,22,2)" rx="2" ry="2" />
-<text  x="14.42" y="287.5" >capirca/aclgen.py:144:RenderFile</text>
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:144:RenderFile (669,698 samples, 62.79%)</title><rect x="11.4" y="277" width="740.9" height="15.0" fill="rgb(221,22,2)" rx="2" ry="2" />
+<text  x="14.42" y="287.5" >/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:144:RenderFile</text>
 </g>
 <g >
 <title>/usr/lib/python3.7/multiprocessing/managers.py:699:temp (1,876 samples, 0.18%)</title><rect x="815.1" y="277" width="2.1" height="15.0" fill="rgb(206,83,30)" rx="2" ry="2" />
@@ -2021,7 +2021,7 @@
 <text  x="1140.43" y="271.5" ></text>
 </g>
 <g >
-<title>capirca/lib/juniper.py:98:Append (2,502 samples, 0.23%)</title><rect x="216.2" y="229" width="2.8" height="15.0" fill="rgb(242,131,41)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/lib/juniper.py:98:Append (2,502 samples, 0.23%)</title><rect x="216.2" y="229" width="2.8" height="15.0" fill="rgb(242,131,41)" rx="2" ry="2" />
 <text  x="219.21" y="239.5" ></text>
 </g>
 <g >
@@ -2033,7 +2033,7 @@
 <text  x="1008.66" y="255.5" ></text>
 </g>
 <g >
-<title>absl/app.py:269:run (20,419 samples, 1.91%)</title><rect x="1017.7" y="277" width="22.6" height="15.0" fill="rgb(244,91,52)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/absl/app.py:269:run (20,419 samples, 1.91%)</title><rect x="1017.7" y="277" width="22.6" height="15.0" fill="rgb(244,91,52)" rx="2" ry="2" />
 <text  x="1020.73" y="287.5" >/..</text>
 </g>
 <g >
@@ -2041,7 +2041,7 @@
 <text  x="747.81" y="223.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:578:entry_point (9,730 samples, 0.91%)</title><rect x="909.8" y="229" width="10.8" height="15.0" fill="rgb(225,170,9)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:578:entry_point (9,730 samples, 0.91%)</title><rect x="909.8" y="229" width="10.8" height="15.0" fill="rgb(225,170,9)" rx="2" ry="2" />
 <text  x="912.80" y="239.5" ></text>
 </g>
 <g >
@@ -2053,7 +2053,7 @@
 <text  x="72.87" y="191.5" >/usr/lib/python3.7..</text>
 </g>
 <g >
-<title>absl/app.py:230:_run_main (9,977 samples, 0.94%)</title><rect x="875.4" y="213" width="11.0" height="15.0" fill="rgb(230,29,4)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/absl/app.py:230:_run_main (9,977 samples, 0.94%)</title><rect x="875.4" y="213" width="11.0" height="15.0" fill="rgb(230,29,4)" rx="2" ry="2" />
 <text  x="878.35" y="223.5" ></text>
 </g>
 <g >
@@ -2061,15 +2061,15 @@
 <text  x="703.69" y="207.5" ></text>
 </g>
 <g >
-<title>capirca/aclgen.py:479:Run (9,715 samples, 0.91%)</title><rect x="1143.9" y="165" width="10.7" height="15.0" fill="rgb(233,70,7)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/capirca/aclgen.py:479:Run (9,715 samples, 0.91%)</title><rect x="1143.9" y="165" width="10.7" height="15.0" fill="rgb(233,70,7)" rx="2" ry="2" />
 <text  x="1146.89" y="175.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2534:lr_parse_table (4,532 samples, 0.42%)</title><rect x="1185.0" y="101" width="5.0" height="15.0" fill="rgb(205,213,41)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2534:lr_parse_table (4,532 samples, 0.42%)</title><rect x="1185.0" y="101" width="5.0" height="15.0" fill="rgb(205,213,41)" rx="2" ry="2" />
 <text  x="1187.99" y="111.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2510:add_lalr_lookaheads (1,372 samples, 0.13%)</title><rect x="884.9" y="85" width="1.5" height="15.0" fill="rgb(231,143,44)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2510:add_lalr_lookaheads (1,372 samples, 0.13%)</title><rect x="884.9" y="85" width="1.5" height="15.0" fill="rgb(231,143,44)" rx="2" ry="2" />
 <text  x="887.87" y="95.5" ></text>
 </g>
 <g >
@@ -2077,7 +2077,7 @@
 <text  x="733.27" y="207.5" ></text>
 </g>
 <g >
-<title>ply/yacc.py:2510:add_lalr_lookaheads (109,442 samples, 10.26%)</title><rect x="540.0" y="197" width="121.1" height="15.0" fill="rgb(246,130,1)" rx="2" ry="2" />
+<title>/.virtualenvs/acltest/lib/python3.7/site-packages/ply/yacc.py:2510:add_lalr_lookaheads (109,442 samples, 10.26%)</title><rect x="540.0" y="197" width="121.1" height="15.0" fill="rgb(246,130,1)" rx="2" ry="2" />
 <text  x="543.01" y="207.5" >/.virtualenvs/a..</text>
 </g>
 <g >

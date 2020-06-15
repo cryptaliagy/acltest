@@ -26,6 +26,9 @@ def get_cli_configs(absl_flags) -> Dict:
     if absl_flags.defs:
         configs['acl']['defs_location'] = absl_flags.defs
 
+    if absl_flags.sanitize:
+        configs['acltest']['sanitize'] = absl_flags.sanitize
+
     return configs
 
 
