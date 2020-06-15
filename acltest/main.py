@@ -109,15 +109,13 @@ def subprocess_profile_script(script_path, script_args=[]):
         pass
 
     subprocess.call([
-        'ln',
-        '-s',
+        'cp',
         'flamegraph/%s.svg' % file_name,
         'latest.svg'
     ])
 
     subprocess.call([
-        'ln',
-        '-s',
+        'cp',
         'flamegraph/%s_inverted.svg' % file_name,
         'latest_inverted.svg'
     ])
