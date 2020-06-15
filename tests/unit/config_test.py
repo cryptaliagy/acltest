@@ -9,13 +9,15 @@ class MockAbslFlags:
                  pols=None,
                  defs=None,
                  policy_file=None,
-                 filename=None):
+                 filename=None,
+                 sanitize=None):
         self.max_qps = max_qps
         self.max_threads = max_threads
         self.pols = pols
         self.defs = defs
         self.policy_file = policy_file
         self.filename = filename
+        self.sanitize = sanitize
 
 
 @pytest.mark.unit
