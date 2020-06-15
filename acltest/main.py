@@ -103,21 +103,21 @@ def subprocess_profile_script(script_path, script_args=[]):
             'flamegraph/%s.plog' % file_name,
         ], stdout=f)
     try:
-        os.remove('latest.svg')
-        os.remove('latest_inverted.svg')
+        os.remove('docs/latest.svg')
+        os.remove('docs/latest_inverted.svg')
     except Exception:
         pass
 
     subprocess.call([
         'cp',
         'flamegraph/%s.svg' % file_name,
-        'latest.svg'
+        'docs/latest.svg'
     ])
 
     subprocess.call([
         'cp',
         'flamegraph/%s_inverted.svg' % file_name,
-        'latest_inverted.svg'
+        'docs/latest_inverted.svg'
     ])
 
     for f in pathlib.Path('.').glob('sample_*'):

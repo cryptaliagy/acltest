@@ -27,7 +27,7 @@ $ ./uninstall --hooks  # uninstalls pre-commit hooks as well as acltest
 ## Latest flamegraphs
 
 ### Flamegraph
-![regular flamegraph](./latest.svg)
+[![regular flamegraph](./docs/latest.svg)](https://taliamax.github.io/acltest/latest.svg)
 
 ### Inverted Flamegraph
-![inverted flamegraph](./latest_inverted.svg)
+[![inverted flamegraph](./docs/latest_inverted.svg)](https://taliamax.github.io/acltest/latest_inverted.svg)
