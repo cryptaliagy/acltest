@@ -22,3 +22,12 @@ An uninstall script has also been included. It also accepts the `--hooks` flag t
 $ ./uninstall  # uninstalls just acltest and its dependencies
 $ ./uninstall --hooks  # uninstalls pre-commit hooks as well as acltest
 ```
+
+
+## Latest flamegraphs
+
+### Flamegraph
+![regular flamegraph](./flamegraph/latest.svg)
+
+### Inverted Flamegraph
+![inverted flamegraph](./flamegraph/latest_inverted.svg)

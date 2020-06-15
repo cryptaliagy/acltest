@@ -1,4 +1,6 @@
+import arrow
 import capirca
+import pathlib
 import subprocess
 import os
 
@@ -68,15 +70,64 @@ def subprocess_profile_script(script_path, script_args=[]):
         script_path,
         script_args
     )
-    return subprocess.call([
+    file_name = arrow.now().format('YYYY-MM-DD-HH:mm:ss-ZZ')
+    profile = subprocess.call([
         'python',
         '-m',
-        'flamegraph',
+        'cProfile',
         '-o',
-        'perf.log',
+        'perf/%s.prof' % file_name,
         script_path,
         *script_args
     ])
+    flamegraph_convert = subprocess.call([
+        'flameprof',
+        '-o',
+        'flamegraph/%s.plog' % file_name,
+        '--format',
+        'log',
+        'perf/%s.prof' % file_name
+    ])
+    with open('flamegraph/%s.svg' % file_name, 'w') as f:
+        flamegraph = subprocess.call([
+            'flamegraph.pl',
+            '--title="%s cProfile"' % file_name,
+            'flamegraph/%s.plog' % file_name,
+        ], stdout=f)
+    with open('flamegraph/%s_inverted.svg' % file_name, 'w') as f:
+        inverted_flamegraph = subprocess.call([
+            'flamegraph.pl',
+            '--title="%s cProfile"' % file_name,
+            '--inverted',
+            '--reverse',
+            'flamegraph/%s.plog' % file_name,
+        ], stdout=f)
+    try:
+        os.remove('latest.svg')
+        os.remove('latest_inverted.svg')
+    except Exception:
+        pass
+
+    subprocess.call([
+        'ln',
+        '-s',
+        'flamegraph/%s.svg' % file_name,
+        'latest.svg'
+    ])
+
+    subprocess.call([
+        'ln',
+        '-s',
+        'flamegraph/%s_inverted.svg' % file_name,
+        'latest_inverted.svg'
+    ])
+
+    for f in pathlib.Path('.').glob('sample_*'):
+        f.unlink()
+
+    return (profile, flamegraph_convert, flamegraph, inverted_flamegraph)
+
+    
 
 
 def get_module_script_path(module):
