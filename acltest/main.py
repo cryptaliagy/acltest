@@ -127,8 +127,6 @@ def subprocess_profile_script(script_path, script_args=[]):
 
     return (profile, flamegraph_convert, flamegraph, inverted_flamegraph)
 
-    
-
 
 def get_module_script_path(module):
     return os.path.dirname(module.__file__)
