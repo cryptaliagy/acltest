@@ -11,7 +11,9 @@ def get_cli_configs(absl_flags) -> Dict:
     configs = {
         'load': {},
         'acl': {},
-        'acltest': {}
+        'acltest': {
+            'doc_output': 'latest'
+        }
     }
 
     if absl_flags.max_qps:
@@ -29,6 +31,12 @@ def get_cli_configs(absl_flags) -> Dict:
 
     if absl_flags.sanitize:
         configs['acltest']['sanitize'] = absl_flags.sanitize
+
+    if absl_flags.svg or absl_flags.output is not None:
+        configs['acltest']['svg'] = True
+
+    if absl_flags.output:
+        configs['acltest']['doc_output'] = absl_flags.output
 
     return configs
 

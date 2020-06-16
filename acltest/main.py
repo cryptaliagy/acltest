@@ -1,5 +1,4 @@
 import arrow
-import capirca
 import pathlib
 import pstats
 import subprocess
@@ -56,44 +55,75 @@ def setup_flags():
         None,
         'Sanitize output svg'
     )
+    flags.DEFINE_boolean(
+        'svg',
+        False,
+        'Export the svg to the docs folder'
+    )
+    flags.DEFINE_string(
+        'output',
+        None,
+        'Name of the resulting svg output in the docs folder. Implies --svg',
+        short_name='o'
+    )
+
+
+def make_capirca_args_from_config(config):
+    result = ['--max_renderers', '1']  # needed because of multiprocessing
+    if 'pols_location' in config['acl']:
+        result.append('--base_directory')
+        result.append(config['acl']['pols_location'])
+
+    if 'defs_location' in config['acl']:
+        result.append('--definitions_directory')
+        result.append(config['acl']['defs_location'])
+
+    return result
 
 
 def main(argv):
     del argv
     configs = get_configs_from_flags(FLAGS)
-    capirca_install_path = get_module_script_path(capirca) + "/aclgen.py"
+    script_args = make_capirca_args_from_config(configs)
+
     subprocess_profile_script(
-        capirca_install_path,
-        # Capirca can only use 1 renderer for flamegraph testing
-        # as cProfiler and multiprocessing don't play nice together
-        script_args=['--max_renderers', '1'],
+        'aclgen',
+        script_args=script_args,
+        make_doc=configs['acltest']['svg'],
+        docs_output=configs['acltest']['doc_output'],
         sanitize=configs['acltest']['sanitize']
     )
 
 
-def subprocess_profile_script(script_path, script_args=[], sanitize=True):
+def subprocess_profile_script(
+        script_name,
+        script_args=[],
+        make_doc=False,
+        docs_output='latest',
+        sanitize=True
+):
     logging.info(
         "script_path: %s\nscript_args: %s",
-        script_path,
+        script_name,
         script_args
     )
     file_name = arrow.now().format('YYYY-MM-DD-HH:mm:ss-ZZ')
-    profile = subprocess.call([
-        'python',
-        '-m',
-        'cProfile',
-        '-o',
+    subprocess.call([
+        script_name,
+        '--profile_file',
         'perf/%s.prof' % file_name,
-        script_path,
         *script_args
     ])
+
+    for f in pathlib.Path('.').glob('sample_*'):
+        f.unlink()
 
     if sanitize:
         (pstats.Stats('perf/%s.prof' % file_name)
          .strip_dirs()
          .dump_stats('perf/%s.prof' % file_name))
 
-    flamegraph_convert = subprocess.call([
+    subprocess.call([
         'flameprof',
         '-o',
         'flamegraph/%s.plog' % file_name,
@@ -103,42 +133,39 @@ def subprocess_profile_script(script_path, script_args=[], sanitize=True):
     ])
 
     with open('flamegraph/%s.svg' % file_name, 'w') as f:
-        flamegraph = subprocess.call([
+        subprocess.call([
             'flamegraph.pl',
             '--title="%s cProfile"' % file_name,
             'flamegraph/%s.plog' % file_name,
         ], stdout=f)
     with open('flamegraph/%s_inverted.svg' % file_name, 'w') as f:
-        inverted_flamegraph = subprocess.call([
+        subprocess.call([
             'flamegraph.pl',
             '--title="%s cProfile"' % file_name,
             '--inverted',
             '--reverse',
             'flamegraph/%s.plog' % file_name,
         ], stdout=f)
+    if make_doc:
+        try:
+            os.remove('docs/%s.svg' % docs_output)
+            os.remove('docs/%s.svg' % docs_output)
+        except Exception:
+            pass
 
-    try:
-        os.remove('docs/latest.svg')
-        os.remove('docs/latest_inverted.svg')
-    except Exception:
-        pass
+        subprocess.call([
+            'cp',
+            'flamegraph/%s.svg' % file_name,
+            'docs/%s.svg' % docs_output
+        ])
 
-    subprocess.call([
-        'cp',
-        'flamegraph/%s.svg' % file_name,
-        'docs/latest.svg'
-    ])
+        subprocess.call([
+            'cp',
+            'flamegraph/%s_inverted.svg' % file_name,
+            'docs/%s_inverted.svg' % docs_output
+        ])
 
-    subprocess.call([
-        'cp',
-        'flamegraph/%s_inverted.svg' % file_name,
-        'docs/latest_inverted.svg'
-    ])
-
-    for f in pathlib.Path('.').glob('sample_*'):
-        f.unlink()
-
-    return (profile, flamegraph_convert, flamegraph, inverted_flamegraph)
+    return file_name
 
 
 def get_module_script_path(module):
