@@ -30,7 +30,8 @@ def test_get_cli_configs_pols_dir():
         'acl': {
             'pols_location': 'pols/',
             'defs_location': 'defs/'
-        }
+        },
+        'acltest': {}
     }
 
     flags = MockAbslFlags(max_qps=100, max_threads=10, pols='pols/', defs='defs/')
