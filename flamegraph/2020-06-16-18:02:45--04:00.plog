@@ -1,0 +1,13 @@
+aclgen.py:558:main 0
+aclgen.py:558:main;aclgen.py:479:Run 0
+aclgen.py:558:main;aclgen.py:479:Run;context.py:48:Manager 0
+aclgen.py:558:main;aclgen.py:479:Run;context.py:48:Manager;managers.py:516:start 0
+aclgen.py:558:main;aclgen.py:479:Run;context.py:48:Manager;managers.py:516:start;connection.py:246:recv 0
+aclgen.py:558:main;aclgen.py:479:Run;context.py:48:Manager;managers.py:516:start;connection.py:246:recv;connection.py:406:_recv_bytes 0
+aclgen.py:558:main;aclgen.py:479:Run;context.py:48:Manager;managers.py:516:start;connection.py:246:recv;connection.py:406:_recv_bytes;connection.py:374:_recv 0
+aclgen.py:558:main;aclgen.py:479:Run;context.py:48:Manager;managers.py:516:start;connection.py:246:recv;connection.py:406:_recv_bytes;connection.py:374:_recv;~:0:<built-in method posix.read> 3000
+aclgen.py:558:main;aclgen.py:479:Run;context.py:48:Manager;managers.py:516:start;process.py:101:start 0
+aclgen.py:558:main;aclgen.py:479:Run;context.py:48:Manager;managers.py:516:start;process.py:101:start;context.py:274:_Popen 0
+aclgen.py:558:main;aclgen.py:479:Run;context.py:48:Manager;managers.py:516:start;process.py:101:start;context.py:274:_Popen;popen_fork.py:16:__init__ 0
+aclgen.py:558:main;aclgen.py:479:Run;context.py:48:Manager;managers.py:516:start;process.py:101:start;context.py:274:_Popen;popen_fork.py:16:__init__;popen_fork.py:67:_launch 0
+aclgen.py:558:main;aclgen.py:479:Run;context.py:48:Manager;managers.py:516:start;process.py:101:start;context.py:274:_Popen;popen_fork.py:16:__init__;popen_fork.py:67:_launch;~:0:<built-in method posix.fork> 32000
