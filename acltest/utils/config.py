@@ -12,7 +12,8 @@ def get_cli_configs(absl_flags) -> Dict:
         'load': {},
         'acl': {},
         'acltest': {
-            'doc_output': 'latest'
+            'doc_output': 'latest',
+            'cleanup': absl_flags.cleanup
         }
     }
 

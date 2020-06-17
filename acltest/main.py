@@ -8,6 +8,7 @@ from absl import app
 from absl import flags
 from absl import logging
 from acltest.utils.config import get_configs_from_flags
+from functools import singledispatch
 
 
 FLAGS = flags.FLAGS
@@ -66,6 +67,11 @@ def setup_flags():
         'Name of the resulting svg output in the docs folder. Implies --svg',
         short_name='o'
     )
+    flags.DEFINE_boolean(
+        'cleanup',
+        True,
+        'Flag to determine if cleanup of the output files should happen'
+    )
 
 
 def make_capirca_args_from_config(config):
@@ -91,8 +97,24 @@ def main(argv):
         script_args=script_args,
         make_doc=configs['acltest']['svg'],
         docs_output=configs['acltest']['doc_output'],
-        sanitize=configs['acltest']['sanitize']
+        sanitize=configs['acltest']['sanitize'],
+        cleanup=configs['acltest']['cleanup']
     )
+
+
+@singledispatch
+def clean_all_dir_files(directory):
+    for document in directory.iterdir():
+        if document.is_dir():
+            clean_all_dir_files(document)
+        if document.is_file():
+            document.unlink()
+
+
+@clean_all_dir_files.register
+def _(directory: str):
+    path_obj = pathlib.Path(directory)
+    clean_all_dir_files(path_obj)
 
 
 def subprocess_profile_script(
@@ -100,7 +122,8 @@ def subprocess_profile_script(
         script_args=[],
         make_doc=False,
         docs_output='latest',
-        sanitize=True
+        sanitize=True,
+        cleanup=True
 ):
     logging.info(
         "script_path: %s\nscript_args: %s",
@@ -112,11 +135,13 @@ def subprocess_profile_script(
         script_name,
         '--profile_file',
         'perf/%s.prof' % file_name,
+        '--output_directory',
+        'output',
         *script_args
     ])
 
-    for f in pathlib.Path('.').glob('sample_*'):
-        f.unlink()
+    if cleanup:
+        clean_all_dir_files('output')
 
     if sanitize:
         (pstats.Stats('perf/%s.prof' % file_name)

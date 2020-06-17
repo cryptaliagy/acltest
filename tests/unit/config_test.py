@@ -10,7 +10,10 @@ class MockAbslFlags:
                  defs=None,
                  policy_file=None,
                  filename=None,
-                 sanitize=None):
+                 sanitize=None,
+                 svg=None,
+                 output=None,
+                 cleanup=True):
         self.max_qps = max_qps
         self.max_threads = max_threads
         self.pols = pols
@@ -18,6 +21,9 @@ class MockAbslFlags:
         self.policy_file = policy_file
         self.filename = filename
         self.sanitize = sanitize
+        self.svg = svg
+        self.output = output
+        self.cleanup = cleanup
 
 
 @pytest.mark.unit
@@ -31,7 +37,10 @@ def test_get_cli_configs_pols_dir():
             'pols_location': 'pols/',
             'defs_location': 'defs/'
         },
-        'acltest': {}
+        'acltest': {
+            'doc_output': 'latest',
+            'cleanup': True
+        }
     }
 
     flags = MockAbslFlags(max_qps=100, max_threads=10, pols='pols/', defs='defs/')
