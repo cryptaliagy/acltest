@@ -136,4 +136,5 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
-large_pol_files/*
+large_pol_files/
+prod_data/
