@@ -13,7 +13,8 @@ def get_cli_configs(absl_flags) -> Dict:
         'acl': {},
         'acltest': {
             'doc_output': 'latest',
-            'cleanup': absl_flags.cleanup
+            'cleanup': absl_flags.cleanup,
+            'svg': False
         }
     }
 
