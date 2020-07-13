@@ -138,3 +138,4 @@ dmypy.json
 cython_debug/
 large_pol_files/
 prod_data/
+long_pol_file_run
