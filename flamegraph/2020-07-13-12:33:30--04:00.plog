@@ -1,0 +1,10 @@
+aclgen.py:522:main 48
+aclgen.py:522:main;aclgen.py:466:Run 59105
+aclgen.py:522:main;aclgen.py:466:Run;naming.py:128:__init__ 481
+aclgen.py:522:main;aclgen.py:466:Run;naming.py:128:__init__;naming.py:500:_Parse 2285
+aclgen.py:522:main;aclgen.py:466:Run;naming.py:128:__init__;naming.py:500:_Parse;naming.py:533:_ParseFile 46566
+aclgen.py:522:main;aclgen.py:466:Run;naming.py:128:__init__;naming.py:500:_Parse;naming.py:533:_ParseFile;naming.py:562:_ParseLine 351946
+aclgen.py:522:main;aclgen.py:466:Run;pool.py:550:join 112
+aclgen.py:522:main;aclgen.py:466:Run;pool.py:550:join;threading.py:1000:join 14
+aclgen.py:522:main;aclgen.py:466:Run;pool.py:550:join;threading.py:1000:join;threading.py:1038:_wait_for_tstate_lock 1
+aclgen.py:522:main;aclgen.py:466:Run;pool.py:550:join;threading.py:1000:join;threading.py:1038:_wait_for_tstate_lock;~:0:<method 'acquire' of '_thread.lock' objects> 346745883
