@@ -21,19 +21,6 @@ def setup_flags():
         'Configuration input file(s)',
         short_name='f'
     )
-
-    flags.DEFINE_integer(
-        'max_qps',
-        None,
-        'Maximum number of queries per second to spawn',
-        short_name='q'
-    )
-    flags.DEFINE_integer(
-        'max_threads',
-        None,
-        'Maximum number of threads to use',
-        short_name='t'
-    )
     flags.DEFINE_string(
         'pols',
         None,
@@ -58,19 +45,25 @@ def setup_flags():
     )
     flags.DEFINE_boolean(
         'svg',
-        False,
-        'Export the svg to the docs folder'
+        None,
+        'Export the svg to the docs folder.\n(default: \'false\')'
     )
     flags.DEFINE_string(
         'output',
         None,
-        'Name of the resulting svg output in the docs folder. Implies --svg',
+        'Name of the resulting svg output in the docs folder. Implies --svg.' +
+        '\n(default: \'latest\')',
         short_name='o'
     )
     flags.DEFINE_boolean(
         'cleanup',
-        True,
+        None,
         'Flag to determine if cleanup of the output files should happen'
+    )
+    flags.DEFINE_integer(
+        'pprof_time',
+        None,
+        'Length of time that the profiling thread in capirca should run for.\n(default: 5)'
     )
 
 
@@ -83,6 +76,10 @@ def make_capirca_args_from_config(config):
     if 'defs_location' in config['acl']:
         result.append('--definitions_directory')
         result.append(config['acl']['defs_location'])
+
+    if 'pprof_time' in config['prof']:
+        result.append('--profile_time')
+        result.append(str(config['prof']['pprof_time']))
 
     return result
 
@@ -137,6 +134,8 @@ def subprocess_profile_script(
         'perf/%s.prof' % file_name,
         '--output_directory',
         'output',
+        '--pprof_file',
+        'pprof/%s.pprof' % file_name,
         *script_args
     ])
 
@@ -188,6 +187,16 @@ def subprocess_profile_script(
             'cp',
             'flamegraph/%s_inverted.svg' % file_name,
             'docs/%s_inverted.svg' % docs_output
+        ])
+
+        subprocess.call([
+            'go',
+            'tool',
+            'pprof',
+            '-svg',
+            '-output',
+            'docs/%s_pprof.svg' % docs_output,
+            'pprof/%s.pprof' % file_name
         ])
 
     return file_name

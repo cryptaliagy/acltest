@@ -4,8 +4,6 @@ from acltest.utils.config import get_cli_configs
 
 class MockAbslFlags:
     def __init__(self,
-                 max_qps=None,
-                 max_threads=None,
                  pols=None,
                  defs=None,
                  policy_file=None,
@@ -13,9 +11,9 @@ class MockAbslFlags:
                  sanitize=None,
                  svg=None,
                  output=None,
-                 cleanup=True):
-        self.max_qps = max_qps
-        self.max_threads = max_threads
+                 cleanup=True,
+                 pprof_file='latest.pprof',
+                 pprof_time=5):
         self.pols = pols
         self.defs = defs
         self.policy_file = policy_file
@@ -24,26 +22,27 @@ class MockAbslFlags:
         self.svg = svg
         self.output = output
         self.cleanup = cleanup
+        self.pprof_time = pprof_time
+        self.pprof_file = pprof_file
 
 
 @pytest.mark.unit
 def test_get_cli_configs_pols_dir():
     expected = {
-        'load': {
-            'max_qps': 100,
-            'max_threads': 10,
-        },
         'acl': {
             'pols_location': 'pols/',
             'defs_location': 'defs/'
         },
         'acltest': {
-            'doc_output': 'latest',
             'cleanup': True
+        },
+        'prof': {
+            'pprof_time': 5,
+            'pprof_file': 'latest.pprof'
         }
     }
 
-    flags = MockAbslFlags(max_qps=100, max_threads=10, pols='pols/', defs='defs/')
+    flags = MockAbslFlags(pols='pols/', defs='defs/', pprof_time=5)
     configs = get_cli_configs(flags)
 
     assert configs == expected

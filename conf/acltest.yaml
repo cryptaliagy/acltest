@@ -1,7 +1,3 @@
-
-load:
-  max_qps: 1
-  max_threads: 1
 acl:
   pols_location: policies/ # Location for policy files
   defs_location: def/ # Location for definition files
