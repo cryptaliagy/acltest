@@ -1,0 +1,63 @@
+aclgen.py:588:main 3760
+aclgen.py:588:main;aclgen.py:501:Run 5688
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile 14231
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;aclgen.py:366:RenderACL 5531
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;aclgen.py:366:RenderACL;<string>:1:append 71
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;aclgen.py:366:RenderACL;<string>:1:append;managers.py:783:_callmethod 6321
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;aclgenerator.py:272:__init__ 9672
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;cisco.py:1232:__str__ 986
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;cisco.py:1232:__str__;cisco.py:639:__str__ 6662
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;copy.py:132:deepcopy 5881
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;copy.py:132:deepcopy;copy.py:210:_deepcopy_list 1112
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;copy.py:132:deepcopy;copy.py:210:_deepcopy_list;copy.py:132:deepcopy 13331
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;copy.py:132:deepcopy;copy.py:219:_deepcopy_tuple 104
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;copy.py:132:deepcopy;copy.py:219:_deepcopy_tuple;copy.py:220:<listcomp> 27
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;copy.py:132:deepcopy;copy.py:219:_deepcopy_tuple;copy.py:220:<listcomp>;copy.py:132:deepcopy 14019
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;copy.py:132:deepcopy;copy.py:236:_deepcopy_dict 1412
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;copy.py:132:deepcopy;copy.py:236:_deepcopy_dict;copy.py:132:deepcopy 13278
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;copy.py:132:deepcopy;copy.py:268:_reconstruct 736
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;copy.py:132:deepcopy;copy.py:268:_reconstruct;copy.py:132:deepcopy 13725
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;iptables.py:809:__str__ 171
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;iptables.py:809:__str__;iptables.py:114:__str__ 5163
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;nsxv.py:618:__str__ 12431
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2526:ParsePolicy 1872
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2526:ParsePolicy;lex.py:862:lex 3083
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2526:ParsePolicy;lex.py:862:lex;lex.py:493:_form_master_re 460
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2526:ParsePolicy;lex.py:862:lex;lex.py:493:_form_master_re;re.py:232:compile 11
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2526:ParsePolicy;lex.py:862:lex;lex.py:493:_form_master_re;re.py:232:compile;re.py:271:_compile 420
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2526:ParsePolicy;lex.py:862:lex;lex.py:493:_form_master_re;re.py:232:compile;re.py:271:_compile;sre_compile.py:759:compile 5736
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2526:ParsePolicy;lex.py:862:lex;lex.py:576:validate_all 781
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2526:ParsePolicy;lex.py:862:lex;lex.py:576:validate_all;lex.py:728:validate_rules 6307
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2526:ParsePolicy;lex.py:862:lex;lex.py:576:validate_all;lex.py:728:validate_rules;lex.py:831:validate_module 11917
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2526:ParsePolicy;lex.py:862:lex;lex.py:576:validate_all;lex.py:728:validate_rules;lex.py:831:validate_module;~:0:<method 'match' of 're.Pattern' objects> 20083
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2526:ParsePolicy;yacc.py:325:parse 33
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2526:ParsePolicy;yacc.py:325:parse;yacc.py:1003:parseopt_notrack 18602
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2526:ParsePolicy;yacc.py:325:parse;yacc.py:1003:parseopt_notrack;lex.py:305:token 12581
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2526:ParsePolicy;yacc.py:325:parse;yacc.py:1003:parseopt_notrack;policy.py:1912:p_term_spec 2261
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2526:ParsePolicy;yacc.py:325:parse;yacc.py:1003:parseopt_notrack;policy.py:1912:p_term_spec;policy.py:405:__init__ 1057
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2526:ParsePolicy;yacc.py:325:parse;yacc.py:1003:parseopt_notrack;policy.py:1912:p_term_spec;policy.py:405:__init__;policy.py:1013:AddObject 303
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2526:ParsePolicy;yacc.py:325:parse;yacc.py:1003:parseopt_notrack;policy.py:1912:p_term_spec;policy.py:405:__init__;policy.py:1013:AddObject;naming.py:442:GetNetAddr 55
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2526:ParsePolicy;yacc.py:325:parse;yacc.py:1003:parseopt_notrack;policy.py:1912:p_term_spec;policy.py:405:__init__;policy.py:1013:AddObject;naming.py:442:GetNetAddr;naming.py:456:GetNet 5026
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2526:ParsePolicy;yacc.py:325:parse;yacc.py:1003:parseopt_notrack;policy.py:1912:p_term_spec;policy.py:405:__init__;policy.py:1013:AddObject;naming.py:442:GetNetAddr;naming.py:456:GetNet;nacaddr.py:30:IP 6542
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2526:ParsePolicy;yacc.py:325:parse;yacc.py:1003:parseopt_notrack;policy.py:1912:p_term_spec;policy.py:1013:AddObject 833
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2526:ParsePolicy;yacc.py:325:parse;yacc.py:1003:parseopt_notrack;policy.py:1912:p_term_spec;policy.py:1013:AddObject;naming.py:442:GetNetAddr 31
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2526:ParsePolicy;yacc.py:325:parse;yacc.py:1003:parseopt_notrack;policy.py:1912:p_term_spec;policy.py:1013:AddObject;naming.py:442:GetNetAddr;naming.py:456:GetNet 6664
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:464:WriteFiles 812
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:464:WriteFiles;<string>:1:__getitem__ 65
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:464:WriteFiles;<string>:1:__getitem__;managers.py:783:_callmethod 5539
+aclgen.py:588:main;aclgen.py:501:Run;aclgen.py:464:WriteFiles;aclgen.py:478:_WriteFile 5682
+aclgen.py:588:main;aclgen.py:501:Run;context.py:48:Manager 58
+aclgen.py:588:main;aclgen.py:501:Run;context.py:48:Manager;<frozen importlib._bootstrap>:978:_find_and_load 151
+aclgen.py:588:main;aclgen.py:501:Run;context.py:48:Manager;<frozen importlib._bootstrap>:978:_find_and_load;<frozen importlib._bootstrap>:948:_find_and_load_unlocked 5168
+aclgen.py:588:main;aclgen.py:501:Run;context.py:48:Manager;managers.py:516:start 6207
+aclgen.py:588:main;aclgen.py:501:Run;managers.py:699:temp 5292
+aclgen.py:588:main;threading.py:1000:join 11
+aclgen.py:588:main;threading.py:1000:join;threading.py:1038:_wait_for_tstate_lock 22
+aclgen.py:588:main;threading.py:1000:join;threading.py:1038:_wait_for_tstate_lock;~:0:<method 'acquire' of '_thread.lock' objects> 4835074
+aclgen.py:588:main;util.py:170:__call__ 1057
+aclgen.py:588:main;util.py:170:__call__;managers.py:636:_finalize_manager 717
+aclgen.py:588:main;util.py:170:__call__;managers.py:636:_finalize_manager;process.py:133:join 15
+aclgen.py:588:main;util.py:170:__call__;managers.py:636:_finalize_manager;process.py:133:join;popen_fork.py:41:wait 49
+aclgen.py:588:main;util.py:170:__call__;managers.py:636:_finalize_manager;process.py:133:join;popen_fork.py:41:wait;connection.py:906:wait 381
+aclgen.py:588:main;util.py:170:__call__;managers.py:636:_finalize_manager;process.py:133:join;popen_fork.py:41:wait;connection.py:906:wait;selectors.py:402:select 48
+aclgen.py:588:main;util.py:170:__call__;managers.py:636:_finalize_manager;process.py:133:join;popen_fork.py:41:wait;connection.py:906:wait;selectors.py:402:select;~:0:<method 'poll' of 'select.poll' objects> 5630

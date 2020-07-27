@@ -1,0 +1,1216 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" width="1200" height="358" onload="init(evt)" viewBox="0 0 1200 358" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<!-- Flame graph stack visualization. See https://github.com/brendangregg/FlameGraph for latest version, and http://www.brendangregg.com/flamegraphs.html for examples. -->
+<!-- NOTES:  -->
+<defs>
+	<linearGradient id="background" y1="0" y2="1" x1="0" x2="0" >
+		<stop stop-color="#eeeeee" offset="5%" />
+		<stop stop-color="#eeeeb0" offset="95%" />
+	</linearGradient>
+</defs>
+<style type="text/css">
+	text { font-family:Verdana; font-size:12px; fill:rgb(0,0,0); }
+	#search, #ignorecase { opacity:0.1; cursor:pointer; }
+	#search:hover, #search.show, #ignorecase:hover, #ignorecase.show { opacity:1; }
+	#subtitle { text-anchor:middle; font-color:rgb(160,160,160); }
+	#title { text-anchor:middle; font-size:17px}
+	#unzoom { cursor:pointer; }
+	#frames > *:hover { stroke:black; stroke-width:0.5; cursor:pointer; }
+	.hide { display:none; }
+	.parent { opacity:0.5; }
+</style>
+<script type="text/ecmascript">
+<![CDATA[
+	"use strict";
+	var details, searchbtn, unzoombtn, matchedtxt, svg, searching, currentSearchTerm, ignorecase, ignorecaseBtn;
+	function init(evt) {
+		details = document.getElementById("details").firstChild;
+		searchbtn = document.getElementById("search");
+		ignorecaseBtn = document.getElementById("ignorecase");
+		unzoombtn = document.getElementById("unzoom");
+		matchedtxt = document.getElementById("matched");
+		svg = document.getElementsByTagName("svg")[0];
+		searching = 0;
+		currentSearchTerm = null;
+	}
+
+	window.addEventListener("click", function(e) {
+		var target = find_group(e.target);
+		if (target) {
+			if (target.nodeName == "a") {
+				if (e.ctrlKey === false) return;
+				e.preventDefault();
+			}
+			if (target.classList.contains("parent")) unzoom();
+			zoom(target);
+		}
+		else if (e.target.id == "unzoom") unzoom();
+		else if (e.target.id == "search") search_prompt();
+		else if (e.target.id == "ignorecase") toggle_ignorecase();
+	}, false)
+
+	// mouse-over for info
+	// show
+	window.addEventListener("mouseover", function(e) {
+		var target = find_group(e.target);
+		if (target) details.nodeValue = "Function: " + g_to_text(target);
+	}, false)
+
+	// clear
+	window.addEventListener("mouseout", function(e) {
+		var target = find_group(e.target);
+		if (target) details.nodeValue = ' ';
+	}, false)
+
+	// ctrl-F for search
+	window.addEventListener("keydown",function (e) {
+		if (e.keyCode === 114 || (e.ctrlKey && e.keyCode === 70)) {
+			e.preventDefault();
+			search_prompt();
+		}
+	}, false)
+
+	// ctrl-I to toggle case-sensitive search
+	window.addEventListener("keydown",function (e) {
+		if (e.ctrlKey && e.keyCode === 73) {
+			e.preventDefault();
+			toggle_ignorecase();
+		}
+	}, false)
+
+	// functions
+	function find_child(node, selector) {
+		var children = node.querySelectorAll(selector);
+		if (children.length) return children[0];
+		return;
+	}
+	function find_group(node) {
+		var parent = node.parentElement;
+		if (!parent) return;
+		if (parent.id == "frames") return node;
+		return find_group(parent);
+	}
+	function orig_save(e, attr, val) {
+		if (e.attributes["_orig_" + attr] != undefined) return;
+		if (e.attributes[attr] == undefined) return;
+		if (val == undefined) val = e.attributes[attr].value;
+		e.setAttribute("_orig_" + attr, val);
+	}
+	function orig_load(e, attr) {
+		if (e.attributes["_orig_"+attr] == undefined) return;
+		e.attributes[attr].value = e.attributes["_orig_" + attr].value;
+		e.removeAttribute("_orig_"+attr);
+	}
+	function g_to_text(e) {
+		var text = find_child(e, "title").firstChild.nodeValue;
+		return (text)
+	}
+	function g_to_func(e) {
+		var func = g_to_text(e);
+		// if there's any manipulation we want to do to the function
+		// name before it's searched, do it here before returning.
+		return (func);
+	}
+	function update_text(e) {
+		var r = find_child(e, "rect");
+		var t = find_child(e, "text");
+		var w = parseFloat(r.attributes.width.value) -3;
+		var txt = find_child(e, "title").textContent.replace(/\([^(]*\)$/,"");
+		t.attributes.x.value = parseFloat(r.attributes.x.value) + 3;
+
+		// Smaller than this size won't fit anything
+		if (w < 2 * 12 * 0.59) {
+			t.textContent = "";
+			return;
+		}
+
+		t.textContent = txt;
+		// Fit in full text width
+		if (/^ *$/.test(txt) || t.getSubStringLength(0, txt.length) < w)
+			return;
+
+		for (var x = txt.length - 2; x > 0; x--) {
+			if (t.getSubStringLength(0, x + 2) <= w) {
+				t.textContent = txt.substring(0, x) + "..";
+				return;
+			}
+		}
+		t.textContent = "";
+	}
+
+	// zoom
+	function zoom_reset(e) {
+		if (e.attributes != undefined) {
+			orig_load(e, "x");
+			orig_load(e, "width");
+		}
+		if (e.childNodes == undefined) return;
+		for (var i = 0, c = e.childNodes; i < c.length; i++) {
+			zoom_reset(c[i]);
+		}
+	}
+	function zoom_child(e, x, ratio) {
+		if (e.attributes != undefined) {
+			if (e.attributes.x != undefined) {
+				orig_save(e, "x");
+				e.attributes.x.value = (parseFloat(e.attributes.x.value) - x - 10) * ratio + 10;
+				if (e.tagName == "text")
+					e.attributes.x.value = find_child(e.parentNode, "rect[x]").attributes.x.value + 3;
+			}
+			if (e.attributes.width != undefined) {
+				orig_save(e, "width");
+				e.attributes.width.value = parseFloat(e.attributes.width.value) * ratio;
+			}
+		}
+
+		if (e.childNodes == undefined) return;
+		for (var i = 0, c = e.childNodes; i < c.length; i++) {
+			zoom_child(c[i], x - 10, ratio);
+		}
+	}
+	function zoom_parent(e) {
+		if (e.attributes) {
+			if (e.attributes.x != undefined) {
+				orig_save(e, "x");
+				e.attributes.x.value = 10;
+			}
+			if (e.attributes.width != undefined) {
+				orig_save(e, "width");
+				e.attributes.width.value = parseInt(svg.width.baseVal.value) - (10 * 2);
+			}
+		}
+		if (e.childNodes == undefined) return;
+		for (var i = 0, c = e.childNodes; i < c.length; i++) {
+			zoom_parent(c[i]);
+		}
+	}
+	function zoom(node) {
+		var attr = find_child(node, "rect").attributes;
+		var width = parseFloat(attr.width.value);
+		var xmin = parseFloat(attr.x.value);
+		var xmax = parseFloat(xmin + width);
+		var ymin = parseFloat(attr.y.value);
+		var ratio = (svg.width.baseVal.value - 2 * 10) / width;
+
+		// XXX: Workaround for JavaScript float issues (fix me)
+		var fudge = 0.0001;
+
+		unzoombtn.classList.remove("hide");
+
+		var el = document.getElementById("frames").children;
+		for (var i = 0; i < el.length; i++) {
+			var e = el[i];
+			var a = find_child(e, "rect").attributes;
+			var ex = parseFloat(a.x.value);
+			var ew = parseFloat(a.width.value);
+			var upstack;
+			// Is it an ancestor
+			if (0 == 0) {
+				upstack = parseFloat(a.y.value) > ymin;
+			} else {
+				upstack = parseFloat(a.y.value) < ymin;
+			}
+			if (upstack) {
+				// Direct ancestor
+				if (ex <= xmin && (ex+ew+fudge) >= xmax) {
+					e.classList.add("parent");
+					zoom_parent(e);
+					update_text(e);
+				}
+				// not in current path
+				else
+					e.classList.add("hide");
+			}
+			// Children maybe
+			else {
+				// no common path
+				if (ex < xmin || ex + fudge >= xmax) {
+					e.classList.add("hide");
+				}
+				else {
+					zoom_child(e, xmin, ratio);
+					update_text(e);
+				}
+			}
+		}
+		search();
+	}
+	function unzoom() {
+		unzoombtn.classList.add("hide");
+		var el = document.getElementById("frames").children;
+		for(var i = 0; i < el.length; i++) {
+			el[i].classList.remove("parent");
+			el[i].classList.remove("hide");
+			zoom_reset(el[i]);
+			update_text(el[i]);
+		}
+		search();
+	}
+
+	// search
+	function toggle_ignorecase() {
+		ignorecase = !ignorecase;
+		if (ignorecase) {
+			ignorecaseBtn.classList.add("show");
+		} else {
+			ignorecaseBtn.classList.remove("show");
+		}
+		reset_search();
+		search();
+	}
+	function reset_search() {
+		var el = document.querySelectorAll("#frames rect");
+		for (var i = 0; i < el.length; i++) {
+			orig_load(el[i], "fill")
+		}
+	}
+	function search_prompt() {
+		if (!searching) {
+			var term = prompt("Enter a search term (regexp " +
+			    "allowed, eg: ^ext4_)"
+			    + (ignorecase ? ", ignoring case" : "")
+			    + "\nPress Ctrl-i to toggle case sensitivity", "");
+			if (term != null) {
+				currentSearchTerm = term;
+				search();
+			}
+		} else {
+			reset_search();
+			searching = 0;
+			currentSearchTerm = null;
+			searchbtn.classList.remove("show");
+			searchbtn.firstChild.nodeValue = "Search"
+			matchedtxt.classList.add("hide");
+			matchedtxt.firstChild.nodeValue = ""
+		}
+	}
+	function search(term) {
+		if (currentSearchTerm === null) return;
+		var term = currentSearchTerm;
+
+		var re = new RegExp(term, ignorecase ? 'i' : '');
+		var el = document.getElementById("frames").children;
+		var matches = new Object();
+		var maxwidth = 0;
+		for (var i = 0; i < el.length; i++) {
+			var e = el[i];
+			var func = g_to_func(e);
+			var rect = find_child(e, "rect");
+			if (func == null || rect == null)
+				continue;
+
+			// Save max width. Only works as we have a root frame
+			var w = parseFloat(rect.attributes.width.value);
+			if (w > maxwidth)
+				maxwidth = w;
+
+			if (func.match(re)) {
+				// highlight
+				var x = parseFloat(rect.attributes.x.value);
+				orig_save(rect, "fill");
+				rect.attributes.fill.value = "rgb(230,0,230)";
+
+				// remember matches
+				if (matches[x] == undefined) {
+					matches[x] = w;
+				} else {
+					if (w > matches[x]) {
+						// overwrite with parent
+						matches[x] = w;
+					}
+				}
+				searching = 1;
+			}
+		}
+		if (!searching)
+			return;
+
+		searchbtn.classList.add("show");
+		searchbtn.firstChild.nodeValue = "Reset Search";
+
+		// calculate percent matched, excluding vertical overlap
+		var count = 0;
+		var lastx = -1;
+		var lastw = 0;
+		var keys = Array();
+		for (k in matches) {
+			if (matches.hasOwnProperty(k))
+				keys.push(k);
+		}
+		// sort the matched frames by their x location
+		// ascending, then width descending
+		keys.sort(function(a, b){
+			return a - b;
+		});
+		// Step through frames saving only the biggest bottom-up frames
+		// thanks to the sort order. This relies on the tree property
+		// where children are always smaller than their parents.
+		var fudge = 0.0001;	// JavaScript floating point
+		for (var k in keys) {
+			var x = parseFloat(keys[k]);
+			var w = matches[keys[k]];
+			if (x >= lastx + lastw - fudge) {
+				count += w;
+				lastx = x;
+				lastw = w;
+			}
+		}
+		// display matched percent
+		matchedtxt.classList.remove("hide");
+		var pct = 100 * count / maxwidth;
+		if (pct != 100) pct = pct.toFixed(1)
+		matchedtxt.firstChild.nodeValue = "Matched: " + pct + "%";
+	}
+]]>
+</script>
+<rect x="0.0" y="0" width="1200.0" height="358.0" fill="url(#background)"  />
+<text id="title" x="600.00" y="24" >"2020-07-27-14:45:03--04:00 cProfile"</text>
+<text id="details" x="10.00" y="341" > </text>
+<text id="unzoom" x="10.00" y="24" class="hide">Reset Zoom</text>
+<text id="search" x="1090.00" y="24" >Search</text>
+<text id="ignorecase" x="1174.00" y="24" >ic</text>
+<text id="matched" x="1090.00" y="341" > </text>
+<g id="frames">
+<g >
+<title>ipaddress.py:1477:__init__ (3,781,671 samples, 0.43%)</title><rect x="480.5" y="85" width="5.1" height="15.0" fill="rgb(212,40,53)" rx="2" ry="2" />
+<text  x="483.55" y="95.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:670:__contains__ (8,700,761 samples, 0.99%)</title><rect x="59.6" y="165" width="11.6" height="15.0" fill="rgb(253,173,10)" rx="2" ry="2" />
+<text  x="62.56" y="175.5" ></text>
+</g>
+<g >
+<title>naming.py:442:GetNetAddr (7,258,885 samples, 0.82%)</title><rect x="486.9" y="149" width="9.7" height="15.0" fill="rgb(233,219,30)" rx="2" ry="2" />
+<text  x="489.90" y="159.5" ></text>
+</g>
+<g >
+<title>naming.py:456:GetNet (801,331 samples, 0.09%)</title><rect x="485.6" y="117" width="1.1" height="15.0" fill="rgb(218,124,45)" rx="2" ry="2" />
+<text  x="488.61" y="127.5" ></text>
+</g>
+<g >
+<title>naming.py:442:GetNetAddr (58,745,874 samples, 6.66%)</title><rect x="408.1" y="165" width="78.6" height="15.0" fill="rgb(208,149,52)" rx="2" ry="2" />
+<text  x="411.10" y="175.5" >naming.py..</text>
+</g>
+<g >
+<title>nacaddr.py:74:__init__ (1,269,253 samples, 0.14%)</title><rect x="491.8" y="101" width="1.7" height="15.0" fill="rgb(242,139,53)" rx="2" ry="2" />
+<text  x="494.81" y="111.5" ></text>
+</g>
+<g >
+<title>juniper.py:186:__str__ (148,932,483 samples, 16.88%)</title><rect x="151.9" y="229" width="199.2" height="15.0" fill="rgb(215,140,48)" rx="2" ry="2" />
+<text  x="154.94" y="239.5" >juniper.py:186:__str__</text>
+</g>
+<g >
+<title>aclgen.py:501:Run (363,776,836 samples, 41.24%)</title><rect x="10.0" y="277" width="486.6" height="15.0" fill="rgb(216,185,24)" rx="2" ry="2" />
+<text  x="13.02" y="287.5" >aclgen.py:501:Run</text>
+</g>
+<g >
+<title>copy.py:220:&lt;listcomp&gt; (1,192,229 samples, 0.14%)</title><rect x="33.6" y="181" width="1.6" height="15.0" fill="rgb(209,112,19)" rx="2" ry="2" />
+<text  x="36.56" y="191.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:690:broadcast_address (20,454,604 samples, 2.32%)</title><rect x="319.5" y="165" width="27.4" height="15.0" fill="rgb(250,157,21)" rx="2" ry="2" />
+<text  x="322.52" y="175.5" >i..</text>
+</g>
+<g >
+<title>nacaddr.py:58:_is_subnet_of (62,267,602 samples, 7.06%)</title><rect x="263.6" y="181" width="83.3" height="15.0" fill="rgb(214,72,26)" rx="2" ry="2" />
+<text  x="266.59" y="191.5" >nacaddr.p..</text>
+</g>
+<g >
+<title>copy.py:219:_deepcopy_tuple (1,242,870 samples, 0.14%)</title><rect x="39.8" y="197" width="1.7" height="15.0" fill="rgb(223,152,3)" rx="2" ry="2" />
+<text  x="42.81" y="207.5" ></text>
+</g>
+<g >
+<title>~:0:&lt;method 'extend' of 'list' objects&gt; (27,668,578 samples, 3.14%)</title><rect x="110.5" y="165" width="37.0" height="15.0" fill="rgb(232,5,13)" rx="2" ry="2" />
+<text  x="113.52" y="175.5" >~:0..</text>
+</g>
+<g >
+<title>naming.py:456:GetNet (7,257,757 samples, 0.82%)</title><rect x="486.9" y="133" width="9.7" height="15.0" fill="rgb(205,68,34)" rx="2" ry="2" />
+<text  x="489.90" y="143.5" ></text>
+</g>
+<g >
+<title>~:0:&lt;method 'get' of 'dict' objects&gt; (1,993,184 samples, 0.23%)</title><rect x="96.7" y="133" width="2.6" height="15.0" fill="rgb(210,38,44)" rx="2" ry="2" />
+<text  x="99.68" y="143.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:2160:__init__ (3,134,521 samples, 0.36%)</title><rect x="475.7" y="85" width="4.2" height="15.0" fill="rgb(226,124,30)" rx="2" ry="2" />
+<text  x="478.73" y="95.5" ></text>
+</g>
+<g >
+<title>copy.py:268:_reconstruct (1,245,931 samples, 0.14%)</title><rect x="28.7" y="181" width="1.6" height="15.0" fill="rgb(217,149,16)" rx="2" ry="2" />
+<text  x="31.68" y="191.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:2160:__init__ (7,582,472 samples, 0.86%)</title><rect x="437.7" y="101" width="10.2" height="15.0" fill="rgb(217,170,39)" rx="2" ry="2" />
+<text  x="440.73" y="111.5" ></text>
+</g>
+<g >
+<title>copy.py:132:deepcopy (4,752,558 samples, 0.54%)</title><rect x="30.4" y="213" width="6.4" height="15.0" fill="rgb(216,116,13)" rx="2" ry="2" />
+<text  x="33.43" y="223.5" ></text>
+</g>
+<g >
+<title>policy.py:1013:AddObject (58,911,628 samples, 6.68%)</title><rect x="407.9" y="181" width="78.8" height="15.0" fill="rgb(236,153,11)" rx="2" ry="2" />
+<text  x="410.88" y="191.5" >policy.py..</text>
+</g>
+<g >
+<title>ipaddress.py:1477:__init__ (1,130,358 samples, 0.13%)</title><rect x="492.0" y="85" width="1.5" height="15.0" fill="rgb(250,115,5)" rx="2" ry="2" />
+<text  x="495.00" y="95.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:1477:__init__ (9,147,943 samples, 1.04%)</title><rect x="449.4" y="101" width="12.2" height="15.0" fill="rgb(250,57,42)" rx="2" ry="2" />
+<text  x="452.38" y="111.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:585:__str__ (2,720,054 samples, 0.31%)</title><rect x="154.7" y="197" width="3.6" height="15.0" fill="rgb(238,192,16)" rx="2" ry="2" />
+<text  x="157.67" y="207.5" ></text>
+</g>
+<g >
+<title>copy.py:219:_deepcopy_tuple (4,708,165 samples, 0.53%)</title><rect x="24.0" y="229" width="6.3" height="15.0" fill="rgb(217,9,15)" rx="2" ry="2" />
+<text  x="27.04" y="239.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:1631:_ip_int_from_string (1,437,935 samples, 0.16%)</title><rect x="129.4" y="85" width="1.9" height="15.0" fill="rgb(213,7,21)" rx="2" ry="2" />
+<text  x="132.39" y="95.5" ></text>
+</g>
+<g >
+<title>copy.py:132:deepcopy (1,231,602 samples, 0.14%)</title><rect x="27.0" y="165" width="1.7" height="15.0" fill="rgb(246,32,12)" rx="2" ry="2" />
+<text  x="30.03" y="175.5" ></text>
+</g>
+<g >
+<title>lex.py:305:token (2,014,414 samples, 0.23%)</title><rect x="395.9" y="197" width="2.7" height="15.0" fill="rgb(229,206,0)" rx="2" ry="2" />
+<text  x="398.94" y="207.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:1631:_ip_int_from_string (1,032,233 samples, 0.12%)</title><rect x="478.5" y="69" width="1.4" height="15.0" fill="rgb(243,116,21)" rx="2" ry="2" />
+<text  x="481.55" y="79.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:2160:__init__ (1,416,027 samples, 0.16%)</title><rect x="138.4" y="101" width="1.9" height="15.0" fill="rgb(222,103,0)" rx="2" ry="2" />
+<text  x="141.42" y="111.5" ></text>
+</g>
+<g >
+<title>juniper.py:687:_Comment (1,395,272 samples, 0.16%)</title><rect x="346.9" y="213" width="1.8" height="15.0" fill="rgb(212,34,14)" rx="2" ry="2" />
+<text  x="349.88" y="223.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:613:__str__ (3,336,107 samples, 0.38%)</title><rect x="153.8" y="213" width="4.5" height="15.0" fill="rgb(239,74,52)" rx="2" ry="2" />
+<text  x="156.85" y="223.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:690:broadcast_address (8,304,020 samples, 0.94%)</title><rect x="71.2" y="165" width="11.1" height="15.0" fill="rgb(238,107,31)" rx="2" ry="2" />
+<text  x="74.20" y="175.5" ></text>
+</g>
+<g >
+<title>nacaddr.py:166:subnet_of (34,668,405 samples, 3.93%)</title><rect x="174.8" y="197" width="46.3" height="15.0" fill="rgb(216,54,48)" rx="2" ry="2" />
+<text  x="177.77" y="207.5" >naca..</text>
+</g>
+<g >
+<title>nacaddr.py:395:SortAddrList (4,181,089 samples, 0.47%)</title><rect x="399.0" y="101" width="5.6" height="15.0" fill="rgb(251,160,23)" rx="2" ry="2" />
+<text  x="401.97" y="111.5" ></text>
+</g>
+<g >
+<title>policy.py:1279:AddressCleanup (1,991,040 samples, 0.23%)</title><rect x="404.7" y="149" width="2.7" height="15.0" fill="rgb(230,207,1)" rx="2" ry="2" />
+<text  x="407.71" y="159.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:690:broadcast_address (4,258,756 samples, 0.48%)</title><rect x="383.7" y="149" width="5.7" height="15.0" fill="rgb(233,25,31)" rx="2" ry="2" />
+<text  x="386.74" y="159.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:699:hostmask (2,047,463 samples, 0.23%)</title><rect x="339.3" y="149" width="2.8" height="15.0" fill="rgb(237,189,37)" rx="2" ry="2" />
+<text  x="342.35" y="159.5" ></text>
+</g>
+<g >
+<title>copy.py:219:_deepcopy_tuple (1,027,950 samples, 0.12%)</title><rect x="19.9" y="197" width="1.4" height="15.0" fill="rgb(235,63,50)" rx="2" ry="2" />
+<text  x="22.88" y="207.5" ></text>
+</g>
+<g >
+<title>copy.py:268:_reconstruct (1,211,734 samples, 0.14%)</title><rect x="35.2" y="197" width="1.6" height="15.0" fill="rgb(249,141,33)" rx="2" ry="2" />
+<text  x="38.17" y="207.5" ></text>
+</g>
+<g >
+<title>policy.py:172:__init__ (4,425,104 samples, 0.50%)</title><rect x="398.6" y="181" width="6.0" height="15.0" fill="rgb(245,228,25)" rx="2" ry="2" />
+<text  x="401.65" y="191.5" ></text>
+</g>
+<g >
+<title>~:0:&lt;built-in method builtins.sorted&gt; (1,976,193 samples, 0.22%)</title><rect x="404.7" y="101" width="2.7" height="15.0" fill="rgb(230,76,40)" rx="2" ry="2" />
+<text  x="407.73" y="111.5" ></text>
+</g>
+<g >
+<title>nacaddr.py:30:IP (15,332,162 samples, 1.74%)</title><rect x="465.1" y="117" width="20.5" height="15.0" fill="rgb(228,214,26)" rx="2" ry="2" />
+<text  x="468.10" y="127.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:1735:_parse_hextet (1,251,272 samples, 0.14%)</title><rect x="446.2" y="69" width="1.7" height="15.0" fill="rgb(232,183,40)" rx="2" ry="2" />
+<text  x="449.20" y="79.5" ></text>
+</g>
+<g >
+<title>nacaddr.py:153:__init__ (1,350,998 samples, 0.15%)</title><rect x="43.3" y="213" width="1.8" height="15.0" fill="rgb(251,126,53)" rx="2" ry="2" />
+<text  x="46.31" y="223.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:1116:_ip_int_from_string (4,199,018 samples, 0.48%)</title><rect x="423.5" y="85" width="5.6" height="15.0" fill="rgb(227,25,37)" rx="2" ry="2" />
+<text  x="426.50" y="95.5" ></text>
+</g>
+<g >
+<title>nacaddr.py:30:IP (4,582,849 samples, 0.52%)</title><rect x="487.4" y="117" width="6.1" height="15.0" fill="rgb(212,89,26)" rx="2" ry="2" />
+<text  x="490.38" y="127.5" ></text>
+</g>
+<g >
+<title>threading.py:1000:join (518,394,267 samples, 58.76%)</title><rect x="496.6" y="277" width="693.4" height="15.0" fill="rgb(218,125,39)" rx="2" ry="2" />
+<text  x="499.61" y="287.5" >threading.py:1000:join</text>
+</g>
+<g >
+<title>policy.py:1290:cleanup (1,980,782 samples, 0.22%)</title><rect x="404.7" y="133" width="2.7" height="15.0" fill="rgb(220,84,6)" rx="2" ry="2" />
+<text  x="407.72" y="143.5" ></text>
+</g>
+<g >
+<title>iptables.py:322:_CalculateAddresses (73,114,000 samples, 8.29%)</title><rect x="49.7" y="213" width="97.8" height="15.0" fill="rgb(217,13,28)" rx="2" ry="2" />
+<text  x="52.73" y="223.5" >iptables.py..</text>
+</g>
+<g >
+<title>ipaddress.py:1142:_parse_octet (1,044,173 samples, 0.12%)</title><rect x="470.8" y="37" width="1.4" height="15.0" fill="rgb(240,224,40)" rx="2" ry="2" />
+<text  x="473.78" y="47.5" ></text>
+</g>
+<g >
+<title>yacc.py:325:parse (77,682,401 samples, 8.81%)</title><rect x="392.7" y="229" width="103.9" height="15.0" fill="rgb(219,127,26)" rx="2" ry="2" />
+<text  x="395.70" y="239.5" >yacc.py:325:..</text>
+</g>
+<g >
+<title>~:0:&lt;built-in method from_bytes&gt; (2,752,357 samples, 0.31%)</title><rect x="457.9" y="69" width="3.7" height="15.0" fill="rgb(240,108,49)" rx="2" ry="2" />
+<text  x="460.93" y="79.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:57:ip_network (6,397,931 samples, 0.73%)</title><rect x="466.4" y="101" width="8.6" height="15.0" fill="rgb(220,197,0)" rx="2" ry="2" />
+<text  x="469.41" y="111.5" ></text>
+</g>
+<g >
+<title>nacaddr.py:278:_SafeToMerge (2,781,759 samples, 0.32%)</title><rect x="95.6" y="149" width="3.7" height="15.0" fill="rgb(247,112,13)" rx="2" ry="2" />
+<text  x="98.62" y="159.5" ></text>
+</g>
+<g >
+<title>junipersrx.py:630:_BuildAddressBook (26,886,783 samples, 3.05%)</title><rect x="353.5" y="197" width="35.9" height="15.0" fill="rgb(213,70,32)" rx="2" ry="2" />
+<text  x="356.48" y="207.5" >jun..</text>
+</g>
+<g >
+<title>~:0:&lt;method 'get' of 'dict' objects&gt; (2,810,346 samples, 0.32%)</title><rect x="78.5" y="149" width="3.8" height="15.0" fill="rgb(249,138,48)" rx="2" ry="2" />
+<text  x="81.55" y="159.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:57:ip_network (15,476,728 samples, 1.75%)</title><rect x="415.2" y="117" width="20.7" height="15.0" fill="rgb(254,123,16)" rx="2" ry="2" />
+<text  x="418.17" y="127.5" ></text>
+</g>
+<g >
+<title>copy.py:236:_deepcopy_dict (1,042,804 samples, 0.12%)</title><rect x="21.3" y="197" width="1.3" height="15.0" fill="rgb(232,220,18)" rx="2" ry="2" />
+<text  x="24.25" y="207.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:1116:_ip_int_from_string (1,735,833 samples, 0.20%)</title><rect x="469.9" y="69" width="2.3" height="15.0" fill="rgb(211,204,45)" rx="2" ry="2" />
+<text  x="472.85" y="79.5" ></text>
+</g>
+<g >
+<title>nacaddr.py:93:supernet_of (1,980,892 samples, 0.22%)</title><rect x="99.3" y="149" width="2.7" height="15.0" fill="rgb(218,84,7)" rx="2" ry="2" />
+<text  x="102.34" y="159.5" ></text>
+</g>
+<g >
+<title>copy.py:132:deepcopy (1,206,228 samples, 0.14%)</title><rect x="35.2" y="181" width="1.6" height="15.0" fill="rgb(208,54,22)" rx="2" ry="2" />
+<text  x="38.18" y="191.5" ></text>
+</g>
+<g >
+<title>nacaddr.py:172:supernet_of (3,973,130 samples, 0.45%)</title><rect x="90.3" y="149" width="5.3" height="15.0" fill="rgb(232,217,46)" rx="2" ry="2" />
+<text  x="93.31" y="159.5" ></text>
+</g>
+<g >
+<title>lex.py:728:validate_rules (1,145,404 samples, 0.13%)</title><rect x="391.2" y="197" width="1.5" height="15.0" fill="rgb(205,105,30)" rx="2" ry="2" />
+<text  x="394.17" y="207.5" ></text>
+</g>
+<g >
+<title>policy.py:1912:p_term_spec (66,714,581 samples, 7.56%)</title><rect x="407.4" y="197" width="89.2" height="15.0" fill="rgb(250,179,48)" rx="2" ry="2" />
+<text  x="410.37" y="207.5" >policy.py:..</text>
+</g>
+<g >
+<title>ipaddress.py:690:broadcast_address (6,978,219 samples, 0.79%)</title><rect x="211.8" y="165" width="9.3" height="15.0" fill="rgb(224,13,39)" rx="2" ry="2" />
+<text  x="214.80" y="175.5" ></text>
+</g>
+<g >
+<title>policy.py:405:__init__ (7,421,147 samples, 0.84%)</title><rect x="486.7" y="181" width="9.9" height="15.0" fill="rgb(243,177,48)" rx="2" ry="2" />
+<text  x="489.68" y="191.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:1477:__init__ (2,565,279 samples, 0.29%)</title><rect x="144.1" y="101" width="3.4" height="15.0" fill="rgb(223,35,29)" rx="2" ry="2" />
+<text  x="147.10" y="111.5" ></text>
+</g>
+<g >
+<title>~:0:&lt;built-in method builtins.sorted&gt; (2,511,387 samples, 0.28%)</title><rect x="107.2" y="165" width="3.3" height="15.0" fill="rgb(228,57,14)" rx="2" ry="2" />
+<text  x="110.16" y="175.5" ></text>
+</g>
+<g >
+<title>copy.py:268:_reconstruct (4,763,608 samples, 0.54%)</title><rect x="36.8" y="229" width="6.4" height="15.0" fill="rgb(227,148,9)" rx="2" ry="2" />
+<text  x="39.79" y="239.5" ></text>
+</g>
+<g >
+<title>nacaddr.py:74:__init__ (4,246,352 samples, 0.48%)</title><rect x="479.9" y="101" width="5.7" height="15.0" fill="rgb(212,131,5)" rx="2" ry="2" />
+<text  x="482.93" y="111.5" ></text>
+</g>
+<g >
+<title>cisco.py:639:__str__ (1,887,000 samples, 0.21%)</title><rect x="13.8" y="229" width="2.6" height="15.0" fill="rgb(249,60,36)" rx="2" ry="2" />
+<text  x="16.84" y="239.5" ></text>
+</g>
+<g >
+<title>juniper.py:97:Append (1,795,559 samples, 0.20%)</title><rect x="348.7" y="213" width="2.4" height="15.0" fill="rgb(240,108,30)" rx="2" ry="2" />
+<text  x="351.74" y="223.5" ></text>
+</g>
+<g >
+<title>copy.py:210:_deepcopy_list (5,006,628 samples, 0.57%)</title><rect x="17.3" y="229" width="6.7" height="15.0" fill="rgb(215,62,46)" rx="2" ry="2" />
+<text  x="20.35" y="239.5" ></text>
+</g>
+<g >
+<title>nacaddr.py:87:subnet_of (94,005,073 samples, 10.66%)</title><rect x="221.1" y="197" width="125.8" height="15.0" fill="rgb(252,143,10)" rx="2" ry="2" />
+<text  x="224.14" y="207.5" >nacaddr.py:87:s..</text>
+</g>
+<g >
+<title>~:0:&lt;method 'get' of 'dict' objects&gt; (3,583,511 samples, 0.41%)</title><rect x="342.1" y="149" width="4.8" height="15.0" fill="rgb(205,126,53)" rx="2" ry="2" />
+<text  x="345.08" y="159.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:57:ip_network (1,912,369 samples, 0.22%)</title><rect x="487.8" y="101" width="2.5" height="15.0" fill="rgb(214,97,53)" rx="2" ry="2" />
+<text  x="490.77" y="111.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:1257:version (8,130,383 samples, 0.92%)</title><rect x="252.7" y="181" width="10.9" height="15.0" fill="rgb(233,14,42)" rx="2" ry="2" />
+<text  x="255.71" y="191.5" ></text>
+</g>
+<g >
+<title>iptables.py:114:__str__ (77,358,000 samples, 8.77%)</title><rect x="48.4" y="229" width="103.5" height="15.0" fill="rgb(226,190,31)" rx="2" ry="2" />
+<text  x="51.38" y="239.5" >iptables.py:..</text>
+</g>
+<g >
+<title>ipaddress.py:690:broadcast_address (1,043,534 samples, 0.12%)</title><rect x="94.2" y="117" width="1.4" height="15.0" fill="rgb(223,195,2)" rx="2" ry="2" />
+<text  x="97.22" y="127.5" ></text>
+</g>
+<g >
+<title>copy.py:132:deepcopy (4,738,462 samples, 0.54%)</title><rect x="17.7" y="213" width="6.3" height="15.0" fill="rgb(215,8,35)" rx="2" ry="2" />
+<text  x="20.71" y="223.5" ></text>
+</g>
+<g >
+<title>lex.py:831:validate_module (1,087,226 samples, 0.12%)</title><rect x="391.2" y="181" width="1.5" height="15.0" fill="rgb(210,133,54)" rx="2" ry="2" />
+<text  x="394.24" y="191.5" ></text>
+</g>
+<g >
+<title>nacaddr.py:400:RemoveAddressFromList (30,913,396 samples, 3.50%)</title><rect x="106.2" y="181" width="41.3" height="15.0" fill="rgb(236,88,48)" rx="2" ry="2" />
+<text  x="109.18" y="191.5" >nac..</text>
+</g>
+<g >
+<title>nacaddr.py:74:__init__ (2,880,493 samples, 0.33%)</title><rect x="143.7" y="117" width="3.8" height="15.0" fill="rgb(252,101,49)" rx="2" ry="2" />
+<text  x="146.68" y="127.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:202:summarize_address_range (12,802,901 samples, 1.45%)</title><rect x="114.2" y="117" width="17.1" height="15.0" fill="rgb(205,204,49)" rx="2" ry="2" />
+<text  x="117.19" y="127.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:2160:__init__ (2,087,472 samples, 0.24%)</title><rect x="472.2" y="85" width="2.8" height="15.0" fill="rgb(249,194,33)" rx="2" ry="2" />
+<text  x="475.18" y="95.5" ></text>
+</g>
+<g >
+<title>~:0:&lt;method 'issuperset' of 'frozenset' objects&gt; (919,742 samples, 0.10%)</title><rect x="427.9" y="37" width="1.2" height="15.0" fill="rgb(253,112,2)" rx="2" ry="2" />
+<text  x="430.89" y="47.5" ></text>
+</g>
+<g >
+<title>junipersrx.py:850:__str__ (971,000 samples, 0.11%)</title><rect x="389.4" y="245" width="1.3" height="15.0" fill="rgb(205,202,29)" rx="2" ry="2" />
+<text  x="392.44" y="255.5" ></text>
+</g>
+<g >
+<title>nacaddr.py:423:AddressListExclude (1,131,000 samples, 0.13%)</title><rect x="14.9" y="213" width="1.5" height="15.0" fill="rgb(228,74,32)" rx="2" ry="2" />
+<text  x="17.85" y="223.5" ></text>
+</g>
+<g >
+<title>cisco.py:1232:__str__ (1,897,000 samples, 0.22%)</title><rect x="13.8" y="245" width="2.6" height="15.0" fill="rgb(223,189,32)" rx="2" ry="2" />
+<text  x="16.83" y="255.5" ></text>
+</g>
+<g >
+<title>naming.py:456:GetNet (99,016 samples, 0.01%)</title><rect x="496.5" y="101" width="0.1" height="15.0" fill="rgb(222,77,33)" rx="2" ry="2" />
+<text  x="499.47" y="111.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:1631:_ip_int_from_string (2,496,993 samples, 0.28%)</title><rect x="444.5" y="85" width="3.4" height="15.0" fill="rgb(206,96,9)" rx="2" ry="2" />
+<text  x="447.53" y="95.5" ></text>
+</g>
+<g >
+<title>juniper.py:653:_MinimizePrefixes (140,977,315 samples, 15.98%)</title><rect x="158.3" y="213" width="188.6" height="15.0" fill="rgb(217,127,48)" rx="2" ry="2" />
+<text  x="161.31" y="223.5" >juniper.py:653:_Minimize..</text>
+</g>
+<g >
+<title>~:0:&lt;method 'acquire' of '_thread.lock' objects&gt; (518,394,228 samples, 58.76%)</title><rect x="496.6" y="245" width="693.4" height="15.0" fill="rgb(240,227,9)" rx="2" ry="2" />
+<text  x="499.61" y="255.5" >~:0:&lt;method 'acquire' of '_thread.lock' objects&gt;</text>
+</g>
+<g >
+<title>copy.py:132:deepcopy (1,240,151 samples, 0.14%)</title><rect x="39.8" y="165" width="1.7" height="15.0" fill="rgb(225,33,42)" rx="2" ry="2" />
+<text  x="42.81" y="175.5" ></text>
+</g>
+<g >
+<title>policy.py:197:_TranslateTerms (2,093,323 samples, 0.24%)</title><rect x="404.6" y="165" width="2.8" height="15.0" fill="rgb(249,33,20)" rx="2" ry="2" />
+<text  x="407.57" y="175.5" ></text>
+</g>
+<g >
+<title>naming.py:456:GetNet (58,736,741 samples, 6.66%)</title><rect x="408.1" y="149" width="78.6" height="15.0" fill="rgb(210,155,39)" rx="2" ry="2" />
+<text  x="411.11" y="159.5" >naming.py..</text>
+</g>
+<g >
+<title>iputils.py:7:exclude_address (14,035,955 samples, 1.59%)</title><rect x="112.5" y="133" width="18.8" height="15.0" fill="rgb(245,28,36)" rx="2" ry="2" />
+<text  x="115.54" y="143.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:1477:__init__ (1,545,008 samples, 0.18%)</title><rect x="118.1" y="101" width="2.1" height="15.0" fill="rgb(223,148,50)" rx="2" ry="2" />
+<text  x="121.12" y="111.5" ></text>
+</g>
+<g >
+<title>copy.py:236:_deepcopy_dict (1,260,829 samples, 0.14%)</title><rect x="41.5" y="197" width="1.7" height="15.0" fill="rgb(205,204,34)" rx="2" ry="2" />
+<text  x="44.47" y="207.5" ></text>
+</g>
+<g >
+<title>copy.py:132:deepcopy (1,187,931 samples, 0.13%)</title><rect x="25.4" y="165" width="1.6" height="15.0" fill="rgb(211,28,35)" rx="2" ry="2" />
+<text  x="28.42" y="175.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:1257:version (1,150,486 samples, 0.13%)</title><rect x="382.2" y="149" width="1.5" height="15.0" fill="rgb(211,224,47)" rx="2" ry="2" />
+<text  x="385.21" y="159.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:1477:__init__ (9,248,947 samples, 1.05%)</title><rect x="416.7" y="101" width="12.4" height="15.0" fill="rgb(210,2,12)" rx="2" ry="2" />
+<text  x="419.75" y="111.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:1116:_ip_int_from_string (1,049,670 samples, 0.12%)</title><rect x="146.1" y="85" width="1.4" height="15.0" fill="rgb(214,107,30)" rx="2" ry="2" />
+<text  x="149.13" y="95.5" ></text>
+</g>
+<g >
+<title>policy.py:190:AddFilter (4,424,088 samples, 0.50%)</title><rect x="398.6" y="165" width="6.0" height="15.0" fill="rgb(209,5,45)" rx="2" ry="2" />
+<text  x="401.65" y="175.5" ></text>
+</g>
+<g >
+<title>copy.py:132:deepcopy (1,240,270 samples, 0.14%)</title><rect x="28.7" y="165" width="1.6" height="15.0" fill="rgb(249,145,23)" rx="2" ry="2" />
+<text  x="31.68" y="175.5" ></text>
+</g>
+<g >
+<title>nacaddr.py:93:supernet_of (20,798,673 samples, 2.36%)</title><rect x="361.6" y="181" width="27.8" height="15.0" fill="rgb(224,188,15)" rx="2" ry="2" />
+<text  x="364.62" y="191.5" >n..</text>
+</g>
+<g >
+<title>copy.py:132:deepcopy (23,920,824 samples, 2.71%)</title><rect x="16.4" y="245" width="32.0" height="15.0" fill="rgb(252,194,3)" rx="2" ry="2" />
+<text  x="19.36" y="255.5" >co..</text>
+</g>
+<g >
+<title>policy.py:1290:cleanup (4,185,278 samples, 0.47%)</title><rect x="399.0" y="117" width="5.6" height="15.0" fill="rgb(249,160,47)" rx="2" ry="2" />
+<text  x="401.97" y="127.5" ></text>
+</g>
+<g >
+<title>copy.py:210:_deepcopy_list (1,243,416 samples, 0.14%)</title><rect x="25.3" y="181" width="1.7" height="15.0" fill="rgb(249,79,7)" rx="2" ry="2" />
+<text  x="28.34" y="191.5" ></text>
+</g>
+<g >
+<title>nacaddr.py:58:_is_subnet_of (21,685,225 samples, 2.46%)</title><rect x="192.1" y="181" width="29.0" height="15.0" fill="rgb(214,199,38)" rx="2" ry="2" />
+<text  x="195.13" y="191.5" >na..</text>
+</g>
+<g >
+<title>junipersrx.py:336:_TranslatePolicy (28,074,970 samples, 3.18%)</title><rect x="351.9" y="213" width="37.5" height="15.0" fill="rgb(252,18,44)" rx="2" ry="2" />
+<text  x="354.89" y="223.5" >jun..</text>
+</g>
+<g >
+<title>nacaddr.py:99:__deepcopy__ (2,421,687 samples, 0.27%)</title><rect x="45.1" y="229" width="3.3" height="15.0" fill="rgb(238,34,13)" rx="2" ry="2" />
+<text  x="48.12" y="239.5" ></text>
+</g>
+<g >
+<title>copy.py:219:_deepcopy_tuple (1,194,126 samples, 0.14%)</title><rect x="33.6" y="197" width="1.6" height="15.0" fill="rgb(219,218,39)" rx="2" ry="2" />
+<text  x="36.56" y="207.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:1477:__init__ (2,593,602 samples, 0.29%)</title><rect x="134.9" y="101" width="3.5" height="15.0" fill="rgb(248,57,38)" rx="2" ry="2" />
+<text  x="137.95" y="111.5" ></text>
+</g>
+<g >
+<title>nacaddr.py:30:IP (12,125,851 samples, 1.37%)</title><rect x="131.3" y="133" width="16.2" height="15.0" fill="rgb(230,132,3)" rx="2" ry="2" />
+<text  x="134.31" y="143.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:1872:version (3,289,827 samples, 0.37%)</title><rect x="187.7" y="181" width="4.4" height="15.0" fill="rgb(222,142,23)" rx="2" ry="2" />
+<text  x="190.73" y="191.5" ></text>
+</g>
+<g >
+<title>nacaddr.py:423:AddressListExclude (72,862,000 samples, 8.26%)</title><rect x="50.1" y="197" width="97.4" height="15.0" fill="rgb(216,152,21)" rx="2" ry="2" />
+<text  x="53.07" y="207.5" >nacaddr.py:..</text>
+</g>
+<g >
+<title>naming.py:456:GetNet (18,740,040 samples, 2.12%)</title><rect x="461.6" y="133" width="25.1" height="15.0" fill="rgb(208,50,0)" rx="2" ry="2" />
+<text  x="464.61" y="143.5" >n..</text>
+</g>
+<g >
+<title>lex.py:576:validate_all (1,170,024 samples, 0.13%)</title><rect x="391.1" y="213" width="1.6" height="15.0" fill="rgb(223,115,28)" rx="2" ry="2" />
+<text  x="394.13" y="223.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:1116:_ip_int_from_string (1,177,494 samples, 0.13%)</title><rect x="136.8" y="85" width="1.6" height="15.0" fill="rgb(233,126,30)" rx="2" ry="2" />
+<text  x="139.84" y="95.5" ></text>
+</g>
+<g >
+<title>naming.py:456:GetNet (2,315,598 samples, 0.26%)</title><rect x="493.5" y="117" width="3.1" height="15.0" fill="rgb(205,113,26)" rx="2" ry="2" />
+<text  x="496.51" y="127.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:699:hostmask (1,605,710 samples, 0.18%)</title><rect x="76.4" y="149" width="2.1" height="15.0" fill="rgb(222,227,20)" rx="2" ry="2" />
+<text  x="79.40" y="159.5" ></text>
+</g>
+<g >
+<title>nacaddr.py:30:IP (1,894,506 samples, 0.21%)</title><rect x="493.9" y="101" width="2.6" height="15.0" fill="rgb(207,179,16)" rx="2" ry="2" />
+<text  x="496.94" y="111.5" ></text>
+</g>
+<g >
+<title>iptables.py:809:__str__ (77,376,000 samples, 8.77%)</title><rect x="48.4" y="245" width="103.5" height="15.0" fill="rgb(219,215,43)" rx="2" ry="2" />
+<text  x="51.36" y="255.5" >iptables.py:..</text>
+</g>
+<g >
+<title>aclgen.py:166:RenderFile (362,194,102 samples, 41.06%)</title><rect x="12.1" y="261" width="484.5" height="15.0" fill="rgb(223,181,3)" rx="2" ry="2" />
+<text  x="15.14" y="271.5" >aclgen.py:166:RenderFile</text>
+</g>
+<g >
+<title>nacaddr.py:58:_is_subnet_of (1,473,282 samples, 0.17%)</title><rect x="100.0" y="133" width="2.0" height="15.0" fill="rgb(232,68,40)" rx="2" ry="2" />
+<text  x="103.02" y="143.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:683:overlaps (19,058,389 samples, 2.16%)</title><rect x="56.8" y="181" width="25.5" height="15.0" fill="rgb(222,159,26)" rx="2" ry="2" />
+<text  x="59.82" y="191.5" >i..</text>
+</g>
+<g >
+<title>ipaddress.py:1257:version (5,525,729 samples, 0.63%)</title><rect x="309.1" y="165" width="7.4" height="15.0" fill="rgb(239,74,13)" rx="2" ry="2" />
+<text  x="312.11" y="175.5" ></text>
+</g>
+<g >
+<title>nacaddr.py:58:_is_subnet_of (2,734,762 samples, 0.31%)</title><rect x="92.0" y="133" width="3.6" height="15.0" fill="rgb(212,106,21)" rx="2" ry="2" />
+<text  x="94.96" y="143.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:1116:_ip_int_from_string (3,743,187 samples, 0.42%)</title><rect x="456.6" y="85" width="5.0" height="15.0" fill="rgb(241,4,42)" rx="2" ry="2" />
+<text  x="459.61" y="95.5" ></text>
+</g>
+<g >
+<title>policy.py:1013:AddObject (7,286,491 samples, 0.83%)</title><rect x="486.9" y="165" width="9.7" height="15.0" fill="rgb(247,156,4)" rx="2" ry="2" />
+<text  x="489.86" y="175.5" ></text>
+</g>
+<g >
+<title>copy.py:132:deepcopy (4,736,247 samples, 0.54%)</title><rect x="36.8" y="213" width="6.4" height="15.0" fill="rgb(221,219,28)" rx="2" ry="2" />
+<text  x="39.83" y="223.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:1179:_string_from_ip_int (986,342 samples, 0.11%)</title><rect x="155.2" y="181" width="1.3" height="15.0" fill="rgb(246,136,2)" rx="2" ry="2" />
+<text  x="158.18" y="191.5" ></text>
+</g>
+<g >
+<title>nacaddr.py:58:_is_subnet_of (12,850,133 samples, 1.46%)</title><rect x="372.3" y="165" width="17.1" height="15.0" fill="rgb(248,224,33)" rx="2" ry="2" />
+<text  x="375.25" y="175.5" ></text>
+</g>
+<g >
+<title>~:0:&lt;built-in method from_bytes&gt; (1,276,354 samples, 0.14%)</title><rect x="470.5" y="53" width="1.7" height="15.0" fill="rgb(251,226,24)" rx="2" ry="2" />
+<text  x="473.47" y="63.5" ></text>
+</g>
+<g >
+<title>nacaddr.py:360:CollapseAddrList (17,847,486 samples, 2.02%)</title><rect x="82.3" y="181" width="23.9" height="15.0" fill="rgb(214,170,13)" rx="2" ry="2" />
+<text  x="85.31" y="191.5" >n..</text>
+</g>
+<g >
+<title>ipaddress.py:1872:version (2,253,128 samples, 0.26%)</title><rect x="316.5" y="165" width="3.0" height="15.0" fill="rgb(212,215,2)" rx="2" ry="2" />
+<text  x="319.50" y="175.5" ></text>
+</g>
+<g >
+<title>iptables.py:545:_GenerateAddressStatement (1,180,000 samples, 0.13%)</title><rect x="150.3" y="197" width="1.6" height="15.0" fill="rgb(208,135,23)" rx="2" ry="2" />
+<text  x="153.28" y="207.5" ></text>
+</g>
+<g >
+<title>threading.py:1038:_wait_for_tstate_lock (518,394,253 samples, 58.76%)</title><rect x="496.6" y="261" width="693.4" height="15.0" fill="rgb(211,71,43)" rx="2" ry="2" />
+<text  x="499.61" y="271.5" >threading.py:1038:_wait_for_tstate_lock</text>
+</g>
+<g >
+<title>copy.py:210:_deepcopy_list (1,258,652 samples, 0.14%)</title><rect x="38.1" y="197" width="1.7" height="15.0" fill="rgb(232,7,12)" rx="2" ry="2" />
+<text  x="41.12" y="207.5" ></text>
+</g>
+<g >
+<title>copy.py:132:deepcopy (1,031,111 samples, 0.12%)</title><rect x="21.3" y="181" width="1.3" height="15.0" fill="rgb(223,179,43)" rx="2" ry="2" />
+<text  x="24.27" y="191.5" ></text>
+</g>
+<g >
+<title>nacaddr.py:395:SortAddrList (1,978,800 samples, 0.22%)</title><rect x="404.7" y="117" width="2.7" height="15.0" fill="rgb(206,88,40)" rx="2" ry="2" />
+<text  x="407.72" y="127.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:1735:_parse_hextet (1,066,539 samples, 0.12%)</title><rect x="434.4" y="69" width="1.5" height="15.0" fill="rgb(206,17,21)" rx="2" ry="2" />
+<text  x="437.45" y="79.5" ></text>
+</g>
+<g >
+<title>nacaddr.py:300:_CollapseAddrListInternal (13,236,519 samples, 1.50%)</title><rect x="84.3" y="165" width="17.7" height="15.0" fill="rgb(250,140,1)" rx="2" ry="2" />
+<text  x="87.29" y="175.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:360:get_mixed_type_key (978,803 samples, 0.11%)</title><rect x="104.9" y="149" width="1.3" height="15.0" fill="rgb(230,133,34)" rx="2" ry="2" />
+<text  x="107.87" y="159.5" ></text>
+</g>
+<g >
+<title>policy.py:2526:ParsePolicy (79,146,967 samples, 8.97%)</title><rect x="390.7" y="245" width="105.9" height="15.0" fill="rgb(229,54,46)" rx="2" ry="2" />
+<text  x="393.74" y="255.5" >policy.py:25..</text>
+</g>
+<g >
+<title>copy.py:236:_deepcopy_dict (1,245,568 samples, 0.14%)</title><rect x="27.0" y="181" width="1.7" height="15.0" fill="rgb(209,75,16)" rx="2" ry="2" />
+<text  x="30.01" y="191.5" ></text>
+</g>
+<g >
+<title>nacaddr.py:58:_is_subnet_of (2,050,338 samples, 0.23%)</title><rect x="358.9" y="165" width="2.7" height="15.0" fill="rgb(223,85,49)" rx="2" ry="2" />
+<text  x="361.88" y="175.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:1142:_parse_octet (2,251,676 samples, 0.26%)</title><rect x="458.6" y="53" width="3.0" height="15.0" fill="rgb(234,36,29)" rx="2" ry="2" />
+<text  x="461.60" y="63.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:2160:__init__ (2,126,288 samples, 0.24%)</title><rect x="140.8" y="101" width="2.9" height="15.0" fill="rgb(216,158,24)" rx="2" ry="2" />
+<text  x="143.83" y="111.5" ></text>
+</g>
+<g >
+<title>policy.py:197:_TranslateTerms (4,423,070 samples, 0.50%)</title><rect x="398.7" y="149" width="5.9" height="15.0" fill="rgb(250,222,24)" rx="2" ry="2" />
+<text  x="401.65" y="159.5" ></text>
+</g>
+<g >
+<title>copy.py:268:_reconstruct (1,043,108 samples, 0.12%)</title><rect x="22.6" y="197" width="1.4" height="15.0" fill="rgb(222,142,3)" rx="2" ry="2" />
+<text  x="25.65" y="207.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:57:ip_network (4,340,006 samples, 0.49%)</title><rect x="134.5" y="117" width="5.8" height="15.0" fill="rgb(240,152,45)" rx="2" ry="2" />
+<text  x="137.51" y="127.5" ></text>
+</g>
+<g >
+<title>copy.py:220:&lt;listcomp&gt; (1,026,317 samples, 0.12%)</title><rect x="19.9" y="181" width="1.4" height="15.0" fill="rgb(246,209,10)" rx="2" ry="2" />
+<text  x="22.88" y="191.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:1477:__init__ (1,316,579 samples, 0.15%)</title><rect x="46.6" y="197" width="1.8" height="15.0" fill="rgb(231,13,37)" rx="2" ry="2" />
+<text  x="49.60" y="207.5" ></text>
+</g>
+<g >
+<title>copy.py:220:&lt;listcomp&gt; (4,698,740 samples, 0.53%)</title><rect x="24.1" y="213" width="6.2" height="15.0" fill="rgb(220,15,41)" rx="2" ry="2" />
+<text  x="27.06" y="223.5" ></text>
+</g>
+<g >
+<title>copy.py:220:&lt;listcomp&gt; (1,240,896 samples, 0.14%)</title><rect x="39.8" y="181" width="1.7" height="15.0" fill="rgb(211,172,21)" rx="2" ry="2" />
+<text  x="42.81" y="191.5" ></text>
+</g>
+<g >
+<title>nacaddr.py:153:__init__ (2,515,494 samples, 0.29%)</title><rect x="140.3" y="117" width="3.4" height="15.0" fill="rgb(236,74,9)" rx="2" ry="2" />
+<text  x="143.31" y="127.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:588:__hash__ (1,004,156 samples, 0.11%)</title><rect x="82.9" y="165" width="1.4" height="15.0" fill="rgb(226,111,52)" rx="2" ry="2" />
+<text  x="85.94" y="175.5" ></text>
+</g>
+<g >
+<title>copy.py:132:deepcopy (4,695,184 samples, 0.53%)</title><rect x="24.1" y="197" width="6.2" height="15.0" fill="rgb(219,196,8)" rx="2" ry="2" />
+<text  x="27.06" y="207.5" ></text>
+</g>
+<g >
+<title>policy.py:190:AddFilter (2,095,334 samples, 0.24%)</title><rect x="404.6" y="181" width="2.8" height="15.0" fill="rgb(225,112,25)" rx="2" ry="2" />
+<text  x="407.57" y="191.5" ></text>
+</g>
+<g >
+<title>nacaddr.py:153:__init__ (3,708,279 samples, 0.42%)</title><rect x="475.0" y="101" width="4.9" height="15.0" fill="rgb(214,144,22)" rx="2" ry="2" />
+<text  x="477.97" y="111.5" ></text>
+</g>
+<g >
+<title>copy.py:132:deepcopy (1,155,326 samples, 0.13%)</title><rect x="32.0" y="181" width="1.6" height="15.0" fill="rgb(240,169,33)" rx="2" ry="2" />
+<text  x="35.01" y="191.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:186:_count_righthand_zero_bits (2,226,977 samples, 0.25%)</title><rect x="120.2" y="101" width="3.0" height="15.0" fill="rgb(247,216,2)" rx="2" ry="2" />
+<text  x="123.19" y="111.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:2160:__init__ (6,086,544 samples, 0.69%)</title><rect x="123.2" y="101" width="8.1" height="15.0" fill="rgb(210,21,44)" rx="2" ry="2" />
+<text  x="126.17" y="111.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:1257:version (1,776,484 samples, 0.20%)</title><rect x="369.9" y="165" width="2.4" height="15.0" fill="rgb(210,208,39)" rx="2" ry="2" />
+<text  x="372.88" y="175.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:360:get_mixed_type_key (1,202,392 samples, 0.14%)</title><rect x="403.0" y="69" width="1.6" height="15.0" fill="rgb(233,117,46)" rx="2" ry="2" />
+<text  x="405.96" y="79.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:1631:_ip_int_from_string (2,128,346 samples, 0.24%)</title><rect x="433.0" y="85" width="2.9" height="15.0" fill="rgb(238,141,14)" rx="2" ry="2" />
+<text  x="436.03" y="95.5" ></text>
+</g>
+<g >
+<title>nacaddr.py:30:IP (37,088,821 samples, 4.20%)</title><rect x="412.0" y="133" width="49.6" height="15.0" fill="rgb(246,11,53)" rx="2" ry="2" />
+<text  x="415.00" y="143.5" >nacad..</text>
+</g>
+<g >
+<title>ipaddress.py:1809:_string_from_ip_int (1,354,034 samples, 0.15%)</title><rect x="156.5" y="181" width="1.8" height="15.0" fill="rgb(229,42,34)" rx="2" ry="2" />
+<text  x="159.50" y="191.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:1257:version (1,885,138 samples, 0.21%)</title><rect x="209.3" y="165" width="2.5" height="15.0" fill="rgb(254,30,43)" rx="2" ry="2" />
+<text  x="212.28" y="175.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:1142:_parse_octet (2,525,877 samples, 0.29%)</title><rect x="425.7" y="53" width="3.4" height="15.0" fill="rgb(215,191,20)" rx="2" ry="2" />
+<text  x="428.74" y="63.5" ></text>
+</g>
+<g >
+<title>copy.py:132:deepcopy (1,246,692 samples, 0.14%)</title><rect x="41.5" y="181" width="1.7" height="15.0" fill="rgb(240,179,36)" rx="2" ry="2" />
+<text  x="44.49" y="191.5" ></text>
+</g>
+<g >
+<title>nacaddr.py:417:&lt;genexpr&gt; (27,296,452 samples, 3.09%)</title><rect x="111.0" y="149" width="36.5" height="15.0" fill="rgb(210,16,45)" rx="2" ry="2" />
+<text  x="114.02" y="159.5" >nac..</text>
+</g>
+<g >
+<title>ipaddress.py:1116:_ip_int_from_string (1,547,397 samples, 0.18%)</title><rect x="483.5" y="69" width="2.1" height="15.0" fill="rgb(216,179,0)" rx="2" ry="2" />
+<text  x="486.54" y="79.5" ></text>
+</g>
+<g >
+<title>~:0:&lt;method 'get' of 'dict' objects&gt; (1,222,538 samples, 0.14%)</title><rect x="219.5" y="149" width="1.6" height="15.0" fill="rgb(245,49,21)" rx="2" ry="2" />
+<text  x="222.50" y="159.5" ></text>
+</g>
+<g >
+<title>junipersrx.py:301:__init__ (28,631,000 samples, 3.25%)</title><rect x="351.1" y="245" width="38.3" height="15.0" fill="rgb(241,111,7)" rx="2" ry="2" />
+<text  x="354.15" y="255.5" >jun..</text>
+</g>
+<g >
+<title>aclgenerator.py:272:__init__ (28,631,000 samples, 3.25%)</title><rect x="351.1" y="229" width="38.3" height="15.0" fill="rgb(220,149,24)" rx="2" ry="2" />
+<text  x="354.15" y="239.5" >acl..</text>
+</g>
+<g >
+<title>copy.py:210:_deepcopy_list (1,209,288 samples, 0.14%)</title><rect x="31.9" y="197" width="1.7" height="15.0" fill="rgb(253,209,14)" rx="2" ry="2" />
+<text  x="34.94" y="207.5" ></text>
+</g>
+<g >
+<title>nacaddr.py:153:__init__ (1,108,421 samples, 0.13%)</title><rect x="490.3" y="101" width="1.5" height="15.0" fill="rgb(233,227,46)" rx="2" ry="2" />
+<text  x="493.33" y="111.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:1477:__init__ (3,823,425 samples, 0.43%)</title><rect x="467.1" y="85" width="5.1" height="15.0" fill="rgb(220,115,27)" rx="2" ry="2" />
+<text  x="470.06" y="95.5" ></text>
+</g>
+<g >
+<title>all (882,189,446 samples, 100%)</title><rect x="10.0" y="309" width="1180.0" height="15.0" fill="rgb(241,116,21)" rx="2" ry="2" />
+<text  x="13.00" y="319.5" ></text>
+</g>
+<g >
+<title>copy.py:236:_deepcopy_dict (4,820,058 samples, 0.55%)</title><rect x="30.3" y="229" width="6.5" height="15.0" fill="rgb(249,135,53)" rx="2" ry="2" />
+<text  x="33.34" y="239.5" ></text>
+</g>
+<g >
+<title>iptables.py:403:_FormatPart (3,234,000 samples, 0.37%)</title><rect x="147.5" y="213" width="4.4" height="15.0" fill="rgb(252,14,25)" rx="2" ry="2" />
+<text  x="150.53" y="223.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:588:__hash__ (1,489,215 samples, 0.17%)</title><rect x="97.3" y="117" width="2.0" height="15.0" fill="rgb(209,17,27)" rx="2" ry="2" />
+<text  x="100.35" y="127.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:2160:__init__ (5,049,637 samples, 0.57%)</title><rect x="429.1" y="101" width="6.8" height="15.0" fill="rgb(247,122,50)" rx="2" ry="2" />
+<text  x="432.12" y="111.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:2160:__init__ (936,922 samples, 0.11%)</title><rect x="490.6" y="85" width="1.2" height="15.0" fill="rgb(245,90,22)" rx="2" ry="2" />
+<text  x="493.56" y="95.5" ></text>
+</g>
+<g >
+<title>~:0:&lt;built-in method builtins.min&gt; (1,035,254 samples, 0.12%)</title><rect x="121.8" y="85" width="1.4" height="15.0" fill="rgb(207,20,42)" rx="2" ry="2" />
+<text  x="124.78" y="95.5" ></text>
+</g>
+<g >
+<title>nacaddr.py:74:__init__ (2,139,881 samples, 0.24%)</title><rect x="45.5" y="213" width="2.9" height="15.0" fill="rgb(242,0,3)" rx="2" ry="2" />
+<text  x="48.50" y="223.5" ></text>
+</g>
+<g >
+<title>aclgen.py:588:main (882,189,446 samples, 100.00%)</title><rect x="10.0" y="293" width="1180.0" height="15.0" fill="rgb(252,173,9)" rx="2" ry="2" />
+<text  x="13.00" y="303.5" >aclgen.py:588:main</text>
+</g>
+<g >
+<title>copy.py:132:deepcopy (1,202,487 samples, 0.14%)</title><rect x="38.2" y="181" width="1.6" height="15.0" fill="rgb(225,58,23)" rx="2" ry="2" />
+<text  x="41.20" y="191.5" ></text>
+</g>
+<g >
+<title>copy.py:132:deepcopy (1,191,513 samples, 0.14%)</title><rect x="33.6" y="165" width="1.6" height="15.0" fill="rgb(225,163,44)" rx="2" ry="2" />
+<text  x="36.56" y="175.5" ></text>
+</g>
+<g >
+<title>~:0:&lt;built-in method builtins.sorted&gt; (4,175,582 samples, 0.47%)</title><rect x="399.0" y="85" width="5.6" height="15.0" fill="rgb(241,194,22)" rx="2" ry="2" />
+<text  x="401.98" y="95.5" ></text>
+</g>
+<g >
+<title>nacaddr.py:153:__init__ (8,970,405 samples, 1.02%)</title><rect x="435.9" y="117" width="12.0" height="15.0" fill="rgb(245,25,4)" rx="2" ry="2" />
+<text  x="438.87" y="127.5" ></text>
+</g>
+<g >
+<title>nacaddr.py:178:__deepcopy__ (1,464,553 samples, 0.17%)</title><rect x="43.2" y="229" width="1.9" height="15.0" fill="rgb(222,62,25)" rx="2" ry="2" />
+<text  x="46.16" y="239.5" ></text>
+</g>
+<g >
+<title>lex.py:862:lex (1,298,508 samples, 0.15%)</title><rect x="391.0" y="229" width="1.7" height="15.0" fill="rgb(238,225,24)" rx="2" ry="2" />
+<text  x="393.96" y="239.5" ></text>
+</g>
+<g >
+<title>policy.py:1279:AddressCleanup (4,206,953 samples, 0.48%)</title><rect x="398.9" y="133" width="5.7" height="15.0" fill="rgb(234,40,27)" rx="2" ry="2" />
+<text  x="401.94" y="143.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:1142:_parse_octet (930,821 samples, 0.11%)</title><rect x="484.4" y="37" width="1.2" height="15.0" fill="rgb(239,131,10)" rx="2" ry="2" />
+<text  x="487.36" y="47.5" ></text>
+</g>
+<g >
+<title>juniper.py:956:__str__ (148,992,173 samples, 16.89%)</title><rect x="151.9" y="245" width="199.2" height="15.0" fill="rgb(206,175,29)" rx="2" ry="2" />
+<text  x="154.86" y="255.5" >juniper.py:956:__str__</text>
+</g>
+<g >
+<title>copy.py:132:deepcopy (1,025,701 samples, 0.12%)</title><rect x="19.9" y="165" width="1.4" height="15.0" fill="rgb(254,158,38)" rx="2" ry="2" />
+<text  x="22.88" y="175.5" ></text>
+</g>
+<g >
+<title>nacaddr.py:172:supernet_of (3,507,654 samples, 0.40%)</title><rect x="356.9" y="181" width="4.7" height="15.0" fill="rgb(208,41,7)" rx="2" ry="2" />
+<text  x="359.93" y="191.5" ></text>
+</g>
+<g >
+<title>~:0:&lt;built-in method builtins.sorted&gt; (3,132,552 samples, 0.36%)</title><rect x="102.0" y="165" width="4.2" height="15.0" fill="rgb(215,125,34)" rx="2" ry="2" />
+<text  x="104.99" y="175.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:690:broadcast_address (1,169,552 samples, 0.13%)</title><rect x="69.6" y="149" width="1.6" height="15.0" fill="rgb(225,47,48)" rx="2" ry="2" />
+<text  x="72.64" y="159.5" ></text>
+</g>
+<g >
+<title>nacaddr.py:74:__init__ (10,272,016 samples, 1.16%)</title><rect x="447.9" y="117" width="13.7" height="15.0" fill="rgb(238,208,37)" rx="2" ry="2" />
+<text  x="450.87" y="127.5" ></text>
+</g>
+<g >
+<title>policy.py:1862:p_target (6,527,653 samples, 0.74%)</title><rect x="398.6" y="197" width="8.8" height="15.0" fill="rgb(241,222,41)" rx="2" ry="2" />
+<text  x="401.64" y="207.5" ></text>
+</g>
+<g >
+<title>~:0:&lt;built-in method from_bytes&gt; (3,087,529 samples, 0.35%)</title><rect x="425.0" y="69" width="4.1" height="15.0" fill="rgb(245,14,44)" rx="2" ry="2" />
+<text  x="427.99" y="79.5" ></text>
+</g>
+<g >
+<title>yacc.py:1003:parseopt_notrack (77,678,360 samples, 8.81%)</title><rect x="392.7" y="213" width="103.9" height="15.0" fill="rgb(252,87,36)" rx="2" ry="2" />
+<text  x="395.70" y="223.5" >yacc.py:1003..</text>
+</g>
+<g >
+<title>~:0:&lt;built-in method from_bytes&gt; (1,137,798 samples, 0.13%)</title><rect x="484.1" y="53" width="1.5" height="15.0" fill="rgb(233,36,35)" rx="2" ry="2" />
+<text  x="487.09" y="63.5" ></text>
+</g>
+<g >
+<title>ipaddress.py:1477:__init__ (1,142,838 samples, 0.13%)</title><rect x="488.8" y="85" width="1.5" height="15.0" fill="rgb(227,206,12)" rx="2" ry="2" />
+<text  x="491.80" y="95.5" ></text>
+</g>
+<g >
+<title>copy.py:132:deepcopy (1,038,368 samples, 0.12%)</title><rect x="22.7" y="181" width="1.3" height="15.0" fill="rgb(234,74,53)" rx="2" ry="2" />
+<text  x="25.66" y="191.5" ></text>
+</g>
+</g>
+</svg>

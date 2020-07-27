@@ -1,0 +1,632 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" width="1200" height="278" onload="init(evt)" viewBox="0 0 1200 278" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<!-- Flame graph stack visualization. See https://github.com/brendangregg/FlameGraph for latest version, and http://www.brendangregg.com/flamegraphs.html for examples. -->
+<!-- NOTES:  -->
+<defs>
+	<linearGradient id="background" y1="0" y2="1" x1="0" x2="0" >
+		<stop stop-color="#eeeeee" offset="5%" />
+		<stop stop-color="#eeeeb0" offset="95%" />
+	</linearGradient>
+</defs>
+<style type="text/css">
+	text { font-family:Verdana; font-size:12px; fill:rgb(0,0,0); }
+	#search, #ignorecase { opacity:0.1; cursor:pointer; }
+	#search:hover, #search.show, #ignorecase:hover, #ignorecase.show { opacity:1; }
+	#subtitle { text-anchor:middle; font-color:rgb(160,160,160); }
+	#title { text-anchor:middle; font-size:17px}
+	#unzoom { cursor:pointer; }
+	#frames > *:hover { stroke:black; stroke-width:0.5; cursor:pointer; }
+	.hide { display:none; }
+	.parent { opacity:0.5; }
+</style>
+<script type="text/ecmascript">
+<![CDATA[
+	"use strict";
+	var details, searchbtn, unzoombtn, matchedtxt, svg, searching, currentSearchTerm, ignorecase, ignorecaseBtn;
+	function init(evt) {
+		details = document.getElementById("details").firstChild;
+		searchbtn = document.getElementById("search");
+		ignorecaseBtn = document.getElementById("ignorecase");
+		unzoombtn = document.getElementById("unzoom");
+		matchedtxt = document.getElementById("matched");
+		svg = document.getElementsByTagName("svg")[0];
+		searching = 0;
+		currentSearchTerm = null;
+	}
+
+	window.addEventListener("click", function(e) {
+		var target = find_group(e.target);
+		if (target) {
+			if (target.nodeName == "a") {
+				if (e.ctrlKey === false) return;
+				e.preventDefault();
+			}
+			if (target.classList.contains("parent")) unzoom();
+			zoom(target);
+		}
+		else if (e.target.id == "unzoom") unzoom();
+		else if (e.target.id == "search") search_prompt();
+		else if (e.target.id == "ignorecase") toggle_ignorecase();
+	}, false)
+
+	// mouse-over for info
+	// show
+	window.addEventListener("mouseover", function(e) {
+		var target = find_group(e.target);
+		if (target) details.nodeValue = "Function: " + g_to_text(target);
+	}, false)
+
+	// clear
+	window.addEventListener("mouseout", function(e) {
+		var target = find_group(e.target);
+		if (target) details.nodeValue = ' ';
+	}, false)
+
+	// ctrl-F for search
+	window.addEventListener("keydown",function (e) {
+		if (e.keyCode === 114 || (e.ctrlKey && e.keyCode === 70)) {
+			e.preventDefault();
+			search_prompt();
+		}
+	}, false)
+
+	// ctrl-I to toggle case-sensitive search
+	window.addEventListener("keydown",function (e) {
+		if (e.ctrlKey && e.keyCode === 73) {
+			e.preventDefault();
+			toggle_ignorecase();
+		}
+	}, false)
+
+	// functions
+	function find_child(node, selector) {
+		var children = node.querySelectorAll(selector);
+		if (children.length) return children[0];
+		return;
+	}
+	function find_group(node) {
+		var parent = node.parentElement;
+		if (!parent) return;
+		if (parent.id == "frames") return node;
+		return find_group(parent);
+	}
+	function orig_save(e, attr, val) {
+		if (e.attributes["_orig_" + attr] != undefined) return;
+		if (e.attributes[attr] == undefined) return;
+		if (val == undefined) val = e.attributes[attr].value;
+		e.setAttribute("_orig_" + attr, val);
+	}
+	function orig_load(e, attr) {
+		if (e.attributes["_orig_"+attr] == undefined) return;
+		e.attributes[attr].value = e.attributes["_orig_" + attr].value;
+		e.removeAttribute("_orig_"+attr);
+	}
+	function g_to_text(e) {
+		var text = find_child(e, "title").firstChild.nodeValue;
+		return (text)
+	}
+	function g_to_func(e) {
+		var func = g_to_text(e);
+		// if there's any manipulation we want to do to the function
+		// name before it's searched, do it here before returning.
+		return (func);
+	}
+	function update_text(e) {
+		var r = find_child(e, "rect");
+		var t = find_child(e, "text");
+		var w = parseFloat(r.attributes.width.value) -3;
+		var txt = find_child(e, "title").textContent.replace(/\([^(]*\)$/,"");
+		t.attributes.x.value = parseFloat(r.attributes.x.value) + 3;
+
+		// Smaller than this size won't fit anything
+		if (w < 2 * 12 * 0.59) {
+			t.textContent = "";
+			return;
+		}
+
+		t.textContent = txt;
+		// Fit in full text width
+		if (/^ *$/.test(txt) || t.getSubStringLength(0, txt.length) < w)
+			return;
+
+		for (var x = txt.length - 2; x > 0; x--) {
+			if (t.getSubStringLength(0, x + 2) <= w) {
+				t.textContent = txt.substring(0, x) + "..";
+				return;
+			}
+		}
+		t.textContent = "";
+	}
+
+	// zoom
+	function zoom_reset(e) {
+		if (e.attributes != undefined) {
+			orig_load(e, "x");
+			orig_load(e, "width");
+		}
+		if (e.childNodes == undefined) return;
+		for (var i = 0, c = e.childNodes; i < c.length; i++) {
+			zoom_reset(c[i]);
+		}
+	}
+	function zoom_child(e, x, ratio) {
+		if (e.attributes != undefined) {
+			if (e.attributes.x != undefined) {
+				orig_save(e, "x");
+				e.attributes.x.value = (parseFloat(e.attributes.x.value) - x - 10) * ratio + 10;
+				if (e.tagName == "text")
+					e.attributes.x.value = find_child(e.parentNode, "rect[x]").attributes.x.value + 3;
+			}
+			if (e.attributes.width != undefined) {
+				orig_save(e, "width");
+				e.attributes.width.value = parseFloat(e.attributes.width.value) * ratio;
+			}
+		}
+
+		if (e.childNodes == undefined) return;
+		for (var i = 0, c = e.childNodes; i < c.length; i++) {
+			zoom_child(c[i], x - 10, ratio);
+		}
+	}
+	function zoom_parent(e) {
+		if (e.attributes) {
+			if (e.attributes.x != undefined) {
+				orig_save(e, "x");
+				e.attributes.x.value = 10;
+			}
+			if (e.attributes.width != undefined) {
+				orig_save(e, "width");
+				e.attributes.width.value = parseInt(svg.width.baseVal.value) - (10 * 2);
+			}
+		}
+		if (e.childNodes == undefined) return;
+		for (var i = 0, c = e.childNodes; i < c.length; i++) {
+			zoom_parent(c[i]);
+		}
+	}
+	function zoom(node) {
+		var attr = find_child(node, "rect").attributes;
+		var width = parseFloat(attr.width.value);
+		var xmin = parseFloat(attr.x.value);
+		var xmax = parseFloat(xmin + width);
+		var ymin = parseFloat(attr.y.value);
+		var ratio = (svg.width.baseVal.value - 2 * 10) / width;
+
+		// XXX: Workaround for JavaScript float issues (fix me)
+		var fudge = 0.0001;
+
+		unzoombtn.classList.remove("hide");
+
+		var el = document.getElementById("frames").children;
+		for (var i = 0; i < el.length; i++) {
+			var e = el[i];
+			var a = find_child(e, "rect").attributes;
+			var ex = parseFloat(a.x.value);
+			var ew = parseFloat(a.width.value);
+			var upstack;
+			// Is it an ancestor
+			if (0 == 0) {
+				upstack = parseFloat(a.y.value) > ymin;
+			} else {
+				upstack = parseFloat(a.y.value) < ymin;
+			}
+			if (upstack) {
+				// Direct ancestor
+				if (ex <= xmin && (ex+ew+fudge) >= xmax) {
+					e.classList.add("parent");
+					zoom_parent(e);
+					update_text(e);
+				}
+				// not in current path
+				else
+					e.classList.add("hide");
+			}
+			// Children maybe
+			else {
+				// no common path
+				if (ex < xmin || ex + fudge >= xmax) {
+					e.classList.add("hide");
+				}
+				else {
+					zoom_child(e, xmin, ratio);
+					update_text(e);
+				}
+			}
+		}
+		search();
+	}
+	function unzoom() {
+		unzoombtn.classList.add("hide");
+		var el = document.getElementById("frames").children;
+		for(var i = 0; i < el.length; i++) {
+			el[i].classList.remove("parent");
+			el[i].classList.remove("hide");
+			zoom_reset(el[i]);
+			update_text(el[i]);
+		}
+		search();
+	}
+
+	// search
+	function toggle_ignorecase() {
+		ignorecase = !ignorecase;
+		if (ignorecase) {
+			ignorecaseBtn.classList.add("show");
+		} else {
+			ignorecaseBtn.classList.remove("show");
+		}
+		reset_search();
+		search();
+	}
+	function reset_search() {
+		var el = document.querySelectorAll("#frames rect");
+		for (var i = 0; i < el.length; i++) {
+			orig_load(el[i], "fill")
+		}
+	}
+	function search_prompt() {
+		if (!searching) {
+			var term = prompt("Enter a search term (regexp " +
+			    "allowed, eg: ^ext4_)"
+			    + (ignorecase ? ", ignoring case" : "")
+			    + "\nPress Ctrl-i to toggle case sensitivity", "");
+			if (term != null) {
+				currentSearchTerm = term;
+				search();
+			}
+		} else {
+			reset_search();
+			searching = 0;
+			currentSearchTerm = null;
+			searchbtn.classList.remove("show");
+			searchbtn.firstChild.nodeValue = "Search"
+			matchedtxt.classList.add("hide");
+			matchedtxt.firstChild.nodeValue = ""
+		}
+	}
+	function search(term) {
+		if (currentSearchTerm === null) return;
+		var term = currentSearchTerm;
+
+		var re = new RegExp(term, ignorecase ? 'i' : '');
+		var el = document.getElementById("frames").children;
+		var matches = new Object();
+		var maxwidth = 0;
+		for (var i = 0; i < el.length; i++) {
+			var e = el[i];
+			var func = g_to_func(e);
+			var rect = find_child(e, "rect");
+			if (func == null || rect == null)
+				continue;
+
+			// Save max width. Only works as we have a root frame
+			var w = parseFloat(rect.attributes.width.value);
+			if (w > maxwidth)
+				maxwidth = w;
+
+			if (func.match(re)) {
+				// highlight
+				var x = parseFloat(rect.attributes.x.value);
+				orig_save(rect, "fill");
+				rect.attributes.fill.value = "rgb(230,0,230)";
+
+				// remember matches
+				if (matches[x] == undefined) {
+					matches[x] = w;
+				} else {
+					if (w > matches[x]) {
+						// overwrite with parent
+						matches[x] = w;
+					}
+				}
+				searching = 1;
+			}
+		}
+		if (!searching)
+			return;
+
+		searchbtn.classList.add("show");
+		searchbtn.firstChild.nodeValue = "Reset Search";
+
+		// calculate percent matched, excluding vertical overlap
+		var count = 0;
+		var lastx = -1;
+		var lastw = 0;
+		var keys = Array();
+		for (k in matches) {
+			if (matches.hasOwnProperty(k))
+				keys.push(k);
+		}
+		// sort the matched frames by their x location
+		// ascending, then width descending
+		keys.sort(function(a, b){
+			return a - b;
+		});
+		// Step through frames saving only the biggest bottom-up frames
+		// thanks to the sort order. This relies on the tree property
+		// where children are always smaller than their parents.
+		var fudge = 0.0001;	// JavaScript floating point
+		for (var k in keys) {
+			var x = parseFloat(keys[k]);
+			var w = matches[keys[k]];
+			if (x >= lastx + lastw - fudge) {
+				count += w;
+				lastx = x;
+				lastw = w;
+			}
+		}
+		// display matched percent
+		matchedtxt.classList.remove("hide");
+		var pct = 100 * count / maxwidth;
+		if (pct != 100) pct = pct.toFixed(1)
+		matchedtxt.firstChild.nodeValue = "Matched: " + pct + "%";
+	}
+]]>
+</script>
+<rect x="0.0" y="0" width="1200.0" height="278.0" fill="url(#background)"  />
+<text id="title" x="600.00" y="24" >"2020-07-27-15:00:34--04:00 cProfile"</text>
+<text id="details" x="10.00" y="261" > </text>
+<text id="unzoom" x="10.00" y="24" class="hide">Reset Zoom</text>
+<text id="search" x="1090.00" y="24" >Search</text>
+<text id="ignorecase" x="1174.00" y="24" >ic</text>
+<text id="matched" x="1090.00" y="261" > </text>
+<g id="frames">
+<g >
+<title>re.py:271:_compile (6,156 samples, 0.12%)</title><rect x="42.3" y="101" width="1.4" height="15.0" fill="rgb(231,161,2)" rx="2" ry="2" />
+<text  x="45.26" y="111.5" ></text>
+</g>
+<g >
+<title>copy.py:132:deepcopy (13,725 samples, 0.27%)</title><rect x="33.7" y="133" width="3.2" height="15.0" fill="rgb(229,45,16)" rx="2" ry="2" />
+<text  x="36.74" y="143.5" ></text>
+</g>
+<g >
+<title>policy.py:1912:p_term_spec (22,772 samples, 0.45%)</title><rect x="59.9" y="117" width="5.3" height="15.0" fill="rgb(210,55,3)" rx="2" ry="2" />
+<text  x="62.92" y="127.5" ></text>
+</g>
+<g >
+<title>naming.py:456:GetNet (11,568 samples, 0.23%)</title><rect x="62.5" y="53" width="2.7" height="15.0" fill="rgb(252,44,15)" rx="2" ry="2" />
+<text  x="65.50" y="63.5" ></text>
+</g>
+<g >
+<title>policy.py:2526:ParsePolicy (104,658 samples, 2.05%)</title><rect x="41.0" y="165" width="24.2" height="15.0" fill="rgb(230,209,8)" rx="2" ry="2" />
+<text  x="44.01" y="175.5" >p..</text>
+</g>
+<g >
+<title>policy.py:1013:AddObject (7,528 samples, 0.15%)</title><rect x="60.4" y="101" width="1.8" height="15.0" fill="rgb(221,114,18)" rx="2" ry="2" />
+<text  x="63.44" y="111.5" ></text>
+</g>
+<g >
+<title>copy.py:132:deepcopy (63,625 samples, 1.24%)</title><rect x="22.2" y="165" width="14.7" height="15.0" fill="rgb(239,38,34)" rx="2" ry="2" />
+<text  x="25.22" y="175.5" ></text>
+</g>
+<g >
+<title>selectors.py:402:select (5,678 samples, 0.11%)</title><rect x="1188.7" y="117" width="1.3" height="15.0" fill="rgb(233,102,36)" rx="2" ry="2" />
+<text  x="1191.69" y="127.5" ></text>
+</g>
+<g >
+<title>connection.py:906:wait (6,059 samples, 0.12%)</title><rect x="1188.6" y="133" width="1.4" height="15.0" fill="rgb(207,135,0)" rx="2" ry="2" />
+<text  x="1191.60" y="143.5" ></text>
+</g>
+<g >
+<title>&lt;string&gt;:1:__getitem__ (5,604 samples, 0.11%)</title><rect x="65.4" y="165" width="1.3" height="15.0" fill="rgb(245,16,12)" rx="2" ry="2" />
+<text  x="68.36" y="175.5" ></text>
+</g>
+<g >
+<title>&lt;frozen importlib._bootstrap&gt;:948:_find_and_load_unlocked (5,168 samples, 0.10%)</title><rect x="68.0" y="149" width="1.2" height="15.0" fill="rgb(248,22,38)" rx="2" ry="2" />
+<text  x="71.01" y="159.5" ></text>
+</g>
+<g >
+<title>aclgen.py:464:WriteFiles (12,098 samples, 0.24%)</title><rect x="65.2" y="181" width="2.8" height="15.0" fill="rgb(209,199,5)" rx="2" ry="2" />
+<text  x="68.17" y="191.5" ></text>
+</g>
+<g >
+<title>managers.py:699:temp (5,292 samples, 0.10%)</title><rect x="70.6" y="181" width="1.3" height="15.0" fill="rgb(246,209,48)" rx="2" ry="2" />
+<text  x="73.64" y="191.5" ></text>
+</g>
+<g >
+<title>threading.py:1000:join (4,835,107 samples, 94.60%)</title><rect x="71.9" y="197" width="1116.3" height="15.0" fill="rgb(211,58,11)" rx="2" ry="2" />
+<text  x="74.86" y="207.5" >threading.py:1000:join</text>
+</g>
+<g >
+<title>copy.py:220:&lt;listcomp&gt; (14,046 samples, 0.27%)</title><rect x="26.9" y="133" width="3.3" height="15.0" fill="rgb(254,157,18)" rx="2" ry="2" />
+<text  x="29.93" y="143.5" ></text>
+</g>
+<g >
+<title>copy.py:268:_reconstruct (14,461 samples, 0.28%)</title><rect x="33.6" y="149" width="3.3" height="15.0" fill="rgb(237,84,31)" rx="2" ry="2" />
+<text  x="36.57" y="159.5" ></text>
+</g>
+<g >
+<title>copy.py:210:_deepcopy_list (14,443 samples, 0.28%)</title><rect x="23.6" y="149" width="3.3" height="15.0" fill="rgb(233,40,32)" rx="2" ry="2" />
+<text  x="26.58" y="159.5" ></text>
+</g>
+<g >
+<title>~:0:&lt;method 'match' of 're.Pattern' objects&gt; (20,083 samples, 0.39%)</title><rect x="48.1" y="85" width="4.6" height="15.0" fill="rgb(220,222,10)" rx="2" ry="2" />
+<text  x="51.07" y="95.5" ></text>
+</g>
+<g >
+<title>~:0:&lt;method 'acquire' of '_thread.lock' objects&gt; (4,835,074 samples, 94.60%)</title><rect x="71.9" y="165" width="1116.3" height="15.0" fill="rgb(219,77,38)" rx="2" ry="2" />
+<text  x="74.87" y="175.5" >~:0:&lt;method 'acquire' of '_thread.lock' objects&gt;</text>
+</g>
+<g >
+<title>process.py:133:join (6,123 samples, 0.12%)</title><rect x="1188.6" y="165" width="1.4" height="15.0" fill="rgb(242,79,4)" rx="2" ry="2" />
+<text  x="1191.59" y="175.5" ></text>
+</g>
+<g >
+<title>copy.py:236:_deepcopy_dict (14,690 samples, 0.29%)</title><rect x="30.2" y="149" width="3.4" height="15.0" fill="rgb(218,62,17)" rx="2" ry="2" />
+<text  x="33.18" y="159.5" ></text>
+</g>
+<g >
+<title>aclgen.py:501:Run (264,184 samples, 5.17%)</title><rect x="10.9" y="197" width="61.0" height="15.0" fill="rgb(234,68,5)" rx="2" ry="2" />
+<text  x="13.87" y="207.5" >aclgen..</text>
+</g>
+<g >
+<title>managers.py:783:_callmethod (5,539 samples, 0.11%)</title><rect x="65.4" y="149" width="1.3" height="15.0" fill="rgb(245,148,31)" rx="2" ry="2" />
+<text  x="68.38" y="159.5" ></text>
+</g>
+<g >
+<title>policy.py:405:__init__ (12,983 samples, 0.25%)</title><rect x="62.2" y="101" width="3.0" height="15.0" fill="rgb(212,177,38)" rx="2" ry="2" />
+<text  x="65.18" y="111.5" ></text>
+</g>
+<g >
+<title>copy.py:219:_deepcopy_tuple (14,150 samples, 0.28%)</title><rect x="26.9" y="149" width="3.3" height="15.0" fill="rgb(232,170,32)" rx="2" ry="2" />
+<text  x="29.91" y="159.5" ></text>
+</g>
+<g >
+<title>&lt;string&gt;:1:append (6,392 samples, 0.13%)</title><rect x="16.7" y="149" width="1.5" height="15.0" fill="rgb(214,24,31)" rx="2" ry="2" />
+<text  x="19.74" y="159.5" ></text>
+</g>
+<g >
+<title>naming.py:442:GetNetAddr (11,623 samples, 0.23%)</title><rect x="62.5" y="69" width="2.7" height="15.0" fill="rgb(253,222,31)" rx="2" ry="2" />
+<text  x="65.49" y="79.5" ></text>
+</g>
+<g >
+<title>lex.py:831:validate_module (32,000 samples, 0.63%)</title><rect x="45.3" y="101" width="7.4" height="15.0" fill="rgb(216,135,30)" rx="2" ry="2" />
+<text  x="48.32" y="111.5" ></text>
+</g>
+<g >
+<title>cisco.py:1232:__str__ (7,648 samples, 0.15%)</title><rect x="20.5" y="165" width="1.7" height="15.0" fill="rgb(235,128,18)" rx="2" ry="2" />
+<text  x="23.45" y="175.5" ></text>
+</g>
+<g >
+<title>managers.py:636:_finalize_manager (6,840 samples, 0.13%)</title><rect x="1188.4" y="181" width="1.6" height="15.0" fill="rgb(220,227,38)" rx="2" ry="2" />
+<text  x="1191.42" y="191.5" ></text>
+</g>
+<g >
+<title>lex.py:576:validate_all (39,088 samples, 0.76%)</title><rect x="43.7" y="133" width="9.0" height="15.0" fill="rgb(213,177,16)" rx="2" ry="2" />
+<text  x="46.68" y="143.5" ></text>
+</g>
+<g >
+<title>all (5,110,948 samples, 100%)</title><rect x="10.0" y="229" width="1180.0" height="15.0" fill="rgb(232,139,22)" rx="2" ry="2" />
+<text  x="13.00" y="239.5" ></text>
+</g>
+<g >
+<title>yacc.py:1003:parseopt_notrack (53,955 samples, 1.06%)</title><rect x="52.7" y="133" width="12.5" height="15.0" fill="rgb(213,217,31)" rx="2" ry="2" />
+<text  x="55.72" y="143.5" ></text>
+</g>
+<g >
+<title>managers.py:783:_callmethod (6,321 samples, 0.12%)</title><rect x="16.8" y="133" width="1.4" height="15.0" fill="rgb(240,42,40)" rx="2" ry="2" />
+<text  x="19.76" y="143.5" ></text>
+</g>
+<g >
+<title>lex.py:493:_form_master_re (6,627 samples, 0.13%)</title><rect x="42.2" y="133" width="1.5" height="15.0" fill="rgb(242,189,46)" rx="2" ry="2" />
+<text  x="45.15" y="143.5" ></text>
+</g>
+<g >
+<title>cisco.py:639:__str__ (6,662 samples, 0.13%)</title><rect x="20.7" y="149" width="1.5" height="15.0" fill="rgb(249,97,37)" rx="2" ry="2" />
+<text  x="23.68" y="159.5" ></text>
+</g>
+<g >
+<title>iptables.py:114:__str__ (5,163 samples, 0.10%)</title><rect x="36.9" y="149" width="1.2" height="15.0" fill="rgb(250,97,7)" rx="2" ry="2" />
+<text  x="39.95" y="159.5" ></text>
+</g>
+<g >
+<title>&lt;frozen importlib._bootstrap&gt;:978:_find_and_load (5,319 samples, 0.10%)</title><rect x="68.0" y="165" width="1.2" height="15.0" fill="rgb(215,30,33)" rx="2" ry="2" />
+<text  x="70.98" y="175.5" ></text>
+</g>
+<g >
+<title>nsxv.py:618:__str__ (12,431 samples, 0.24%)</title><rect x="38.1" y="165" width="2.9" height="15.0" fill="rgb(249,136,18)" rx="2" ry="2" />
+<text  x="41.14" y="175.5" ></text>
+</g>
+<g >
+<title>lex.py:305:token (12,581 samples, 0.25%)</title><rect x="57.0" y="117" width="2.9" height="15.0" fill="rgb(239,193,53)" rx="2" ry="2" />
+<text  x="60.01" y="127.5" ></text>
+</g>
+<g >
+<title>yacc.py:325:parse (53,988 samples, 1.06%)</title><rect x="52.7" y="149" width="12.5" height="15.0" fill="rgb(252,29,41)" rx="2" ry="2" />
+<text  x="55.71" y="159.5" ></text>
+</g>
+<g >
+<title>lex.py:862:lex (48,798 samples, 0.95%)</title><rect x="41.4" y="149" width="11.3" height="15.0" fill="rgb(218,69,34)" rx="2" ry="2" />
+<text  x="44.44" y="159.5" ></text>
+</g>
+<g >
+<title>naming.py:442:GetNetAddr (6,695 samples, 0.13%)</title><rect x="60.6" y="85" width="1.6" height="15.0" fill="rgb(254,64,17)" rx="2" ry="2" />
+<text  x="63.63" y="95.5" ></text>
+</g>
+<g >
+<title>aclgen.py:478:_WriteFile (5,682 samples, 0.11%)</title><rect x="66.7" y="165" width="1.3" height="15.0" fill="rgb(231,205,54)" rx="2" ry="2" />
+<text  x="69.65" y="175.5" ></text>
+</g>
+<g >
+<title>popen_fork.py:41:wait (6,108 samples, 0.12%)</title><rect x="1188.6" y="149" width="1.4" height="15.0" fill="rgb(252,69,15)" rx="2" ry="2" />
+<text  x="1191.59" y="159.5" ></text>
+</g>
+<g >
+<title>nacaddr.py:30:IP (6,542 samples, 0.13%)</title><rect x="63.7" y="37" width="1.5" height="15.0" fill="rgb(252,105,21)" rx="2" ry="2" />
+<text  x="66.66" y="47.5" ></text>
+</g>
+<g >
+<title>aclgen.py:166:RenderFile (229,522 samples, 4.49%)</title><rect x="12.2" y="181" width="53.0" height="15.0" fill="rgb(221,163,28)" rx="2" ry="2" />
+<text  x="15.18" y="191.5" >aclge..</text>
+</g>
+<g >
+<title>context.py:48:Manager (11,584 samples, 0.23%)</title><rect x="68.0" y="181" width="2.6" height="15.0" fill="rgb(216,11,37)" rx="2" ry="2" />
+<text  x="70.97" y="191.5" ></text>
+</g>
+<g >
+<title>naming.py:456:GetNet (6,664 samples, 0.13%)</title><rect x="60.6" y="69" width="1.6" height="15.0" fill="rgb(221,225,49)" rx="2" ry="2" />
+<text  x="63.64" y="79.5" ></text>
+</g>
+<g >
+<title>sre_compile.py:759:compile (5,736 samples, 0.11%)</title><rect x="42.4" y="85" width="1.3" height="15.0" fill="rgb(235,44,48)" rx="2" ry="2" />
+<text  x="45.36" y="95.5" ></text>
+</g>
+<g >
+<title>managers.py:516:start (6,207 samples, 0.12%)</title><rect x="69.2" y="165" width="1.4" height="15.0" fill="rgb(220,110,20)" rx="2" ry="2" />
+<text  x="72.21" y="175.5" ></text>
+</g>
+<g >
+<title>threading.py:1038:_wait_for_tstate_lock (4,835,096 samples, 94.60%)</title><rect x="71.9" y="181" width="1116.3" height="15.0" fill="rgb(207,93,51)" rx="2" ry="2" />
+<text  x="74.86" y="191.5" >threading.py:1038:_wait_for_tstate_lock</text>
+</g>
+<g >
+<title>policy.py:1013:AddObject (11,926 samples, 0.23%)</title><rect x="62.4" y="85" width="2.8" height="15.0" fill="rgb(222,49,10)" rx="2" ry="2" />
+<text  x="65.42" y="95.5" ></text>
+</g>
+<g >
+<title>aclgenerator.py:272:__init__ (9,672 samples, 0.19%)</title><rect x="18.2" y="165" width="2.3" height="15.0" fill="rgb(228,97,40)" rx="2" ry="2" />
+<text  x="21.22" y="175.5" ></text>
+</g>
+<g >
+<title>aclgen.py:366:RenderACL (11,923 samples, 0.23%)</title><rect x="15.5" y="165" width="2.7" height="15.0" fill="rgb(210,82,18)" rx="2" ry="2" />
+<text  x="18.47" y="175.5" ></text>
+</g>
+<g >
+<title>util.py:170:__call__ (7,897 samples, 0.15%)</title><rect x="1188.2" y="197" width="1.8" height="15.0" fill="rgb(242,114,1)" rx="2" ry="2" />
+<text  x="1191.18" y="207.5" ></text>
+</g>
+<g >
+<title>~:0:&lt;method 'poll' of 'select.poll' objects&gt; (5,630 samples, 0.11%)</title><rect x="1188.7" y="101" width="1.3" height="15.0" fill="rgb(223,71,7)" rx="2" ry="2" />
+<text  x="1191.70" y="111.5" ></text>
+</g>
+<g >
+<title>iptables.py:809:__str__ (5,334 samples, 0.10%)</title><rect x="36.9" y="165" width="1.2" height="15.0" fill="rgb(254,107,46)" rx="2" ry="2" />
+<text  x="39.91" y="175.5" ></text>
+</g>
+<g >
+<title>copy.py:132:deepcopy (14,019 samples, 0.27%)</title><rect x="26.9" y="117" width="3.3" height="15.0" fill="rgb(231,62,15)" rx="2" ry="2" />
+<text  x="29.94" y="127.5" ></text>
+</g>
+<g >
+<title>aclgen.py:588:main (5,110,948 samples, 100.00%)</title><rect x="10.0" y="213" width="1180.0" height="15.0" fill="rgb(217,46,15)" rx="2" ry="2" />
+<text  x="13.00" y="223.5" >aclgen.py:588:main</text>
+</g>
+<g >
+<title>copy.py:132:deepcopy (13,278 samples, 0.26%)</title><rect x="30.5" y="133" width="3.1" height="15.0" fill="rgb(218,25,54)" rx="2" ry="2" />
+<text  x="33.50" y="143.5" ></text>
+</g>
+<g >
+<title>copy.py:132:deepcopy (13,331 samples, 0.26%)</title><rect x="23.8" y="133" width="3.1" height="15.0" fill="rgb(212,220,13)" rx="2" ry="2" />
+<text  x="26.83" y="143.5" ></text>
+</g>
+<g >
+<title>re.py:232:compile (6,167 samples, 0.12%)</title><rect x="42.3" y="117" width="1.4" height="15.0" fill="rgb(208,34,44)" rx="2" ry="2" />
+<text  x="45.26" y="127.5" ></text>
+</g>
+<g >
+<title>lex.py:728:validate_rules (38,307 samples, 0.75%)</title><rect x="43.9" y="117" width="8.8" height="15.0" fill="rgb(227,213,23)" rx="2" ry="2" />
+<text  x="46.86" y="127.5" ></text>
+</g>
+</g>
+</svg>
