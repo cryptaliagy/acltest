@@ -1,0 +1,73 @@
+aclgen.py:587:main 9782
+aclgen.py:587:main;aclgen.py:501:Run 3839
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile 18327
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;aclgen.py:366:RenderACL 5629
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;aclgen.py:366:RenderACL;<string>:1:append 65
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;aclgen.py:366:RenderACL;<string>:1:append;managers.py:783:_callmethod 6461
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;aclgenerator.py:276:__init__ 9011
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;cisco.py:1232:__str__ 298
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;cisco.py:1232:__str__;cisco.py:641:__str__ 5521
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;copy.py:132:deepcopy 9385
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;copy.py:132:deepcopy;copy.py:210:_deepcopy_list 1134
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;copy.py:132:deepcopy;copy.py:210:_deepcopy_list;copy.py:132:deepcopy 16897
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;copy.py:132:deepcopy;copy.py:219:_deepcopy_tuple 98
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;copy.py:132:deepcopy;copy.py:219:_deepcopy_tuple;copy.py:220:<listcomp> 45
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;copy.py:132:deepcopy;copy.py:219:_deepcopy_tuple;copy.py:220:<listcomp>;copy.py:132:deepcopy 17497
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;copy.py:132:deepcopy;copy.py:236:_deepcopy_dict 1451
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;copy.py:132:deepcopy;copy.py:236:_deepcopy_dict;copy.py:132:deepcopy 16800
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;copy.py:132:deepcopy;copy.py:268:_reconstruct 733
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;copy.py:132:deepcopy;copy.py:268:_reconstruct;copy.py:132:deepcopy 17261
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;nsxv.py:618:__str__ 3867
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;nsxv.py:618:__str__;minidom.py:1964:parseString 6481
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;nsxv.py:618:__str__;nsxv.py:125:__str__ 5758
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2525:ParsePolicy 1663
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2525:ParsePolicy;lex.py:862:lex 3204
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2525:ParsePolicy;lex.py:862:lex;lex.py:493:_form_master_re 381
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2525:ParsePolicy;lex.py:862:lex;lex.py:493:_form_master_re;re.py:232:compile 12
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2525:ParsePolicy;lex.py:862:lex;lex.py:493:_form_master_re;re.py:232:compile;re.py:271:_compile 476
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2525:ParsePolicy;lex.py:862:lex;lex.py:493:_form_master_re;re.py:232:compile;re.py:271:_compile;sre_compile.py:759:compile 5455
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2525:ParsePolicy;lex.py:862:lex;lex.py:576:validate_all 814
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2525:ParsePolicy;lex.py:862:lex;lex.py:576:validate_all;lex.py:728:validate_rules 1461
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2525:ParsePolicy;lex.py:862:lex;lex.py:576:validate_all;lex.py:728:validate_rules;lex.py:831:validate_module 10593
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2525:ParsePolicy;lex.py:862:lex;lex.py:576:validate_all;lex.py:728:validate_rules;lex.py:831:validate_module;~:0:<method 'match' of 're.Pattern' objects> 18696
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2525:ParsePolicy;lex.py:862:lex;lex.py:576:validate_all;lex.py:728:validate_rules;re.py:232:compile 79
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2525:ParsePolicy;lex.py:862:lex;lex.py:576:validate_all;lex.py:728:validate_rules;re.py:232:compile;re.py:271:_compile 461
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2525:ParsePolicy;lex.py:862:lex;lex.py:576:validate_all;lex.py:728:validate_rules;re.py:232:compile;re.py:271:_compile;sre_compile.py:759:compile 5281
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2525:ParsePolicy;yacc.py:325:parse 55
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2525:ParsePolicy;yacc.py:325:parse;yacc.py:1003:parseopt_notrack 23268
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2525:ParsePolicy;yacc.py:325:parse;yacc.py:1003:parseopt_notrack;lex.py:305:token 12911
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2525:ParsePolicy;yacc.py:325:parse;yacc.py:1003:parseopt_notrack;policy.py:1912:p_term_spec 2250
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2525:ParsePolicy;yacc.py:325:parse;yacc.py:1003:parseopt_notrack;policy.py:1912:p_term_spec;policy.py:405:__init__ 1100
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2525:ParsePolicy;yacc.py:325:parse;yacc.py:1003:parseopt_notrack;policy.py:1912:p_term_spec;policy.py:405:__init__;policy.py:1013:AddObject 297
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2525:ParsePolicy;yacc.py:325:parse;yacc.py:1003:parseopt_notrack;policy.py:1912:p_term_spec;policy.py:405:__init__;policy.py:1013:AddObject;naming.py:441:GetNetAddr 51
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2525:ParsePolicy;yacc.py:325:parse;yacc.py:1003:parseopt_notrack;policy.py:1912:p_term_spec;policy.py:405:__init__;policy.py:1013:AddObject;naming.py:441:GetNetAddr;naming.py:455:GetNet 4464
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2525:ParsePolicy;yacc.py:325:parse;yacc.py:1003:parseopt_notrack;policy.py:1912:p_term_spec;policy.py:405:__init__;policy.py:1013:AddObject;naming.py:441:GetNetAddr;naming.py:455:GetNet;nacaddr.py:29:IP 6438
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2525:ParsePolicy;yacc.py:325:parse;yacc.py:1003:parseopt_notrack;policy.py:1912:p_term_spec;policy.py:1013:AddObject 923
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2525:ParsePolicy;yacc.py:325:parse;yacc.py:1003:parseopt_notrack;policy.py:1912:p_term_spec;policy.py:1013:AddObject;naming.py:441:GetNetAddr 33
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;policy.py:2525:ParsePolicy;yacc.py:325:parse;yacc.py:1003:parseopt_notrack;policy.py:1912:p_term_spec;policy.py:1013:AddObject;naming.py:441:GetNetAddr;naming.py:455:GetNet 6882
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:166:RenderFile;~:0:<method 'read' of '_io.TextIOWrapper' objects> 10060
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:464:WriteFiles 722
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:464:WriteFiles;<string>:1:__getitem__ 56
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:464:WriteFiles;<string>:1:__getitem__;managers.py:783:_callmethod 2186
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:464:WriteFiles;<string>:1:__getitem__;managers.py:783:_callmethod;connection.py:246:recv 206
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:464:WriteFiles;<string>:1:__getitem__;managers.py:783:_callmethod;connection.py:246:recv;connection.py:406:_recv_bytes 128
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:464:WriteFiles;<string>:1:__getitem__;managers.py:783:_callmethod;connection.py:246:recv;connection.py:406:_recv_bytes;connection.py:374:_recv 168
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:464:WriteFiles;<string>:1:__getitem__;managers.py:783:_callmethod;connection.py:246:recv;connection.py:406:_recv_bytes;connection.py:374:_recv;~:0:<built-in method posix.read> 6049
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:464:WriteFiles;aclgen.py:478:_WriteFile 6470
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:488:DiscoverAllPolicies 853
+aclgen.py:587:main;aclgen.py:501:Run;aclgen.py:488:DiscoverAllPolicies;aclgen.py:420:DescendRecursively 5624
+aclgen.py:587:main;aclgen.py:501:Run;context.py:48:Manager 59
+aclgen.py:587:main;aclgen.py:501:Run;context.py:48:Manager;<frozen importlib._bootstrap>:978:_find_and_load 130
+aclgen.py:587:main;aclgen.py:501:Run;context.py:48:Manager;<frozen importlib._bootstrap>:978:_find_and_load;<frozen importlib._bootstrap>:948:_find_and_load_unlocked 5686
+aclgen.py:587:main;aclgen.py:501:Run;context.py:48:Manager;managers.py:516:start 2226
+aclgen.py:587:main;aclgen.py:501:Run;context.py:48:Manager;managers.py:516:start;connection.py:246:recv 183
+aclgen.py:587:main;aclgen.py:501:Run;context.py:48:Manager;managers.py:516:start;connection.py:246:recv;connection.py:406:_recv_bytes 116
+aclgen.py:587:main;aclgen.py:501:Run;context.py:48:Manager;managers.py:516:start;connection.py:246:recv;connection.py:406:_recv_bytes;connection.py:374:_recv 153
+aclgen.py:587:main;aclgen.py:501:Run;context.py:48:Manager;managers.py:516:start;connection.py:246:recv;connection.py:406:_recv_bytes;connection.py:374:_recv;~:0:<built-in method posix.read> 5486
+aclgen.py:587:main;aclgen.py:501:Run;managers.py:699:temp 2033
+aclgen.py:587:main;aclgen.py:501:Run;managers.py:699:temp;managers.py:579:_create 526
+aclgen.py:587:main;aclgen.py:501:Run;managers.py:699:temp;managers.py:579:_create;connection.py:483:Client 1279
+aclgen.py:587:main;aclgen.py:501:Run;managers.py:699:temp;managers.py:579:_create;connection.py:483:Client;connection.py:736:answer_challenge 5376
+aclgen.py:587:main;threading.py:1000:join 21
+aclgen.py:587:main;threading.py:1000:join;threading.py:1038:_wait_for_tstate_lock 49
+aclgen.py:587:main;threading.py:1000:join;threading.py:1038:_wait_for_tstate_lock;~:0:<method 'acquire' of '_thread.lock' objects> 4800555
